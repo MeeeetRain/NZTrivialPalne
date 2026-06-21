@@ -542,7 +542,11 @@ const PDF_INTL = 'private/flights/international-trip.pdf';
 const PDF_INTL_EN = 'private/flights/international-trip-en.pdf';
 const PDF_LPY = 'private/flights/domestic-lpy-qzn-akl.pdf';
 const PDF_ZQY = 'private/flights/domestic-zqy-qzn-akl.pdf';
-const PDF_HOTEL = 'private/hotels/ibis-akl-airport.pdf';
+const PDF_HOTEL_AKL = 'private/hotels/ibis-akl-airport.pdf';
+const PDF_HOTEL_CHC = 'private/hotels/novotel-chc-airport.pdf';
+const PDF_HOTEL_QZN_EARNSLAW = 'private/hotels/earnslaw-lodge-qzn.pdf';
+const PDF_HOTEL_QZN_AIRBNB = 'private/hotels/airbnb-qzn-pending.pdf';
+const PDF_HOTEL = PDF_HOTEL_AKL; // backward compat
 
 const days = [
   {
@@ -564,7 +568,7 @@ const days = [
       { time: '12:30', hour: 12.5, icon: '🍔', type: 'food', text: '机场用餐 + 休息', note: '6h10m 中转，确认行李是否需要重托运' },
       { time: '16:30', hour: 16.5, icon: '🛂', type: 'transit', text: '提前过境到 NZ216 登机口' },
       { time: '18:10', hour: 18.17, icon: '✈️', type: 'flight', text: 'NZ216 起飞', note: '新西兰航空 · 飞基督城（约 3.5h）', docs: [{label: '📄 行程单', url: PDF_INTL}] },
-      { time: '23:35', hour: 23.58, icon: '🏨', type: 'hotel', text: '抵 CHC，入住', note: '提行李 + Uber 到酒店约 30 分钟，凌晨 00:30 才睡' },
+      { time: '23:35', hour: 23.58, icon: '🏨', type: 'hotel', text: '抵 CHC → Novotel Airport', note: '步行屋顶走廊 5 分钟直达 · 24h 前台', docs: [{label: '📄 Novotel', url: PDF_HOTEL_CHC}] },
     ],
     notes: '抵 CHC 已经很晚，第一晚只做入境、提行李、睡觉',
   },
@@ -622,7 +626,7 @@ const days = [
       { time: '上午', hour: 9, icon: '☀️', type: 'transit', text: 'Wanaka 早餐 + 那棵树' },
       { time: '11:00', hour: 11, icon: '🚗', type: 'drive', text: '出发，经 Crown Range / Cromwell', note: '看路况选路线' },
       { time: '12:30', hour: 12.5, icon: '⛏️', type: 'tour', text: 'Arrowtown 午餐', note: '主街 + 华人淘金定居点' },
-      { time: '15:00', hour: 15, icon: '🚗', type: 'drive', text: '抵 Queenstown 镇中心', note: '放行李进酒店' },
+      { time: '15:00', hour: 15, icon: '🏨', type: 'hotel', text: '入住 Earnslaw Lodge', note: '77 Frankton Rd · 距镇中心 1.5km', docs: [{label: '📄 Earnslaw', url: PDF_HOTEL_QZN_EARNSLAW}] },
       { time: '16:30', hour: 16.5, icon: '⛽', type: 'drive', text: '加满油 → ZQN 机场还车', note: '保留加油小票' },
       { time: '17:30', hour: 17.5, icon: '🚌', type: 'transit', text: 'Route 1 公交回市区', note: '买 Bee Card NZD 10' },
       { time: '19:00', hour: 19, icon: '🍽️', type: 'food', text: '镇中心晚餐 + 早睡', note: '明日米尔福德 13h 长途' },
@@ -651,8 +655,10 @@ const days = [
     subtitle: '休整日 + 取滑雪装备',
     tags: ['休整'], tag: '♨️',
     events: [
-      { time: '上午', hour: 10, icon: '🥞', type: 'food', text: '镇中心 brunch', note: '推荐 Vudu Café' },
-      { time: '中午', hour: 12, icon: '🚶', type: 'tour', text: 'Queenstown Gardens 散步' },
+      { time: '09:30', hour: 9.5, icon: '🥞', type: 'food', text: '镇中心 brunch', note: '推荐 Vudu Café' },
+      { time: '11:00', hour: 11, icon: '🚪', type: 'hotel', text: 'Earnslaw 退房', note: '10:00 前 check-out，行李寄存或带走', docs: [{label: '📄 Earnslaw', url: PDF_HOTEL_QZN_EARNSLAW}] },
+      { time: '12:00', hour: 12, icon: '🚶', type: 'tour', text: 'Queenstown Gardens 散步' },
+      { time: '14:00', hour: 14, icon: '🏨', type: 'hotel', text: '入住 Airbnb（Cosy Lakeview）', note: 'Marc 房东 · 联系取钥匙', docs: [{label: '📄 Airbnb', url: PDF_HOTEL_QZN_AIRBNB}] },
       { time: '15:00', hour: 15, icon: '⛷️', type: 'ski', text: 'Snow Centre 取 MyPass', note: '25 Shotover Street，60-90 分钟' },
       { time: '15:30', hour: 15.5, icon: '👢', type: 'ski', text: '试雪鞋 + 选板 + 调绑定', note: '关键：当场穿走 5-10 分钟' },
       { time: '16:30', hour: 16.5, icon: '📦', type: 'ski', text: '装备寄存在店里', note: '明早 7:25 来取' },
@@ -693,7 +699,7 @@ const days = [
       { time: '11:00', hour: 11, icon: '🛫', type: 'flight', text: '抵机场，提前 2h 值机', note: '廉航严格称重 7kg 手提' },
       { time: '13:00', hour: 13, icon: '✈️', type: 'flight', text: 'Jetstar JQ296 起飞', note: '皇后镇 → 奥克兰', docs: [{label: '📄 LPY', url: PDF_LPY}, {label: '📄 ZQY', url: PDF_ZQY}] },
       { time: '14:50', hour: 14.83, icon: '🛬', type: 'flight', text: '抵 AKL T1', docs: [{label: '📄 LPY', url: PDF_LPY}, {label: '📄 ZQY', url: PDF_ZQY}] },
-      { time: '15:30', hour: 15.5, icon: '🏨', type: 'hotel', text: '入住 ibis Budget AKL Airport', note: '2 Leonard Isitt Dr · 走路 800m', docs: [{label: '📄 入住凭证', url: PDF_HOTEL}] },
+      { time: '15:30', hour: 15.5, icon: '🏨', type: 'hotel', text: '入住 ibis Budget AKL Airport', note: '2 Leonard Isitt Dr · 走路 800m', docs: [{label: '📄 ibis 凭证', url: PDF_HOTEL_AKL}] },
       { time: '晚上', hour: 19, icon: '🍽️', type: 'food', text: '机场餐饮区晚餐' },
     ],
     notes: '18h 缓冲到次日 08:55 国际航班，足够延误几小时',
