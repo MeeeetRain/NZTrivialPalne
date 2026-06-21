@@ -23,9 +23,13 @@
   --border: #e5e7eb;
   --border-soft: #f3f4f6;
   --shadow: 0 1px 3px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.04);
-  --hour-h: 52px;
+  --hour-h: 48px;
   --col-w: 220px;
-  --col-w-mobile: 160px;
+  --col-w-mobile: 180px;
+  --morning-bg: #fffdf7;
+  --afternoon-bg: #ffffff;
+  --evening-bg: #fbf6ff;
+  --night-bg: #f4f6fa;
 }
 * { box-sizing: border-box; -webkit-tap-highlight-color: rgba(30,96,145,0.15); }
 html, body { margin: 0; padding: 0; }
@@ -233,7 +237,7 @@ body {
   border-bottom: 1px dashed var(--border-soft);
 }
 .gutter-header {
-  height: 78px;
+  height: 96px;
   position: sticky;
   top: 0;
   background: var(--bg);
@@ -265,9 +269,9 @@ body {
   z-index: 9;
   background: var(--card);
   border-bottom: 1px solid var(--border);
-  padding: 10px 12px;
+  padding: 8px 8px 10px 8px;
   text-align: center;
-  height: 78px;
+  height: 96px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -288,63 +292,146 @@ body {
 }
 .day-date { font-size: 15px; font-weight: 700; }
 .day-weekday { font-size: 11px; color: var(--muted); transition: color 0.2s; }
+.day-weather {
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  font-size: 11.5px;
+  color: var(--text);
+  min-height: 16px;
+}
+.day-weather-emoji { font-size: 14px; }
+.day-weather-temp { color: var(--muted); font-weight: 500; font-variant-numeric: tabular-nums; }
+.day-weather.loading { opacity: 0.4; }
+.day-weather-source {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  font-size: 8.5px;
+  color: var(--soft);
+  background: rgba(255,255,255,0.5);
+  padding: 0 4px;
+  border-radius: 3px;
+  pointer-events: none;
+}
+.day-col.active .day-weather-source { background: rgba(255,255,255,0.2); color: rgba(255,255,255,0.7); }
+.day-col.active .day-weather-temp { color: rgba(255,255,255,0.85); }
+.day-col.active .day-weather { color: white; }
 
 .day-body { position: relative; }
 
-/* Hour grid */
+/* Hour grid: time-of-day bands */
 .hour-grid-line {
   border-bottom: 1px dashed var(--border-soft);
   height: var(--hour-h);
+  background: var(--afternoon-bg);
+}
+/* Morning 5-12 */
+.hour-grid-line[data-h="5"], .hour-grid-line[data-h="6"], .hour-grid-line[data-h="7"],
+.hour-grid-line[data-h="8"], .hour-grid-line[data-h="9"], .hour-grid-line[data-h="10"],
+.hour-grid-line[data-h="11"] {
+  background: var(--morning-bg);
+}
+/* Evening 18-21 */
+.hour-grid-line[data-h="18"], .hour-grid-line[data-h="19"], .hour-grid-line[data-h="20"] {
+  background: var(--evening-bg);
+}
+/* Night 21+ */
+.hour-grid-line[data-h="21"], .hour-grid-line[data-h="22"], .hour-grid-line[data-h="23"],
+.hour-grid-line[data-h="24"] {
+  background: var(--night-bg);
 }
 
-/* Event chip */
+/* Vertical thread on left edge of each day column */
+.day-thread {
+  position: absolute;
+  left: 16px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, transparent 0%, var(--border) 5%, var(--border) 95%, transparent 100%);
+  z-index: 1;
+}
+
+/* Event chip - wider, more readable */
 .event-chip {
   position: absolute;
-  left: 6px;
-  right: 6px;
+  left: 22px;
+  right: 8px;
   background: var(--card);
   border: 1px solid var(--border);
-  border-left: 3px solid var(--primary-2);
-  border-radius: 6px;
-  padding: 5px 8px;
-  font-size: 11.5px;
-  line-height: 1.35;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+  border-left: 4px solid var(--primary-2);
+  border-radius: 8px;
+  padding: 7px 10px 7px 12px;
+  font-size: 12.5px;
+  line-height: 1.4;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
   overflow: hidden;
-  transition: transform 0.12s, box-shadow 0.12s;
+  transition: transform 0.12s, box-shadow 0.12s, z-index 0s;
+  z-index: 2;
+  min-height: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
 }
 .event-chip:hover {
-  transform: translateX(1px);
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-  z-index: 5;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  z-index: 6;
+}
+.event-chip-line1 {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  font-weight: 500;
 }
 .event-chip-time {
   font-weight: 700;
   color: var(--primary-2);
-  font-size: 10.5px;
-  margin-right: 4px;
+  font-size: 11px;
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
 }
-.event-chip-icon { margin-right: 3px; }
-.event-chip.flight { border-left-color: #0a84ff; background: #f0f7ff; }
-.event-chip.drive { border-left-color: #34c759; background: #f0fdf4; }
-.event-chip.food { border-left-color: #ff9500; background: #fff7ed; }
-.event-chip.hotel { border-left-color: #af52de; background: #faf5ff; }
-.event-chip.ski { border-left-color: #5ac8fa; background: #f0f9ff; }
-.event-chip.spa { border-left-color: #ff375f; background: #fff1f3; }
-.event-chip.tour { border-left-color: #ffcc00; background: #fffbeb; }
-.event-chip.transit { border-left-color: var(--soft); background: #fafafa; }
+.event-chip-icon { font-size: 14px; flex-shrink: 0; }
+.event-chip-text {
+  flex: 1;
+  font-size: 12px;
+  line-height: 1.35;
+  word-break: break-word;
+}
 
-/* Empty filler */
-.day-col-filler {
-  position: relative;
-  background: repeating-linear-gradient(
-    45deg,
-    transparent,
-    transparent 6px,
-    rgba(0,0,0,0.015) 6px,
-    rgba(0,0,0,0.015) 12px
-  );
+/* Event thread dot — sits on the day-thread vertical line */
+.event-chip::before {
+  content: '';
+  position: absolute;
+  left: -10px;
+  top: 12px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--primary-2);
+  border: 2px solid white;
+  box-shadow: 0 0 0 1px var(--border);
 }
+
+.event-chip.flight { border-left-color: #0a84ff; background: #f0f7ff; }
+.event-chip.flight::before { background: #0a84ff; }
+.event-chip.drive { border-left-color: #34c759; background: #f0fdf4; }
+.event-chip.drive::before { background: #34c759; }
+.event-chip.food { border-left-color: #ff9500; background: #fff7ed; }
+.event-chip.food::before { background: #ff9500; }
+.event-chip.hotel { border-left-color: #af52de; background: #faf5ff; }
+.event-chip.hotel::before { background: #af52de; }
+.event-chip.ski { border-left-color: #5ac8fa; background: #f0f9ff; }
+.event-chip.ski::before { background: #5ac8fa; }
+.event-chip.spa { border-left-color: #ff375f; background: #fff1f3; }
+.event-chip.spa::before { background: #ff375f; }
+.event-chip.tour { border-left-color: #ffcc00; background: #fffbeb; }
+.event-chip.tour::before { background: #ffcc00; }
+.event-chip.transit { border-left-color: var(--soft); background: #fafafa; }
+.event-chip.transit::before { background: var(--soft); }
 
 /* Day type tags */
 .day-tag {
@@ -415,6 +502,42 @@ const HOUR_START = 5;  // timeline shows 5:00 - 24:00 (and overflow into next da
 const HOUR_END = 24;
 const HOUR_HEIGHT = 52;
 
+// ===== Weather data =====
+// Each day's "destination" city — used to fetch weather and label
+const dayWeatherLocation = {
+  1: { name: '深圳', lat: 22.55, lon: 113.92, tz: 'Asia/Shanghai', month: '8月', avg: { hi: 32, lo: 26, code: 1 } },
+  2: { name: '基督城', lat: -43.49, lon: 172.55, tz: 'Pacific/Auckland', month: '8月', avg: { hi: 12, lo: 3, code: 3 } },
+  3: { name: 'Tekapo', lat: -44.00, lon: 170.48, tz: 'Pacific/Auckland', month: '8月', avg: { hi: 8, lo: -3, code: 73 } },
+  4: { name: 'Twizel', lat: -44.26, lon: 170.10, tz: 'Pacific/Auckland', month: '8月', avg: { hi: 8, lo: -3, code: 73 } },
+  5: { name: 'Wanaka', lat: -44.70, lon: 169.14, tz: 'Pacific/Auckland', month: '8月', avg: { hi: 8, lo: -2, code: 3 } },
+  6: { name: '皇后镇', lat: -45.03, lon: 168.66, tz: 'Pacific/Auckland', month: '8月', avg: { hi: 9, lo: -1, code: 3 } },
+  7: { name: '米尔福德', lat: -44.67, lon: 167.93, tz: 'Pacific/Auckland', month: '8月', avg: { hi: 9, lo: 1, code: 63 } },
+  8: { name: '皇后镇', lat: -45.03, lon: 168.66, tz: 'Pacific/Auckland', month: '8月', avg: { hi: 9, lo: -1, code: 3 } },
+  9: { name: 'Coronet Peak', lat: -44.92, lon: 168.74, tz: 'Pacific/Auckland', month: '8月', avg: { hi: 4, lo: -5, code: 73 } },
+  10: { name: '奥克兰', lat: -36.85, lon: 174.76, tz: 'Pacific/Auckland', month: '8月', avg: { hi: 15, lo: 8, code: 63 } },
+  11: { name: '墨尔本', lat: -37.81, lon: 144.96, tz: 'Australia/Melbourne', month: '8月', avg: { hi: 14, lo: 6, code: 63 } },
+  12: { name: '深圳', lat: 22.55, lon: 113.92, tz: 'Asia/Shanghai', month: '8月', avg: { hi: 32, lo: 26, code: 1 } },
+};
+
+const dayDateMap = {
+  1: '2026-08-08', 2: '2026-08-09', 3: '2026-08-10', 4: '2026-08-11',
+  5: '2026-08-12', 6: '2026-08-13', 7: '2026-08-14', 8: '2026-08-15',
+  9: '2026-08-16', 10: '2026-08-17', 11: '2026-08-18', 12: '2026-08-19',
+};
+
+function weatherEmoji(code) {
+  if (code === 0) return '☀️';
+  if (code <= 3) return '⛅';
+  if (code <= 48) return '🌫️';
+  if (code <= 57) return '🌦️';
+  if (code <= 67) return '🌧️';
+  if (code <= 77) return '❄️';
+  if (code <= 82) return '🌧️';
+  if (code <= 86) return '🌨️';
+  if (code <= 99) return '⛈️';
+  return '⛅';
+}
+
 const PDF_INTL = 'private/flights/international-trip.pdf';
 const PDF_INTL_EN = 'private/flights/international-trip-en.pdf';
 const PDF_LPY = 'private/flights/domestic-lpy-qzn-akl.pdf';
@@ -438,9 +561,10 @@ const days = [
     tags: ['长途'], tag: '🛬',
     events: [
       { time: '12:00', hour: 12, icon: '🛬', type: 'flight', text: '抵 MEL T2', note: '过澳洲过境签核查', docs: [{label: '📄 行程单', url: PDF_INTL}] },
-      { time: '12:00', hour: 12.5, icon: '🎒', type: 'transit', text: '6h10m 中转', note: '机场休息、用餐、再次确认行李' },
-      { time: '18:10', hour: 18.17, icon: '✈️', type: 'flight', text: 'NZ216 起飞', note: '新西兰航空 · 飞基督城（3.5h）', docs: [{label: '📄 行程单', url: PDF_INTL}] },
-      { time: '23:35', hour: 23.58, icon: '🏨', type: 'hotel', text: '抵 CHC，入住', note: '基督城机场附近酒店，不安排夜间移动' },
+      { time: '12:30', hour: 12.5, icon: '🍔', type: 'food', text: '机场用餐 + 休息', note: '6h10m 中转，确认行李是否需要重托运' },
+      { time: '16:30', hour: 16.5, icon: '🛂', type: 'transit', text: '提前过境到 NZ216 登机口' },
+      { time: '18:10', hour: 18.17, icon: '✈️', type: 'flight', text: 'NZ216 起飞', note: '新西兰航空 · 飞基督城（约 3.5h）', docs: [{label: '📄 行程单', url: PDF_INTL}] },
+      { time: '23:35', hour: 23.58, icon: '🏨', type: 'hotel', text: '抵 CHC，入住', note: '提行李 + Uber 到酒店约 30 分钟，凌晨 00:30 才睡' },
     ],
     notes: '抵 CHC 已经很晚，第一晚只做入境、提行李、睡觉',
   },
@@ -449,11 +573,13 @@ const days = [
     subtitle: '基督城 → Lake Tekapo',
     tags: ['取车日', '驾驶'], tag: '🚗',
     events: [
-      { time: '上午', hour: 9, icon: '☀️', type: 'transit', text: '起床、采购', note: '超市买水、零食、早餐' },
+      { time: '09:30', hour: 9.5, icon: '🌅', type: 'transit', text: '起床、酒店早餐', note: 'D2 凌晨才入住，多睡半小时' },
       { time: '10:30', hour: 10.5, icon: '🚗', type: 'drive', text: '基督城机场取车', note: '检查车况拍视频，确认雪链、保险、自负额' },
-      { time: '12:30', hour: 12.5, icon: '🍽️', type: 'food', text: '上路午餐', note: 'McDonald\'s / 超市三明治' },
-      { time: '13:00', hour: 13, icon: '🚗', type: 'drive', text: '开往 Lake Tekapo', note: '约 3 小时车程，227 km' },
-      { time: '16:30', hour: 16.5, icon: '⛪', type: 'tour', text: '牧羊人教堂 + 湖边', note: '黄昏时段拍照最美' },
+      { time: '11:30', hour: 11.5, icon: '🛒', type: 'food', text: '超市采购', note: '水、零食、早餐 — 后面几天物资' },
+      { time: '12:30', hour: 12.5, icon: '🍽️', type: 'food', text: '基督城午餐 + 出发' },
+      { time: '13:30', hour: 13.5, icon: '🚗', type: 'drive', text: '开往 Lake Tekapo', note: '约 3 小时车程，227 km' },
+      { time: '16:30', hour: 16.5, icon: '⛪', type: 'tour', text: '牧羊人教堂 + 湖边', note: '黄昏时段拍照最美，日落约 17:30' },
+      { time: '18:30', hour: 18.5, icon: '🍽️', type: 'food', text: 'Tekapo 镇内晚餐' },
       { time: '20:00', hour: 20, icon: '🌌', type: 'tour', text: '观星 or 泡温泉', note: '天气好优先观星，差则 Tekapo Springs' },
     ],
     notes: '第一天右舵左行，避免夜路。住宿：Lake Tekapo 镇内',
@@ -463,10 +589,12 @@ const days = [
     subtitle: 'Tekapo → Mt Cook → Twizel',
     tags: ['雪山'], tag: '🏔️',
     events: [
-      { time: '上午', hour: 9, icon: '☀️', type: 'transit', text: '出发离开 Tekapo' },
-      { time: '10:00', hour: 10, icon: '📸', type: 'tour', text: 'Lake Pukaki + Peters Lookout', note: '牛奶蓝湖水 + 远眺 Aoraki' },
-      { time: '11:30', hour: 11.5, icon: '🚗', type: 'drive', text: '开往 Mt Cook Village', note: '约 60 km' },
-      { time: '13:00', hour: 13, icon: '🥾', type: 'tour', text: '短步道', note: 'Kea Point 或 Hooker Valley 开放段' },
+      { time: '09:00', hour: 9, icon: '🌅', type: 'transit', text: '出发离开 Tekapo' },
+      { time: '09:40', hour: 9.67, icon: '📸', type: 'tour', text: 'Lake Pukaki + Peters Lookout', note: '牛奶蓝湖水 + 远眺 Aoraki，停 45 分钟' },
+      { time: '10:30', hour: 10.5, icon: '🚗', type: 'drive', text: '开往 Mt Cook Village', note: '约 60 km，1 小时' },
+      { time: '11:30', hour: 11.5, icon: '🥚', type: 'food', text: 'Mt Cook Visitor Centre 午餐', note: 'Hermitage 咖啡店或自带补给' },
+      { time: '12:30', hour: 12.5, icon: '🥾', type: 'tour', text: 'Hooker Valley 步道', note: '10 km 来回 3h，先看 DOC 当天开放状态' },
+      { time: '16:00', hour: 16, icon: '🚗', type: 'drive', text: '开往 Twizel', note: '65 km，50 分钟' },
       { time: '17:00', hour: 17, icon: '🏨', type: 'hotel', text: '入住 Twizel / Mt Cook', note: '住 Twizel 省，住 Mt Cook Village 清晨看雪山震撼' },
     ],
     notes: 'DOC 步道开放状态需当天去 Visitor Centre 确认',
@@ -476,8 +604,10 @@ const days = [
     subtitle: 'Twizel → Wanaka',
     tags: ['湖区'], tag: '🌊',
     events: [
-      { time: '上午', hour: 9.5, icon: '☀️', type: 'transit', text: '出发离开 Twizel' },
-      { time: '中午', hour: 12, icon: '🚗', type: 'drive', text: '经 Omarama / Lindis Pass', note: '风景路段，约 200 km' },
+      { time: '09:30', hour: 9.5, icon: '🌅', type: 'transit', text: '出发离开 Twizel' },
+      { time: '11:00', hour: 11, icon: '📸', type: 'tour', text: 'Lindis Pass 观景点', note: '高山道，可短停拍照' },
+      { time: '12:30', hour: 12.5, icon: '🍽️', type: 'food', text: 'Omarama / Tarras 午餐', note: '路上小镇 Coffee Stop' },
+      { time: '13:30', hour: 13.5, icon: '🏨', type: 'hotel', text: '抵达 Wanaka，入住' },
       { time: '14:30', hour: 14.5, icon: '🌳', type: 'tour', text: 'That Wanaka Tree', note: '黄昏拍照最佳' },
       { time: '16:00', hour: 16, icon: '🚶', type: 'tour', text: 'Lake Wanaka 湖边散步' },
       { time: '18:30', hour: 18.5, icon: '🍽️', type: 'food', text: '镇中心晚餐' },
@@ -504,11 +634,14 @@ const days = [
     subtitle: '米尔福德峡湾一日团',
     tags: ['重头戏'], tag: '🏞️',
     events: [
-      { time: '06:30', hour: 6.5, icon: '🌅', type: 'transit', text: '起床' },
+      { time: '06:30', hour: 6.5, icon: '🌅', type: 'transit', text: '起床、早餐' },
       { time: '07:15', hour: 7.25, icon: '🚌', type: 'tour', text: 'Southern Discoveries 集合', note: '镇中心 Town Centre 上车' },
-      { time: '11:30', hour: 11.5, icon: '📸', type: 'tour', text: '途经 Te Anau + Fiordland', note: '车上 4.5h，含停车' },
-      { time: '13:30', hour: 13.5, icon: '🛥️', type: 'tour', text: '米尔福德游船 2h', note: 'Mitre Peak、瀑布、海豹' },
-      { time: '19:30', hour: 19.5, icon: '🚌', type: 'tour', text: '回到皇后镇' },
+      { time: '09:45', hour: 9.75, icon: '☕', type: 'tour', text: 'Te Anau 短停', note: '咖啡、洗手间' },
+      { time: '11:30', hour: 11.5, icon: '📸', type: 'tour', text: '途经 Mirror Lakes / Eglinton Valley', note: '进入 Fiordland 国家公园' },
+      { time: '13:00', hour: 13, icon: '🛥️', type: 'tour', text: '抵 Milford Sound 码头' },
+      { time: '13:30', hour: 13.5, icon: '🛥️', type: 'tour', text: '游船 2h', note: 'Mitre Peak、瀑布、海豹' },
+      { time: '15:30', hour: 15.5, icon: '🚌', type: 'tour', text: '返程出发', note: '回程约 4 小时' },
+      { time: '19:30', hour: 19.5, icon: '🏠', type: 'transit', text: '回到皇后镇' },
       { time: '20:00', hour: 20, icon: '🛏️', type: 'transit', text: '当晚不安排其他活动' },
     ],
     notes: '全天约 13h，准备晕车药、保暖、零食',
@@ -533,9 +666,9 @@ const days = [
     subtitle: '滑雪日 + Onsen 温泉',
     tags: ['滑雪', '温泉'], tag: '⛷️',
     events: [
-      { time: '07:00', hour: 7, icon: '🌅', type: 'transit', text: '起床 + 早餐', note: '前晚超市买的麦片' },
-      { time: '07:25', hour: 7.42, icon: '⛷️', type: 'ski', text: 'Snow Centre 取装备' },
-      { time: '07:30', hour: 7.5, icon: '🚌', type: 'ski', text: 'Duke St 9 号上班车', note: 'Coronet Peak Ski Bus' },
+      { time: '06:45', hour: 6.75, icon: '🌅', type: 'transit', text: '起床 + 早餐', note: '前晚超市买的麦片' },
+      { time: '07:10', hour: 7.17, icon: '⛷️', type: 'ski', text: 'Snow Centre 取装备', note: '25 Shotover St，5 分钟取板' },
+      { time: '07:25', hour: 7.42, icon: '🚌', type: 'ski', text: 'Duke St 9 号上班车', note: '7:30 准时发车，扛雪具走 200m' },
       { time: '08:30', hour: 8.5, icon: '🎿', type: 'ski', text: 'Big Easy 缆车热身', note: '前 5 趟修复平行式' },
       { time: '10:00', hour: 10, icon: '🧑‍🏫', type: 'ski', text: '90 分钟进阶课', note: 'NZD 99/人，10:00-11:30 时段' },
       { time: '11:30', hour: 11.5, icon: '🎿', type: 'ski', text: 'M1 经典蓝色巡航道' },
@@ -570,8 +703,12 @@ const days = [
     subtitle: '奥克兰 → 墨尔本 → 深圳',
     tags: ['长途回程'], tag: '✈️',
     events: [
-      { time: '06:30', hour: 6.5, icon: '🌅', type: 'transit', text: '起床退房' },
-      { time: '07:00', hour: 7, icon: '🚖', type: 'transit', text: '去航站楼', note: '步行 / 班车' },
+      { time: '05:30', hour: 5.5, icon: '🌅', type: 'transit', text: '起床洗漱', note: '前晚 22:00 整理好行李' },
+      { time: '05:55', hour: 5.92, icon: '🚪', type: 'transit', text: '退房出门', note: 'ibis Budget 距航站楼 800m，步行 10 分钟' },
+      { time: '06:10', hour: 6.17, icon: '🛄', type: 'flight', text: 'Air NZ 国际柜台 Bag Drop', note: '柜台 05:55 开放，刚开门没排队最快' },
+      { time: '06:30', hour: 6.5, icon: '🚷', type: 'transit', text: '过安检 + 出境' },
+      { time: '07:00', hour: 7, icon: '☕', type: 'food', text: '机场免税店 / 早餐', note: '免税店 06:00 开门，吃口热的' },
+      { time: '08:25', hour: 8.42, icon: '🚪', type: 'transit', text: '登机口关闭', note: '务必之前到达' },
       { time: '08:55', hour: 8.92, icon: '✈️', type: 'flight', text: 'NZ121 起飞', note: 'AKL → MEL，约 3.5h', docs: [{label: '📄 行程单', url: PDF_INTL}] },
       { time: '10:55', hour: 10.92, icon: '🛬', type: 'flight', text: '抵 MEL T2', docs: [{label: '📄 行程单', url: PDF_INTL}] },
       { time: '11:00', hour: 11.5, icon: '🎒', type: 'transit', text: '10h25m 中转', note: '澳洲过境签必须有' },
@@ -619,10 +756,16 @@ days.forEach(day => {
   // Header
   const head = document.createElement('div');
   head.className = 'day-header';
+  const wloc = dayWeatherLocation[day.id];
+  const avgEmoji = wloc ? weatherEmoji(wloc.avg.code) : '';
   head.innerHTML = `
     <span class="day-num">D${day.id}</span>
     <div class="day-date">${day.date}</div>
     <div class="day-weekday">${day.weekday}</div>
+    <div class="day-weather loading" data-day-id="${day.id}">
+      <span class="day-weather-emoji">${avgEmoji}</span>
+      <span class="day-weather-temp">${wloc ? wloc.avg.hi + '°/' + wloc.avg.lo + '°' : ''}</span>
+    </div>
   `;
   col.appendChild(head);
 
@@ -640,22 +783,37 @@ days.forEach(day => {
     body.appendChild(tag);
   }
 
-  // Hour grid lines
+  // Vertical thread line for visual continuity
+  const thread = document.createElement('div');
+  thread.className = 'day-thread';
+  body.appendChild(thread);
+
+  // Hour grid lines with time-of-day bands
   for (let h = HOUR_START; h <= HOUR_END; h++) {
     const line = document.createElement('div');
     line.className = 'hour-grid-line';
+    line.dataset.h = h;
     body.appendChild(line);
   }
 
-  // Events
-  day.events.forEach(ev => {
+  // Compute heights based on next event time to make chips stretch (calendar-like)
+  const sortedEvents = [...day.events].sort((a, b) => a.hour - b.hour);
+  sortedEvents.forEach((ev, idx) => {
     const top = (ev.hour - HOUR_START) * HOUR_HEIGHT;
+    const next = sortedEvents[idx + 1];
+    const span = next ? (next.hour - ev.hour) * HOUR_HEIGHT : 1.5 * HOUR_HEIGHT;
+    // Min 36px, max 4 hours visible
+    const height = Math.max(36, Math.min(span - 4, 4 * HOUR_HEIGHT));
     const chip = document.createElement('div');
     chip.className = 'event-chip ' + (ev.type || '');
     chip.style.top = top + 'px';
+    chip.style.minHeight = height + 'px';
     chip.innerHTML = `
-      <span class="event-chip-time">${ev.time}</span>
-      <span class="event-chip-icon">${ev.icon}</span>${ev.text}
+      <div class="event-chip-line1">
+        <span class="event-chip-time">${ev.time}</span>
+        <span class="event-chip-icon">${ev.icon}</span>
+        <span class="event-chip-text">${ev.text}</span>
+      </div>
     `;
     body.appendChild(chip);
   });
@@ -708,8 +866,84 @@ function selectDay(id) {
 
 // Default: select D1
 selectDay(1);
-// Scroll timeline so it shows from start
 document.getElementById('timeline-wrap').scrollLeft = 0;
+
+// ===== Weather: try real forecast, fallback to historical average =====
+async function fetchWeatherForDay(dayId) {
+  const loc = dayWeatherLocation[dayId];
+  if (!loc) return null;
+  const date = dayDateMap[dayId];
+  if (!date) return null;
+  const cacheKey = `wx_${dayId}_${date}`;
+  // Use cached if within 12h
+  try {
+    const cached = JSON.parse(localStorage.getItem(cacheKey) || 'null');
+    if (cached && (Date.now() - cached.ts) < 12 * 3600 * 1000) {
+      return cached.data;
+    }
+  } catch (e) {}
+  // Open-Meteo: 16 day forecast window. Skip fetch if date is beyond window.
+  const target = new Date(date + 'T12:00:00Z').getTime();
+  const now = Date.now();
+  const daysAhead = (target - now) / (24 * 3600 * 1000);
+  if (daysAhead < 0 || daysAhead > 16) return null;
+  const url = `https://api.open-meteo.com/v1/forecast?latitude=${loc.lat}&longitude=${loc.lon}` +
+              `&daily=temperature_2m_max,temperature_2m_min,weathercode&timezone=${encodeURIComponent(loc.tz)}` +
+              `&start_date=${date}&end_date=${date}`;
+  try {
+    const r = await fetch(url);
+    if (!r.ok) return null;
+    const j = await r.json();
+    if (!j.daily) return null;
+    const data = {
+      hi: Math.round(j.daily.temperature_2m_max[0]),
+      lo: Math.round(j.daily.temperature_2m_min[0]),
+      code: j.daily.weathercode[0],
+    };
+    localStorage.setItem(cacheKey, JSON.stringify({ ts: Date.now(), data }));
+    return data;
+  } catch (e) {
+    return null;
+  }
+}
+
+function paintWeather(dayId, data, isForecast) {
+  const el = document.querySelector(`.day-weather[data-day-id="${dayId}"]`);
+  if (!el) return;
+  el.classList.remove('loading');
+  el.innerHTML = `
+    <span class="day-weather-emoji">${weatherEmoji(data.code)}</span>
+    <span class="day-weather-temp">${data.hi}°/${data.lo}°</span>
+  `;
+  // Add small "预报" or "8月平均" badge to the column body
+  const dayId_int = parseInt(dayId);
+  const col = document.querySelector(`.day-col[data-day-id="${dayId_int}"]`);
+  if (col) {
+    const body = col.querySelector('.day-body');
+    let badge = body.querySelector('.day-weather-source');
+    if (!badge) {
+      badge = document.createElement('div');
+      badge.className = 'day-weather-source';
+      body.appendChild(badge);
+    }
+    badge.textContent = isForecast ? '预报' : '8月均';
+  }
+}
+
+(async function loadAllWeather() {
+  for (let dayId = 1; dayId <= 12; dayId++) {
+    const loc = dayWeatherLocation[dayId];
+    if (!loc) continue;
+    // Show average first
+    paintWeather(dayId, loc.avg, false);
+  }
+  // Try fetch in parallel
+  await Promise.all([...Array(12)].map(async (_, i) => {
+    const dayId = i + 1;
+    const real = await fetchWeatherForDay(dayId);
+    if (real) paintWeather(dayId, real, true);
+  }));
+})();
 </script>
 </body>
 </html>
