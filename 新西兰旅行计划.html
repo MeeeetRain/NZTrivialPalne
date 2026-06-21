@@ -1,0 +1,2823 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>新西兰 12 天情侣旅行计划</title>
+<style>
+:root {
+  --bg: #f6f7f9;
+  --bg-card: #ffffff;
+  --text: #1f2937;
+  --text-muted: #6b7280;
+  --text-soft: #4b5563;
+  --primary: #0f3a5f;
+  --primary-2: #1e6091;
+  --primary-light: #eef4f9;
+  --accent: #b03a2e;
+  --accent-soft: #fff7ec;
+  --warm: #fbbf24;
+  --warm-soft: #fffbeb;
+  --success: #10b981;
+  --border: #e5e7eb;
+  --border-soft: #f3f4f6;
+  --shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.06), 0 10px 30px rgba(0,0,0,0.05);
+  --apple-blue: #0a84ff;
+  --sidebar-w: 320px;
+  --header-h: 56px;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB",
+               "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Top header */
+.topbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: var(--header-h);
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: saturate(180%) blur(16px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  z-index: 100;
+  padding: 0 24px;
+}
+.topbar-title {
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--primary);
+  flex: 1;
+}
+.topbar-sub {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  margin-right: 8px;
+  color: var(--primary);
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: var(--header-h);
+  left: 0;
+  bottom: 0;
+  width: var(--sidebar-w);
+  background: var(--bg-card);
+  border-right: 1px solid var(--border);
+  overflow-y: auto;
+  z-index: 50;
+}
+.sidebar-inner {
+  padding: 20px 18px 100px 18px;
+}
+.sidebar-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 4px;
+}
+.sidebar-sub {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+.toc-search {
+  width: 100%;
+  padding: 8px 12px;
+  font-size: 13px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  outline: none;
+  margin-bottom: 14px;
+  font-family: inherit;
+}
+.toc-search:focus {
+  border-color: var(--primary-2);
+  background: white;
+}
+.toc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.toc-l2 > a {
+  display: flex;
+  align-items: center;
+  padding: 8px 10px;
+  border-radius: 6px;
+  text-decoration: none;
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 8px;
+  transition: background 0.15s;
+}
+.toc-l2 > a:hover {
+  background: var(--primary-light);
+  color: var(--primary);
+}
+.toc-emoji {
+  display: inline-block;
+  width: 22px;
+  margin-right: 4px;
+  font-size: 14px;
+}
+.toc-l3-list {
+  list-style: none;
+  padding-left: 28px;
+  margin: 4px 0 0 0;
+  display: none;
+}
+.toc-l2.open .toc-l3-list {
+  display: block;
+}
+.toc-l3 > a {
+  display: block;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 12.5px;
+  color: var(--text-muted);
+  text-decoration: none;
+  border-left: 2px solid var(--border-soft);
+  margin-left: -16px;
+  padding-left: 14px;
+  transition: all 0.15s;
+}
+.toc-l3 > a:hover {
+  color: var(--primary-2);
+  border-left-color: var(--primary-2);
+  background: var(--primary-light);
+}
+.toc-l3.active > a, .toc-l2.active > a {
+  color: var(--primary);
+  background: var(--primary-light);
+  border-left-color: var(--primary);
+}
+.sidebar-foot {
+  margin-top: 32px;
+  padding: 12px 10px;
+  border-top: 1px solid var(--border-soft);
+  font-size: 11px;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+/* Main content */
+.main {
+  margin-left: var(--sidebar-w);
+  padding: calc(var(--header-h) + 24px) 48px 80px 48px;
+  max-width: 1100px;
+}
+
+/* Headings */
+h1 {
+  font-size: 28pt;
+  color: var(--primary);
+  margin: 0 0 24px 0;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+h2 {
+  font-size: 22px;
+  color: var(--primary);
+  margin: 48px 0 16px 0;
+  padding: 14px 18px 14px 22px;
+  background: linear-gradient(180deg, var(--primary-light) 0%, #f7fafc 100%);
+  border-left: 5px solid var(--primary-2);
+  border-radius: 4px;
+  scroll-margin-top: calc(var(--header-h) + 12px);
+}
+h3 {
+  font-size: 17px;
+  color: var(--primary-2);
+  margin: 28px 0 10px 0;
+  padding-bottom: 4px;
+  border-bottom: 1px dashed var(--border);
+  scroll-margin-top: calc(var(--header-h) + 12px);
+}
+h4 {
+  font-size: 15px;
+  color: var(--text);
+  margin: 18px 0 8px 0;
+  font-weight: 600;
+}
+
+p {
+  margin: 0 0 14px 0;
+}
+
+strong {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+em { color: var(--text-soft); }
+
+/* Lists */
+ul, ol {
+  margin: 0 0 16px 0;
+  padding-left: 26px;
+}
+li { margin-bottom: 4px; }
+li > ul, li > ol { margin: 4px 0; }
+
+/* Tables */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 12px 0 22px 0;
+  font-size: 13.5px;
+  background: var(--bg-card);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+thead { display: table-header-group; }
+th {
+  background: var(--primary-2);
+  color: white;
+  font-weight: 600;
+  text-align: left;
+  padding: 10px 12px;
+  font-size: 13px;
+  letter-spacing: 0.2px;
+}
+td {
+  padding: 9px 12px;
+  border-top: 1px solid var(--border-soft);
+  vertical-align: top;
+  line-height: 1.6;
+}
+tbody tr:nth-child(odd) td { background: #f9fbfd; }
+tbody tr:hover td { background: #eef4f9; }
+
+/* Links */
+a {
+  color: var(--primary-2);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--primary-2);
+  word-break: break-word;
+}
+a:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+/* Apple Maps badge style */
+td a[href*="maps.apple.com"] {
+  display: inline-block;
+  background: var(--apple-blue);
+  color: white !important;
+  padding: 3px 10px;
+  border-radius: 12px;
+  border: none;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: transform 0.1s;
+}
+td a[href*="maps.apple.com"]:hover {
+  transform: translateY(-1px);
+  background: #0866d6;
+}
+
+/* External link badges */
+td a[href^="http"]:not([href*="maps.apple.com"]) {
+  background: var(--primary-light);
+  color: var(--primary);
+  padding: 1px 7px;
+  border-radius: 4px;
+  border: none;
+  text-decoration: none;
+}
+td a[href^="http"]:not([href*="maps.apple.com"]):hover {
+  background: var(--primary-2);
+  color: white;
+}
+
+/* Code blocks */
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  background: var(--border-soft);
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 13px;
+  color: var(--accent);
+}
+pre {
+  background: #f4f6f9;
+  border-left: 4px solid var(--primary-2);
+  padding: 14px 18px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12.5px;
+  overflow-x: auto;
+  border-radius: 6px;
+  margin: 12px 0 20px 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+pre code {
+  background: none;
+  color: var(--text);
+  padding: 0;
+}
+
+/* HR */
+hr {
+  border: none;
+  border-top: 1px dashed var(--border);
+  margin: 36px 0;
+}
+
+/* Blockquote */
+blockquote {
+  border-left: 4px solid var(--warm);
+  background: var(--warm-soft);
+  margin: 12px 0;
+  padding: 10px 18px;
+  color: #5b3a00;
+  border-radius: 0 6px 6px 0;
+}
+
+/* Progress bar (top) */
+#progress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary-2), #4a90b8);
+  z-index: 200;
+  transition: width 0.1s;
+}
+
+/* Back to top button */
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s, transform 0.2s;
+  box-shadow: var(--shadow-md);
+  z-index: 90;
+  border: none;
+}
+.back-to-top.visible {
+  opacity: 0.9;
+  pointer-events: auto;
+}
+.back-to-top:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+/* Mobile */
+@media (max-width: 900px) {
+  .menu-toggle { display: block; }
+  .sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.25s;
+    box-shadow: var(--shadow-md);
+  }
+  .sidebar.open {
+    transform: translateX(0);
+  }
+  .main {
+    margin-left: 0;
+    padding: calc(var(--header-h) + 16px) 18px 60px 18px;
+  }
+  h1 { font-size: 22pt; }
+  h2 { font-size: 18px; padding: 10px 14px; }
+  h3 { font-size: 15px; }
+  table { font-size: 12px; }
+  th, td { padding: 7px 8px; }
+}
+
+/* Print */
+@media print {
+  .sidebar, .topbar, .back-to-top, #progress, .menu-toggle { display: none !important; }
+  .main { margin-left: 0; padding: 20px; max-width: none; }
+  h2 { page-break-after: avoid; background: none; border-left: 4px solid #000; }
+  table, pre, blockquote { page-break-inside: avoid; }
+}
+
+/* Hide search empty matches */
+.toc-l2.hidden, .toc-l3.hidden { display: none; }
+
+/* === Flight info card === */
+.flight-card {
+  background: linear-gradient(135deg, #0f3a5f 0%, #1e6091 100%);
+  color: white;
+  padding: 22px 26px 18px 26px;
+  border-radius: 12px;
+  margin: 0 0 36px 0;
+  box-shadow: 0 8px 24px rgba(15,58,95,0.15);
+}
+.flight-card-header {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.flight-emoji { font-size: 24px; }
+.flight-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: white;
+}
+.flight-sub {
+  font-size: 13px;
+  color: rgba(255,255,255,0.75);
+  margin-left: auto;
+}
+.flight-group {
+  background: rgba(255,255,255,0.08);
+  padding: 12px 14px 14px 14px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+.flight-group:last-child { margin-bottom: 0; }
+.flight-group-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.95);
+  margin-bottom: 8px;
+  letter-spacing: 0.3px;
+}
+.flight-group-title code {
+  background: rgba(255,255,255,0.18);
+  color: white;
+  padding: 1px 7px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-family: ui-monospace, SFMono-Regular, monospace;
+}
+.flight-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: transparent;
+  box-shadow: none;
+  border-radius: 0;
+  margin: 0;
+  font-size: 13px;
+}
+.flight-table th {
+  background: rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.85);
+  font-size: 11px;
+  font-weight: 500;
+  padding: 6px 10px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.flight-table td {
+  background: transparent !important;
+  color: rgba(255,255,255,0.95);
+  padding: 7px 10px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  vertical-align: middle;
+}
+.flight-table tbody tr:hover td { background: rgba(255,255,255,0.05) !important; }
+.flight-table b { color: #ffd966; font-weight: 600; }
+.flight-pax { margin-top: 8px; }
+.pax-row {
+  display: flex;
+  gap: 10px;
+  padding: 5px 8px;
+  font-size: 12.5px;
+  border-radius: 4px;
+}
+.pax-row:nth-child(odd) { background: rgba(255,255,255,0.05); }
+.pax-label {
+  font-weight: 600;
+  color: white;
+  min-width: 90px;
+  font-family: ui-monospace, SFMono-Regular, monospace;
+}
+.pax-detail {
+  color: rgba(255,255,255,0.85);
+  flex: 1;
+}
+.pax-detail code {
+  background: rgba(255,255,255,0.15);
+  color: white;
+  padding: 1px 6px;
+  border-radius: 3px;
+  font-size: 11.5px;
+}
+.pax-detail b { color: #ffd966; }
+.flight-note {
+  margin-top: 8px;
+  font-size: 11.5px;
+  color: rgba(255,255,255,0.75);
+  font-style: italic;
+}
+@media (max-width: 600px) {
+  .flight-card { padding: 16px; }
+  .flight-table { font-size: 12px; }
+  .flight-table th, .flight-table td { padding: 5px 6px; }
+  .pax-row { flex-direction: column; gap: 2px; }
+  .pax-label { min-width: 0; }
+}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<header class="topbar">
+  <button class="menu-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')">☰</button>
+  <div class="topbar-title">🇳🇿 新西兰 12 天情侣旅行计划</div>
+  <div class="topbar-sub">2026 / 08 / 08 - 19</div>
+</header>
+
+<nav class="sidebar"><div class="sidebar-inner">
+<div class="sidebar-title">新西兰 12 天行程</div>
+<div class="sidebar-sub">2026 / 08 / 08 - 19 · 已出票版</div>
+<input type="search" id="toc-search" class="toc-search" placeholder="搜索章节…" />
+<ul class="toc-list">
+<li class="toc-l2"><a href="#12天行程总览（按已购机票校准）" data-title="12天行程总览（按已购机票校准）"><span class="toc-emoji">🗓️</span><span class="toc-text">12天行程总览（按已购机票校准）</span></a><ul class="toc-l3-list">
+</ul></li>
+<li class="toc-l2"><a href="#每日重点" data-title="每日重点"><span class="toc-emoji">📅</span><span class="toc-text">每日重点</span></a><ul class="toc-l3-list">
+<li class="toc-l3"><a href="#d1-d2：深圳--&gt;-墨尔本--&gt;-基督城" data-title="D1-D2：深圳 -&amp;gt; 墨尔本 -&amp;gt; 基督城">D1-D2：深圳 -&amp;gt; 墨尔本 -&amp;gt; 基督城</a></li>
+<li class="toc-l3"><a href="#d3：基督城到-tekapo" data-title="D3：基督城到 Tekapo">D3：基督城到 Tekapo</a></li>
+<li class="toc-l3"><a href="#d4：tekapo-到-twizel-/-mount-cook" data-title="D4：Tekapo 到 Twizel / Mount Cook">D4：Tekapo 到 Twizel / Mount Cook</a></li>
+<li class="toc-l3"><a href="#d5：twizel-/-mount-cook-到-wanaka" data-title="D5：Twizel / Mount Cook 到 Wanaka">D5：Twizel / Mount Cook 到 Wanaka</a></li>
+<li class="toc-l3"><a href="#d6：wanaka-到-queenstown（最后驾驶日，当天还车）" data-title="D6：Wanaka 到 Queenstown（最后驾驶日，当天还车）">D6：Wanaka 到 Queenstown（最后驾驶日，当天还车）</a></li>
+<li class="toc-l3"><a href="#d7：米尔福德峡湾" data-title="D7：米尔福德峡湾">D7：米尔福德峡湾</a></li>
+<li class="toc-l3"><a href="#d8：皇后镇休整日-+-滑雪装备预取日（公共交通日）" data-title="D8：皇后镇休整日 + 滑雪装备预取日（公共交通日）">D8：皇后镇休整日 + 滑雪装备预取日（公共交通日）</a></li>
+<li class="toc-l3"><a href="#d9：皇后镇正式滑雪日-⛷️" data-title="D9：皇后镇正式滑雪日 ⛷️">D9：皇后镇正式滑雪日 ⛷️</a></li>
+<li class="toc-l3"><a href="#d10-d12：奥克兰缓冲回程" data-title="D10-D12：奥克兰缓冲回程">D10-D12：奥克兰缓冲回程</a></li>
+</ul></li>
+<li class="toc-l2"><a href="#租车计划" data-title="租车计划"><span class="toc-emoji">🚗</span><span class="toc-text">租车计划</span></a><ul class="toc-l3-list">
+<li class="toc-l3"><a href="#推荐取还车（4天方案）" data-title="推荐取还车（4天方案）">推荐取还车（4天方案）</a></li>
+<li class="toc-l3"><a href="#queenstown-还车地点选择" data-title="Queenstown 还车地点选择">Queenstown 还车地点选择</a></li>
+<li class="toc-l3"><a href="#价格估算（4天版）" data-title="价格估算（4天版）">价格估算（4天版）</a></li>
+<li class="toc-l3"><a href="#租车预算（4天版）" data-title="租车预算（4天版）">租车预算（4天版）</a></li>
+<li class="toc-l3"><a href="#长租方案备选（如果坚持保留车）" data-title="长租方案备选（如果坚持保留车）">长租方案备选（如果坚持保留车）</a></li>
+<li class="toc-l3"><a href="#驾驶原则" data-title="驾驶原则">驾驶原则</a></li>
+</ul></li>
+<li class="toc-l2"><a href="#皇后镇公共交通方案（orbus）" data-title="皇后镇公共交通方案（Orbus）"><span class="toc-emoji">🚌</span><span class="toc-text">皇后镇公共交通方案（Orbus）</span></a><ul class="toc-l3-list">
+<li class="toc-l3"><a href="#bee-card-卡（必须买）" data-title="Bee Card 卡（必须买）">Bee Card 卡（必须买）</a></li>
+<li class="toc-l3"><a href="#核心路线" data-title="核心路线">核心路线</a></li>
+<li class="toc-l3"><a href="#关键-bee-card-用例" data-title="关键 Bee Card 用例">关键 Bee Card 用例</a></li>
+<li class="toc-l3"><a href="#哪些不能用-orbus" data-title="哪些不能用 Orbus">哪些不能用 Orbus</a></li>
+<li class="toc-l3"><a href="#实用-app-和资源" data-title="实用 app 和资源">实用 app 和资源</a></li>
+</ul></li>
+<li class="toc-l2"><a href="#预算规划" data-title="预算规划"><span class="toc-emoji">💰</span><span class="toc-text">预算规划</span></a><ul class="toc-l3-list">
+<li class="toc-l3"><a href="#推荐预算表（两人合计）" data-title="推荐预算表（两人合计）">推荐预算表（两人合计）</a></li>
+<li class="toc-l3"><a href="#更现实的三档判断（已出票-+-4-天租车-+-滑雪日）" data-title="更现实的三档判断（已出票 + 4 天租车 + 滑雪日）">更现实的三档判断（已出票 + 4 天租车 + 滑雪日）</a></li>
+<li class="toc-l3"><a href="#不建议砍的项目" data-title="不建议砍的项目">不建议砍的项目</a></li>
+</ul></li>
+<li class="toc-l2"><a href="#航班建议" data-title="航班建议"><span class="toc-emoji">✈️</span><span class="toc-text">航班建议</span></a><ul class="toc-l3-list">
+<li class="toc-l3"><a href="#已购国际机票核验" data-title="已购国际机票核验">已购国际机票核验</a></li>
+<li class="toc-l3"><a href="#已购新西兰国内航班（jetstar-jq296）" data-title="已购新西兰国内航班（Jetstar JQ296）">已购新西兰国内航班（Jetstar JQ296）</a></li>
+<li class="toc-l3"><a href="#已出票航班的关键风险" data-title="已出票航班的关键风险">已出票航班的关键风险</a></li>
+<li class="toc-l3"><a href="#澳洲过境签-771-办理要点" data-title="澳洲过境签 771 办理要点">澳洲过境签 771 办理要点</a></li>
+</ul></li>
+<li class="toc-l2"><a href="#住宿建议" data-title="住宿建议"><span class="toc-emoji">🏨</span><span class="toc-text">住宿建议</span></a><ul class="toc-l3-list">
+</ul></li>
+<li class="toc-l2"><a href="#证件和材料" data-title="证件和材料"><span class="toc-emoji">🛂</span><span class="toc-text">证件和材料</span></a><ul class="toc-l3-list">
+<li class="toc-l3"><a href="#新西兰签证状态（已完成）" data-title="新西兰签证状态（已完成）">新西兰签证状态（已完成）</a></li>
+<li class="toc-l3"><a href="#澳大利亚过境签状态（未完成，最高优先级）" data-title="澳大利亚过境签状态（未完成，最高优先级）">澳大利亚过境签状态（未完成，最高优先级）</a></li>
+<li class="toc-l3"><a href="#nz-traveller-declaration" data-title="NZ Traveller Declaration">NZ Traveller Declaration</a></li>
+</ul></li>
+<li class="toc-l2"><a href="#出行必备" data-title="出行必备"><span class="toc-emoji">🎒</span><span class="toc-text">出行必备</span></a><ul class="toc-l3-list">
+</ul></li>
+<li class="toc-l2"><a href="#重点景点预习与外链" data-title="重点景点预习与外链"><span class="toc-emoji">🏔️</span><span class="toc-text">重点景点预习与外链</span></a><ul class="toc-l3-list">
+<li class="toc-l3"><a href="#🌿-d3-基督城-christchurch" data-title="🌿 D3 基督城 Christchurch">🌿 D3 基督城 Christchurch</a></li>
+<li class="toc-l3"><a href="#⭐-d3-晚-lake-tekapo-特卡波湖" data-title="⭐ D3 晚 Lake Tekapo 特卡波湖">⭐ D3 晚 Lake Tekapo 特卡波湖</a></li>
+<li class="toc-l3"><a href="#💎-d4-lake-pukaki-普卡基湖" data-title="💎 D4 Lake Pukaki 普卡基湖">💎 D4 Lake Pukaki 普卡基湖</a></li>
+<li class="toc-l3"><a href="#🏔️-d4-aoraki/mount-cook-库克山" data-title="🏔️ D4 Aoraki/Mount Cook 库克山">🏔️ D4 Aoraki/Mount Cook 库克山</a></li>
+<li class="toc-l3"><a href="#🛒-d4-晚-twizel-特维泽尔" data-title="🛒 D4 晚 Twizel 特维泽尔">🛒 D4 晚 Twizel 特维泽尔</a></li>
+<li class="toc-l3"><a href="#🌳-d5-wanaka-瓦纳卡" data-title="🌳 D5 Wanaka 瓦纳卡">🌳 D5 Wanaka 瓦纳卡</a></li>
+<li class="toc-l3"><a href="#🏔️-d6-crown-range-road-皇冠山脉公路" data-title="🏔️ D6 Crown Range Road 皇冠山脉公路">🏔️ D6 Crown Range Road 皇冠山脉公路</a></li>
+<li class="toc-l3"><a href="#🌾-d6-arrowtown-箭镇" data-title="🌾 D6 Arrowtown 箭镇">🌾 D6 Arrowtown 箭镇</a></li>
+<li class="toc-l3"><a href="#🏘️-d6-d10-queenstown-皇后镇" data-title="🏘️ D6-D10 Queenstown 皇后镇">🏘️ D6-D10 Queenstown 皇后镇</a></li>
+<li class="toc-l3"><a href="#🌊-d7-milford-sound-米尔福德峡湾（本次重头戏）" data-title="🌊 D7 Milford Sound 米尔福德峡湾（本次重头戏）">🌊 D7 Milford Sound 米尔福德峡湾（本次重头戏）</a></li>
+<li class="toc-l3"><a href="#♨️-d9-滑雪后-onsen-hot-pools-original-soak-温泉" data-title="♨️ D9 滑雪后 Onsen Hot Pools Original Soak 温泉">♨️ D9 滑雪后 Onsen Hot Pools Original Soak 温泉</a></li>
+<li class="toc-l3"><a href="#⛷️-d9-the-remarkables-/-coronet-peak-滑雪场" data-title="⛷️ D9 The Remarkables / Coronet Peak 滑雪场">⛷️ D9 The Remarkables / Coronet Peak 滑雪场</a></li>
+<li class="toc-l3"><a href="#🌲-可选：d8-glenorchy-格林诺奇" data-title="🌲 可选：D8 Glenorchy 格林诺奇">🌲 可选：D8 Glenorchy 格林诺奇</a></li>
+<li class="toc-l3"><a href="#🌆-d10-auckland-奥克兰（仅缓冲日，了解即可）" data-title="🌆 D10 Auckland 奥克兰（仅缓冲日，了解即可）">🌆 D10 Auckland 奥克兰（仅缓冲日，了解即可）</a></li>
+<li class="toc-l3"><a href="#📺-综合预习视频（出发前看一两个）" data-title="📺 综合预习视频（出发前看一两个）">📺 综合预习视频（出发前看一两个）</a></li>
+</ul></li>
+<li class="toc-l2"><a href="#地图一键导航（apple-maps）" data-title="地图一键导航（Apple Maps）"><span class="toc-emoji">🗺️</span><span class="toc-text">地图一键导航（Apple Maps）</span></a><ul class="toc-l3-list">
+<li class="toc-l3"><a href="#主要驾驶路段" data-title="主要驾驶路段">主要驾驶路段</a></li>
+<li class="toc-l3"><a href="#关键地点定位" data-title="关键地点定位">关键地点定位</a></li>
+<li class="toc-l3"><a href="#使用技巧" data-title="使用技巧">使用技巧</a></li>
+</ul></li>
+<li class="toc-l2"><a href="#接下来待办时间规划（从-2026-06-08-起）" data-title="接下来待办时间规划（从 2026-06-08 起）"><span class="toc-emoji"></span><span class="toc-text">接下来待办时间规划（从 2026-06-08 起）</span></a><ul class="toc-l3-list">
+<li class="toc-l3"><a href="#阶段一：立即办（6/8-6/12）" data-title="阶段一：立即办（6/8-6/12）">阶段一：立即办（6/8-6/12）</a></li>
+<li class="toc-l3"><a href="#阶段二：重点预订（6/13-6/23）" data-title="阶段二：重点预订（6/13-6/23）">阶段二：重点预订（6/13-6/23）</a></li>
+<li class="toc-l3"><a href="#阶段三：活动与皇后镇细节（6/24-7/14）" data-title="阶段三：活动与皇后镇细节（6/24-7/14）">阶段三：活动与皇后镇细节（6/24-7/14）</a></li>
+<li class="toc-l3"><a href="#阶段四：收尾准备（7/15-7/31）" data-title="阶段四：收尾准备（7/15-7/31）">阶段四：收尾准备（7/15-7/31）</a></li>
+<li class="toc-l3"><a href="#阶段五：出发前最后一周（8/1-8/7）" data-title="阶段五：出发前最后一周（8/1-8/7）">阶段五：出发前最后一周（8/1-8/7）</a></li>
+<li class="toc-l3"><a href="#出发日及行程中" data-title="出发日及行程中">出发日及行程中</a></li>
+</ul></li>
+<li class="toc-l2"><a href="#后续待确认" data-title="后续待确认"><span class="toc-emoji">❓</span><span class="toc-text">后续待确认</span></a><ul class="toc-l3-list">
+</ul></li>
+<li class="toc-l2"><a href="#后续更新记录" data-title="后续更新记录"><span class="toc-emoji">📝</span><span class="toc-text">后续更新记录</span></a><ul class="toc-l3-list">
+</ul></li>
+</ul>
+<div class="sidebar-foot">📄 共 68 个章节 · 生成于 2026-06-09</div>
+</div></nav>
+
+<main class="main">
+<h1 id="新西兰12天情侣旅行计划（已出票版）">新西兰12天情侣旅行计划（已出票版）</h1>
+<section class="flight-card">
+  <div class="flight-card-header">
+    <span class="flight-emoji">✈️</span>
+    <span class="flight-title">已购机票一览</span>
+    <span class="flight-sub">2026-08-08 出发 · 2026-08-19 返深</span>
+  </div>
+
+  <div class="flight-group">
+    <div class="flight-group-title">国际段 · Trip.com 订单 <code>1128148549484909</code></div>
+    <table class="flight-table">
+      <thead><tr><th>方向</th><th>日期时间</th><th>航段</th><th>航班</th></tr></thead>
+      <tbody>
+        <tr><td>去</td><td><b>8/8 23:55</b> → 8/9 12:00</td><td>SZX T3 → MEL T2</td><td>深航 ZH811</td></tr>
+        <tr><td>去</td><td>8/9 18:10 → <b>8/9 23:35</b></td><td>MEL T2 → CHC</td><td>新西兰航空 NZ216</td></tr>
+        <tr><td>回</td><td><b>8/18 08:55</b> → 10:55</td><td>AKL → MEL T2</td><td>新西兰航空 NZ121</td></tr>
+        <tr><td>回</td><td>8/18 21:20 → <b>8/19 05:05</b></td><td>MEL T2 → SZX T3</td><td>深航 ZH812</td></tr>
+      </tbody>
+    </table>
+    <div class="flight-note">⚠️ 行李可能不直挂，墨尔本中转需澳洲过境签 771</div>
+  </div>
+
+  <div class="flight-group">
+    <div class="flight-group-title">新西兰国内段 · Jetstar JQ296</div>
+    <table class="flight-table">
+      <thead><tr><th>方向</th><th>日期时间</th><th>航段</th><th>航班</th></tr></thead>
+      <tbody>
+        <tr><td>单程</td><td><b>8/17 13:00</b> → 14:50</td><td>ZQN → AKL</td><td>捷星 JQ296</td></tr>
+      </tbody>
+    </table>
+    <div class="flight-pax">
+      <div class="pax-row"><span class="pax-label">LU PENGYU</span><span class="pax-detail">订单 <code>1359046012531198</code> · PNR <code>YS6QHA</code> · 含 <b>20kg</b> 托运 + 7kg 手提</span></div>
+      <div class="pax-row"><span class="pax-label">ZHU QIUYI</span><span class="pax-detail">订单 <code>1359046012408382</code> · PNR <code>ZTJ4HK</code> · 加购 <b>15kg</b> 托运（处理中）+ 7kg 手提</span></div>
+    </div>
+    <div class="flight-note">建议提前 2 小时到 ZQN 机场，廉航值机严格称重</div>
+  </div>
+</section>
+
+<p>更新时间：2026-06-08</p>
+<h2 id="12天行程总览（按已购机票校准）">12天行程总览（按已购机票校准）</h2>
+<table>
+<thead>
+<tr>
+<th>天数</th>
+<th>日期</th>
+<th>住宿</th>
+<th>行程</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>D1</td>
+<td>8/8 周六</td>
+<td>飞机上</td>
+<td>深圳宝安 T3 23:55 起飞，深圳航空 ZH811，飞墨尔本。</td>
+</tr>
+<tr>
+<td>D2</td>
+<td>8/9 周日</td>
+<td>基督城机场附近</td>
+<td>12:00 抵达墨尔本 T2，中转 6小时10分；18:10 搭 Air New Zealand NZ216 飞基督城，23:35 抵达。</td>
+</tr>
+<tr>
+<td>D3</td>
+<td>8/10 周一</td>
+<td>Tekapo</td>
+<td>上午休息、取车和采购，午后基督城 -&gt; Lake Tekapo。傍晚牧羊人教堂，晚上观星或泡温泉二选一。</td>
+</tr>
+<tr>
+<td>D4</td>
+<td>8/11 周二</td>
+<td>Twizel / Mount Cook 区域</td>
+<td>Tekapo -&gt; Lake Pukaki -&gt; Aoraki/Mount Cook。天气好走 Kea Point 或 Hooker Valley 开放路段；住 Twizel 或 Mount Cook。</td>
+</tr>
+<tr>
+<td>D5</td>
+<td>8/12 周三</td>
+<td>Wanaka</td>
+<td>Twizel / Mount Cook -&gt; Wanaka。湖边散步、That Wanaka Tree，雨雪天可用 Puzzling World 兜底。</td>
+</tr>
+<tr>
+<td>D6</td>
+<td>8/13 周四</td>
+<td>Queenstown</td>
+<td>Wanaka -&gt; Arrowtown 午餐和华人淘金定居点 -&gt; Queenstown，傍晚到 ZQN 机场还车，公交或 Uber 回镇中心。</td>
+</tr>
+<tr>
+<td>D7</td>
+<td>8/14 周五</td>
+<td>Queenstown</td>
+<td>米尔福德峡湾巴士+游船一日团，全天约13小时，当晚不安排其他付费项目。</td>
+</tr>
+<tr>
+<td>D8</td>
+<td>8/15 周六</td>
+<td>Queenstown</td>
+<td>皇后镇休整日 + <strong>下午去 Queenstown Snow Centre 取 MyPass 卡 + 试装备 + 寄存</strong>；傍晚 Onsen 温泉。</td>
+</tr>
+<tr>
+<td>D9</td>
+<td>8/16 周日</td>
+<td>Queenstown</td>
+<td><strong>Coronet Peak 滑雪日</strong>（首选，初中级地形最友好）；坐雪场班车 7:30 Duke St 9 出发，含可选 90 分钟进阶课。</td>
+</tr>
+<tr>
+<td>D10</td>
+<td>8/17 周一</td>
+<td>奥克兰机场附近</td>
+<td>上午退房，乘 Route 1 公交去 ZQN 机场，<strong>Jetstar JQ296 13:00 起飞→14:50 抵 AKL</strong>；入住机场酒店，为次日 08:55 国际航班留 18 小时缓冲。</td>
+</tr>
+<tr>
+<td>D11</td>
+<td>8/18 周二</td>
+<td>飞机上</td>
+<td>Auckland 08:55 -&gt; Melbourne 10:55，Air New Zealand NZ121；中转 10小时25分；Melbourne 21:20 -&gt; Shenzhen，深圳航空 ZH812。</td>
+</tr>
+<tr>
+<td>D12</td>
+<td>8/19 周三</td>
+<td>深圳</td>
+<td>05:05 抵达深圳宝安 T3。</td>
+</tr>
+</tbody>
+</table>
+<p>住宿合计：9晚<br>
+基督城机场附近1晚 + Tekapo 1晚 + Twizel / Mount Cook 1晚 + Wanaka 1晚 + Queenstown 4晚 + 奥克兰机场附近1晚。</p>
+<h2 id="每日重点">每日重点</h2>
+<h3 id="d1-d2：深圳--&gt;-墨尔本--&gt;-基督城">D1-D2：深圳 -&gt; 墨尔本 -&gt; 基督城</h3>
+<ul>
+<li>D1 8/8 晚上从深圳宝安 T3 出发，国际航班起飞时间为 23:55。</li>
+<li>D2 8/9 中午抵达墨尔本，停留 6小时10分；晚上飞基督城，23:35 抵达。</li>
+<li>抵达基督城已经很晚，第一晚只做入境、取行李、打车或酒店接驳、睡觉。</li>
+<li>特别注意：机票行程单提示 <strong>baggage may not be checked through</strong>，出发前必须和深圳航空、Air New Zealand 或出票平台确认两程行李是否直挂。</li>
+<li>若行李不能直挂，墨尔本需要清关、取行李、重新托运，澳洲过境签就更是刚需。</li>
+</ul>
+<h3 id="d3：基督城到-tekapo">D3：基督城到 Tekapo</h3>
+<ul>
+<li>这是第一天右舵左行，建议睡够后再取车，不要一早硬撑。</li>
+<li>上午：基督城机场取车，检查车况、拍视频、确认雪链和保险。</li>
+<li>中午：采购水、零食、早餐、车载用品。</li>
+<li>午后：基督城开往 Lake Tekapo，约 3 小时，尽量 16:30 前抵达。</li>
+<li>傍晚：牧羊人教堂和湖边散步。</li>
+<li>晚上：观星和温泉二选一。天气好优先观星，天气差优先温泉。</li>
+</ul>
+<h3 id="d4：tekapo-到-twizel-/-mount-cook">D4：Tekapo 到 Twizel / Mount Cook</h3>
+<ul>
+<li>这一天不再直接赶到 Wanaka，改为新增一晚 Twizel / Mount Cook，降低冬季赶路风险。</li>
+<li>重点是 Lake Pukaki、Peters Lookout、Aoraki/Mount Cook Visitor Centre。</li>
+<li>天气好：优先 Kea Point Track 或 Hooker Valley 开放路段。</li>
+<li>天气差：只做游客中心和安全观景点，不强行徒步。</li>
+<li>住宿选择：预算舒适优先 Mount Cook Village；预算控制优先 Twizel。</li>
+</ul>
+<h3 id="d5：twizel-/-mount-cook-到-wanaka">D5：Twizel / Mount Cook 到 Wanaka</h3>
+<ul>
+<li>上午：根据天气补一个库克山短步道或直接出发。</li>
+<li>中午：经 Omarama / Lindis Pass 一线去 Wanaka。</li>
+<li>下午：Wanaka 湖边散步、That Wanaka Tree。</li>
+<li>雨雪天备用：Puzzling World 或镇上咖啡馆休整。</li>
+<li>当晚不安排复杂项目，为第二天最后驾驶日留体力。</li>
+</ul>
+<h3 id="d6：wanaka-到-queenstown（最后驾驶日，当天还车）">D6：Wanaka 到 Queenstown（最后驾驶日，当天还车）</h3>
+<p><strong>关键调整</strong>：D6 是租车最后一天，傍晚直接在 ZQN 机场还车，D7-D10 全部用公交/班车/团车。原因：皇后镇区内活动不需要自驾，公共交通、团车和雪场班车更省钱也更安全。</p>
+<h4 id="当天节奏">当天节奏</h4>
+<ul>
+<li>早上：Wanaka 湖边散步 + That Wanaka Tree（约 1 小时）。</li>
+<li>上午：Wanaka 出发，<strong>经 Arrowtown 顺路停 1.5-2 小时</strong>（午餐 + 华人淘金定居点 + 主街）。</li>
+<li>下午：Arrowtown -&gt; Queenstown，先把行李放进酒店或寄存。</li>
+<li>傍晚 16:00-17:00：开到 <strong>Queenstown Airport 还车</strong>。</li>
+<li>还车后：在机场买 Bee Card，Route 1 公交 / Uber 回镇中心酒店。</li>
+<li>晚上：镇中心晚餐 + 早睡（D7 米尔福德长途）。</li>
+</ul>
+<h4 id="路线选择">路线选择</h4>
+<ul>
+<li>Crown Range 风景更好，但冬季可能结冰或要求雪链；路况不好就走 Cromwell。</li>
+<li>当天早上 7:00 看 <a href="https://www.journeys.nzta.govt.nz/traffic">NZTA 路况</a> 决定。</li>
+</ul>
+<h4 id="时间风险">时间风险</h4>
+<ul>
+<li>如果上午 Wanaka 出发慢、Arrowtown 停太久，傍晚还车可能赶上门店关门。租车下单时必须确认 Queenstown Airport 还车门店营业时间和 after-hours return 条款。</li>
+</ul>
+<h3 id="d7：米尔福德峡湾">D7：米尔福德峡湾</h3>
+<ul>
+<li>坚持跟团，不建议自驾 Milford Road。</li>
+<li>提前准备晕车药、充电宝、保暖外套、防水外层、零食和水。</li>
+<li>当晚不要再安排付费项目。</li>
+</ul>
+<h3 id="d8：皇后镇休整日-+-滑雪装备预取日（公共交通日）">D8：皇后镇休整日 + 滑雪装备预取日（公共交通日）</h3>
+<p>D7 米尔福德很长，D8 重点是恢复体力 + <strong>下午去 Queenstown Snow Centre 提前取 MyPass 卡和试装备</strong>，为 D9 滑雪做准备。</p>
+<h4 id="上午-中午：放松">上午-中午：放松</h4>
+<ul>
+<li>睡到自然醒，镇中心吃早午餐（Vudu Café 推荐）+ Queenstown Gardens 湖边散步。</li>
+<li>中午：镇中心吃饭，能量补足。</li>
+</ul>
+<h4 id="下午-15:00-17:00：queenstown-snow-centre-一站式办理-⭐重要">下午 15:00-17:00：Queenstown Snow Centre 一站式办理 ⭐重要</h4>
+<p>地址：<strong>25 Shotover Street</strong>（步行从镇中心 5-8 分钟，主入口在 Shotover St，后门在 Duke St）<br>
+官方网站：<a href="https://www.nzski.com/mypass/">nzski.com/mypass</a><br>
+雪季营业时间：6 月中-10 月中，每天 7:30-19:00</p>
+<p><strong>MyPass 是什么</strong>：NZSki 的官方 RFID 滑雪卡，相当于滑雪日的"身份证"。一张卡能装下所有付款过的：缆车通票（Superpass）、装备租赁、班车票、课程预订、山上消费（可绑信用卡）。两人各一张，<strong>丢了补卡 NZD 5</strong>。</p>
+<p><strong>当天 60-90 分钟的流程</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>内容</th>
+<th>时长</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. 取 MyPass</td>
+<td>NZSki 柜台扫预订邮件 + 出示护照，两人发两张卡</td>
+<td>5-10 分钟</td>
+</tr>
+<tr>
+<td>2. 选装备</td>
+<td>转到 Snow Centre Rentals 区，选 Recreational 套装</td>
+<td>1 分钟</td>
+</tr>
+<tr>
+<td>3. <strong>量脚 + 试雪鞋</strong> ⭐关键</td>
+<td>当场穿走 5-10 分钟，脚趾轻触+脚跟不能上下移动，不合脚换 2-3 双直到适合</td>
+<td>15-20 分钟</td>
+</tr>
+<tr>
+<td>4. 选板 + 调绑定</td>
+<td>按身高+水平+体重</td>
+<td>10 分钟</td>
+</tr>
+<tr>
+<td>5. 试头盔</td>
+<td>选合适尺码</td>
+<td>3 分钟</td>
+</tr>
+<tr>
+<td>6. 全部登记到 MyPass</td>
+<td>—</td>
+<td>5 分钟</td>
+</tr>
+<tr>
+<td>7. <strong>寄存装备过夜</strong></td>
+<td>告诉店员 "I'll come back tomorrow morning"，店员贴名签放领取区</td>
+<td>1 分钟</td>
+</tr>
+<tr>
+<td>8. 确认班车</td>
+<td>跟柜台确认班车票已在 MyPass 上，明早 7:30 Duke St 9 号上车</td>
+<td>2 分钟</td>
+</tr>
+<tr>
+<td>9. 拿纸质 trail map</td>
+<td>问店员当日 Coronet Peak 建议</td>
+<td>3 分钟</td>
+</tr>
+</tbody>
+</table>
+<p><strong>为什么必须提前一天去</strong>：早上当天去要排队 30-45 分钟，且雪鞋不合脚会毁掉一整天体验。</p>
+<h4 id="装备店选择对比">装备店选择对比</h4>
+<table>
+<thead>
+<tr>
+<th>店</th>
+<th>距 Snow Centre</th>
+<th style="text-align: right;">Rec 装备价</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Queenstown Snow Centre</strong>（推荐首次去）</td>
+<td>0 米</td>
+<td style="text-align: right;">NZD 70-80</td>
+<td>NZSki 自营，<strong>MyPass + 装备同点办理最方便</strong></td>
+</tr>
+<tr>
+<td>Browns Ski Shop</td>
+<td>50 米</td>
+<td style="text-align: right;">NZD 55-65</td>
+<td>最便宜，Performance 库存少</td>
+</tr>
+<tr>
+<td>Outside Sports</td>
+<td>30 米</td>
+<td style="text-align: right;">NZD 60-70</td>
+<td>价格略低，Salomon/Atomic/Rossignol 全</td>
+</tr>
+</tbody>
+</table>
+<h4 id="傍晚-晚上">傍晚-晚上</h4>
+<ul>
+<li>21:00-22:00：<strong>Onsen Hot Pools Original Soak</strong>（实测确认：黄昏 17:30-19:00 在 8 月旺季周末全部售罄，<strong>只能订夜场</strong>；夜场反而是 Onsen 招牌 "Lantern Light" 体验，雪山轮廓+灯笼+星空 8 月夜空很赞，预算 NZD 175/双人 1 池 60 分钟）</li>
+<li>20:00：镇中心晚餐</li>
+<li>22:00 前睡，明早 7:00 起床</li>
+</ul>
+<h4 id="备用：arrowtown-/-lake-hayes">备用：Arrowtown / Lake Hayes</h4>
+<ul>
+<li>如果 D6 在 Arrowtown 没逛够，D8 可用 Route 2 公交再去 Arrowtown 或 Lake Hayes。</li>
+<li>Route 2 沿 Lake Hayes 一段风景很好，坐车当观光即可。</li>
+<li>但<strong>别和 Snow Centre 流程冲突</strong>，先把 D9 装备搞定再说。</li>
+</ul>
+<h3 id="d9：皇后镇正式滑雪日-⛷️">D9：皇后镇正式滑雪日 ⛷️</h3>
+<p>两人<strong>初中级水平（刚完全掌握平行式）</strong>，安排为全天 Coronet Peak。</p>
+<h4 id="雪场首选：coronet-peak（针对初中级，强推）">雪场首选：Coronet Peak（针对初中级，强推）</h4>
+<p><a href="https://www.coronetpeak.co.nz/">官方网站</a> · <a href="https://www.coronetpeak.co.nz/the-mountain/snow-report/">Snow Report 雪况报告</a> · <a href="https://www.coronetpeak.co.nz/the-mountain/trail-map/">Trail Map 雪道地图</a></p>
+<ul>
+<li><strong>70% 地形适合初中级</strong>（25% 绿 + 45% 蓝）</li>
+<li>主导地形是<strong>宽阔修压道（groomed cruisers）</strong>，容错性强</li>
+<li>高速缆车（Coronet Express、Greengates）+ Big Easy 魔毯，<strong>一天能刷 15-20 趟</strong>，比 Remarkables 多 30-50%</li>
+<li>距皇后镇市中心 25 分钟车程（Remarkables 是 45 分钟），早上能晚起 30 分钟</li>
+<li>学习曲线友好：绿 → 淡蓝 → 蓝 → 深蓝，循序渐进有缓冲</li>
+</ul>
+<h4 id="雪场备选：the-remarkables（针对你们水平不强推）">雪场备选：The Remarkables（针对你们水平不强推）</h4>
+<p><a href="https://www.theremarkables.co.nz/">官方网站</a> · <a href="https://www.theremarkables.co.nz/the-mountain/the-mountain-report/">Mountain Report 山况报告</a> · <a href="https://www.theremarkables.co.nz/the-mountain/trail-map/">Trail Map</a></p>
+<ul>
+<li>风景更好（直接看 Lake Wakatipu 全景），但<strong>雪道偏陡，蓝色线后面经常直接接黑级</strong></li>
+<li>适合中高级和<strong>愿意被挑战</strong>的滑手，<strong>初中级容易被吓退</strong></li>
+<li>仅作为 Coronet Peak 因风/雪关闭时的备用方案——Superpass 可无缝切换，不用补差价</li>
+</ul>
+<h4 id="初中级必滑的-coronet-peak-进阶路线（按时段）">初中级必滑的 Coronet Peak 进阶路线（按时段）</h4>
+<table>
+<thead>
+<tr>
+<th>时段</th>
+<th>区域</th>
+<th>难度</th>
+<th>目标</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9:00-10:00（热身）</td>
+<td><strong>Big Easy 缆车区</strong></td>
+<td>绿 / 淡蓝</td>
+<td>找回手感，前 5 趟修复平行式细节</td>
+</tr>
+<tr>
+<td>10:00-11:30（进阶课程，可选）</td>
+<td>见下方</td>
+<td>—</td>
+<td>90 分钟专项课，强推</td>
+</tr>
+<tr>
+<td>11:30-12:30（建立信心）</td>
+<td><strong>M1 (Million Dollar)</strong></td>
+<td>蓝</td>
+<td>新西兰经典蓝色巡航道，800m 落差缓+宽</td>
+</tr>
+<tr>
+<td>12:30-13:30</td>
+<td>Base Building 午餐</td>
+<td>—</td>
+<td>错峰 12:30 后人少</td>
+</tr>
+<tr>
+<td>13:30-15:00（拔高挑战）</td>
+<td><strong>Skippers Express 区 + Greengates</strong></td>
+<td>蓝偏深</td>
+<td>开始尝试稍陡的坡</td>
+</tr>
+<tr>
+<td>15:00-16:00（收尾）</td>
+<td>回 Big Easy 巡航</td>
+<td>绿 / 淡蓝</td>
+<td>累的时候回简单道减少受伤风险</td>
+</tr>
+</tbody>
+</table>
+<p><strong>避开</strong>：Back Bowls、Rocky Gully 高级段、True Rocky Gully 上段（黑级及以上，超出能力区）</p>
+<h4 id="进阶课程（可选但强推）">进阶课程（可选但强推）</h4>
+<p>刚过平行式拐点，<strong>一节专项课会让接下来 3-5 年的滑雪体验质变</strong>——尤其学 <strong>carving（卡宾/刻滑）入门</strong>。</p>
+<ul>
+<li>课程：Coronet Peak Group Lesson 90 分钟</li>
+<li>单价：<strong>NZD 99/人</strong> × 2 = NZD 198（约 ¥790）</li>
+<li>时段：10:00-11:30（热身后正合适）</li>
+<li>预订：<a href="https://www.nzski.com/coronet-peak/lessons/">NZSki 课程页面</a></li>
+<li>价值：一节课能省你 5-10 个自学日的弯路</li>
+</ul>
+<h4 id="一日总成本（双人，2026-雪季实查）">一日总成本（双人，2026 雪季实查）</h4>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th style="text-align: right;">单价 NZD</th>
+<th style="text-align: right;">双人 NZD</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1 Day Superpass</strong>（覆盖 Coronet Peak + The Remarkables + Mt Hutt）</td>
+<td style="text-align: right;">180</td>
+<td style="text-align: right;">360</td>
+</tr>
+<tr>
+<td>Recreational 装备租赁（雪板+雪鞋+雪杖+头盔）</td>
+<td style="text-align: right;">60-75</td>
+<td style="text-align: right;">120-150</td>
+</tr>
+<tr>
+<td>雪场班车 RT（Duke St 9 ↔ Coronet Peak）</td>
+<td style="text-align: right;">45 RT</td>
+<td style="text-align: right;">90</td>
+</tr>
+<tr>
+<td>山顶午餐（Base Building）</td>
+<td style="text-align: right;">40</td>
+<td style="text-align: right;">80</td>
+</tr>
+<tr>
+<td><strong>基础小计</strong></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"><strong>NZD 650-680（约 ¥2,600-2,720）</strong></td>
+</tr>
+<tr>
+<td>90 分钟进阶课程（可选）</td>
+<td style="text-align: right;">99</td>
+<td style="text-align: right;">198</td>
+</tr>
+<tr>
+<td><strong>含课程版</strong></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"><strong>NZD 848-878（约 ¥3,390-3,510）</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>不推荐 Performance 装备</strong>：板硬难控，初中级反而更累，省 NZD 50。</p>
+<h4 id="时间表（标准全天-coronet-peak）">时间表（标准全天 Coronet Peak）</h4>
+<table>
+<thead>
+<tr>
+<th>时间</th>
+<th>安排</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>7:00</td>
+<td>起床+早餐（前一晚 Four Square 超市买麦片牛奶）</td>
+</tr>
+<tr>
+<td>7:20</td>
+<td>走 5 分钟到 Snow Centre</td>
+</tr>
+<tr>
+<td>7:25</td>
+<td>报 MyPass 卡或姓名领装备（前一晚试好的同一套）</td>
+</tr>
+<tr>
+<td>7:30</td>
+<td>走 50 米到 <strong>Duke St 9 号</strong>上 Coronet Peak 班车</td>
+</tr>
+<tr>
+<td>7:55</td>
+<td>抵达 Coronet Peak Base Building</td>
+</tr>
+<tr>
+<td>8:10</td>
+<td>用 MyPass 上山，开始 Big Easy 热身</td>
+</tr>
+<tr>
+<td>9:00-10:00</td>
+<td>Big Easy 5-6 趟</td>
+</tr>
+<tr>
+<td>10:00-11:30</td>
+<td>进阶课程（如订）</td>
+</tr>
+<tr>
+<td>11:30-12:30</td>
+<td>M1 自由滑</td>
+</tr>
+<tr>
+<td>12:30-13:30</td>
+<td>午餐</td>
+</tr>
+<tr>
+<td>13:30-15:30</td>
+<td>Skippers Express 区进阶练习</td>
+</tr>
+<tr>
+<td>15:30-16:00</td>
+<td>回 Big Easy 收尾</td>
+</tr>
+<tr>
+<td>16:00</td>
+<td>最后一班班车 16:30 出发</td>
+</tr>
+<tr>
+<td>17:00</td>
+<td>回市区</td>
+</tr>
+<tr>
+<td>17:30</td>
+<td><strong>Onsen 缓解肌肉</strong>（如果 D8 没去就这晚去；建议提前订）</td>
+</tr>
+<tr>
+<td>19:30</td>
+<td>Public Kitchen 或 The Cow Pizza 正餐</td>
+</tr>
+</tbody>
+</table>
+<h4 id="装备清单（自带-vs-现场租）">装备清单（自带 vs 现场租）</h4>
+<p><strong>必须自带</strong>（国内出发前准备）：</p>
+<ul>
+<li>滑雪服（外层防水透气、内层抓绒，<strong>不要普通羽绒服</strong>，湿透就废）</li>
+<li>防水手套（带备用一双，湿了能换）</li>
+<li>抗紫外线雪镜（<strong>不要墨镜</strong>，雪盲很严重）</li>
+<li>防晒霜 SPF50+（高海拔紫外线极强）</li>
+<li>保暖打底（merino 羊毛或 polypro 速干）</li>
+<li>高 SPF 唇膏</li>
+<li>暖宝宝 4-6 片（应急保暖）</li>
+</ul>
+<p><strong>现场租</strong>（Snow Centre 已含在 Recreational 套装内）：</p>
+<ul>
+<li>雪板 / 雪杖 / 雪鞋 / 头盔</li>
+<li><strong>不建议带自己的板</strong>，国际航班托运费很高</li>
+</ul>
+<h4 id="提前预订要点（7/7-前完成）">提前预订要点（7/7 前完成）</h4>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>链接</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>NZSki Superpass 1 日</strong></td>
+<td><a href="https://shop.nzsuperpass.com/">shop.nzsuperpass.com</a></td>
+<td>NZD 180/人，覆盖两个雪场可灵活切换</td>
+</tr>
+<tr>
+<td><strong>Coronet Peak 班车</strong></td>
+<td><a href="https://www.skiqueenstown.co.nz/ski-bus/">skiqueenstown.co.nz/ski-bus</a></td>
+<td>NZD 45 RT/人，选 8/16 周日 7:30 Duke St 9 号上车，旺季周末经常满团</td>
+</tr>
+<tr>
+<td><strong>进阶课程</strong>（可选）</td>
+<td><a href="https://www.nzski.com/coronet-peak/lessons/">nzski.com/coronet-peak/lessons</a></td>
+<td>NZD 99/人 90 分钟，选 10:00 时段</td>
+</tr>
+<tr>
+<td><strong>装备租赁</strong>（可选，建议在 Snow Centre 取卡时一起办）</td>
+<td><a href="https://shop.nzski.com/">shop.nzski.com</a></td>
+<td>Recreational 套装 NZD 60-75/人/天</td>
+</tr>
+</tbody>
+</table>
+<p><strong>取消政策</strong>：买票时确认是否含 "poor weather" 条款。Superpass 灵活性高，雪场风太大可改另一个雪场。</p>
+<h4 id="天气差怎么办">天气差怎么办</h4>
+<p>8 月偶尔遇风太大或雪太软，雪场可能局部关闭。备用方案：</p>
+<ol>
+<li><strong>8/15 晚 21:00 + 8/16 早 6:00</strong>：查 <a href="https://www.coronetpeak.co.nz/the-mountain/snow-report/">Coronet Peak Snow Report</a> 和 <a href="https://www.theremarkables.co.nz/the-mountain/the-mountain-report/">The Remarkables Mountain Report</a></li>
+<li><strong>如果 Coronet Peak 关闭</strong>：Superpass 直接切到 <strong>The Remarkables</strong>，班车上车点同样在 Duke St 9 号（告诉司机切换）</li>
+<li><strong>两个雪场都关</strong>：改 <strong>Skyline Gondola 缆车</strong>（NZD 55/人，山顶观景+午餐）+ Onsen 温泉</li>
+<li>提前把 Skyline 和 Onsen 加入心理 Plan B，不用现订也来得及</li>
+</ol>
+<h4 id="glenorchy-怎么办">Glenorchy 怎么办</h4>
+<p>12天已出票版里 Glenorchy 仍不单独留固定时间。如果想看 Glenorchy 红屋和湖边公路：</p>
+<ul>
+<li>替代方案 1：D8 不去 Onsen，改为 Glenorchy 半日团或自驾团</li>
+<li>替代方案 2：D6 Wanaka → Queenstown 当天如果路况允许，走 Crown Range 高处看湖景</li>
+<li>替代方案 3：如果对滑雪不坚持，把 D9 改为 Glenorchy 半日 + Skyline 半日组合</li>
+</ul>
+<h3 id="d10-d12：奥克兰缓冲回程">D10-D12：奥克兰缓冲回程</h3>
+<ul>
+<li>D10 不需要再还车（D6 已还）。<strong>Route 1 公交从皇后镇市区到 ZQN 机场约 15 分钟，NZD 2.50/人</strong>，每 15 分钟一班。从 Cow Lane Bus Stop 上车。</li>
+<li>也可叫 Uber，约 NZD 25-35（100-140元），适合行李多或赶时间。</li>
+<li>必须在 <strong>8月17日</strong> 飞到 Auckland 并住机场附近，因为 8月18日国际航班 08:55 起飞。</li>
+<li>D11 早上 08:55 从奥克兰飞墨尔本，D12 清晨 05:05 回到深圳。</li>
+</ul>
+<h2 id="租车计划">租车计划</h2>
+<h3 id="推荐取还车（4天方案）">推荐取还车（4天方案）</h3>
+<ul>
+<li>取车：2026年8月10日 10:30-11:30，<strong>Christchurch Airport</strong> / 基督城机场</li>
+<li>还车：2026年8月13日 16:00-17:00，<strong>Queenstown Airport</strong> / 皇后镇机场（D6 当晚还车）</li>
+<li>租期：<strong>约 4 天</strong>（8/10 到 8/13，皇后镇内全程公共交通）</li>
+<li>推荐车型：自动挡紧凑SUV</li>
+<li>首选方向：GO Rentals Mitsubishi ASX 或同级别车型</li>
+</ul>
+<h3 id="queenstown-还车地点选择">Queenstown 还车地点选择</h3>
+<p>这里的“机场还车”可以细分为机场航站楼/停车场、机场旁 Frankton off-site 门店、市中心门店。建议订车时同时比较以下几个选择：</p>
+<table>
+<thead>
+<tr>
+<th>选择</th>
+<th>代表公司/地点</th>
+<th>适合情况</th>
+<th>优点</th>
+<th>风险/注意</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A. Queenstown Airport 航站楼或机场停车场</td>
+<td>Ezi、Avis、Budget、Hertz、Thrifty、Europcar、Sixt 等</td>
+<td><strong>默认推荐</strong></td>
+<td>还车流程标准，之后买 Bee Card 或坐 Route 1 回镇中心方便；8/17 去机场也熟悉路线</td>
+<td>可能有机场费；D6 需要从 Queenstown 镇中心或 Arrowtown 绕去机场还车</td>
+</tr>
+<tr>
+<td>B. Frankton 机场旁 off-site 门店</td>
+<td>GO Rentals 20 Lucas Place、EZU 7 Sutherland Lane 等</td>
+<td>想省钱、接受接驳</td>
+<td>通常离机场约5分钟车程，部分公司提供免费 airport / hotel pickup 或送回机场</td>
+<td>不一定在航站楼内；营业时间和 after-hours return 要确认；还车后回镇中心仍需公交或 Uber</td>
+</tr>
+<tr>
+<td>C. Queenstown Downtown / City 门店</td>
+<td>Hertz Downtown 1-7 Earl Street；Avis/Budget 68-70 Stanley Street</td>
+<td>如果住镇中心，想还车后直接走回酒店</td>
+<td>不用先开去机场；D6 到镇中心后即可还车，晚上最轻松</td>
+<td>门店少，异地还车选择有限；市中心营业时间可能较短；价格可能比机场/off-site 高</td>
+</tr>
+<tr>
+<td>D. 保留机场还车但提前还</td>
+<td>D6 先到机场还车，再公交/打车进镇</td>
+<td>不想处理市中心停车</td>
+<td>最稳，符合大多数租车公司异地还车逻辑</td>
+<td>D6 多一段机场动线，但总体不复杂</td>
+</tr>
+</tbody>
+</table>
+<h4 id="我的排序">我的排序</h4>
+<ol>
+<li><strong>首选：机场旁 Frankton off-site 或机场内还车</strong>。如果 GO Rentals / Ezi / Apex / Avis / Budget 价格好、含全险和雪链，就按机场区域还车。</li>
+<li><strong>第二选择：Hertz Queenstown Downtown</strong>。如果酒店在镇中心，且 Hertz 支持 Christchurch Airport 取车、Queenstown Downtown 还车，D6 会最舒服。Hertz 官方显示 Queenstown Downtown 在 1-7 Earl Street，营业时间 Mon-Sun 09:00-17:00。</li>
+<li><strong>第三选择：Avis/Budget Queenstown City</strong>。它们在 68-70 Stanley Street 有市中心点，但营业时间偏短，订之前必须确认 D6 下午是否能还、是否允许 after-hours returns、异地还车价格是否合理。</li>
+</ol>
+<h4 id="实操建议">实操建议</h4>
+<ul>
+<li>比价时不要只选 “Queenstown Airport”，也试试搜索 “Queenstown Downtown / Queenstown City / Frankton”。</li>
+<li>如果市中心还车比机场区域贵不超过 NZD 30-50，且酒店就在镇中心，可以考虑市中心还车。</li>
+<li>如果市中心还车贵很多或只开放到中午，就放弃，直接机场/Frankton 还车。</li>
+<li>无论哪种地点，都要确认：8月13日还车时间、after-hours return、雪链归还方式、是否有异地还车费、是否需要加满油、是否有 shuttle。</li>
+</ul>
+<h4 id="为什么改-4-天">为什么改 4 天</h4>
+<p>D7 米尔福德跟团（不开车）、D8 Queenstown / Onsen 用 Orbus 或 Uber、D9 滑雪坐雪场班车、D10 去机场 Route 1 公交（NZD 2.50/次）。皇后镇区内的所有活动都不需要自驾，公共交通便宜方便（详见"皇后镇公共交通方案"章节）。</p>
+<p>相比保留到 D10 的长租方案，仍可省下 3-4 天租车、保险和皇后镇停车费。</p>
+<h3 id="价格估算（4天版）">价格估算（4天版）</h3>
+<p>按"基督城机场取、皇后镇机场还、约 4 天"重新估算：</p>
+<table>
+<thead>
+<tr>
+<th>公司</th>
+<th>车型</th>
+<th style="text-align: right;">4天基础价（估算）</th>
+<th style="text-align: right;">折合人民币</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GO Rentals</td>
+<td>Toyota Corolla Hatch Hybrid</td>
+<td style="text-align: right;">NZD 390-460</td>
+<td style="text-align: right;">约1,560-1,840元</td>
+</tr>
+<tr>
+<td>GO Rentals</td>
+<td>Mitsubishi ASX 紧凑SUV（首选）</td>
+<td style="text-align: right;">NZD 420-520</td>
+<td style="text-align: right;">约1,680-2,080元</td>
+</tr>
+<tr>
+<td>GO Rentals</td>
+<td>Mitsubishi Outlander SUV</td>
+<td style="text-align: right;">NZD 560-700</td>
+<td style="text-align: right;">约2,240-2,800元</td>
+</tr>
+</tbody>
+</table>
+<p>注意：以上是估算。新西兰 8 月是冬季旺季，异地还车、全险、雪链、第二驾驶人都会影响总价。<strong>预订前用实际日期再查一次</strong>。</p>
+<h3 id="租车预算（4天版）">租车预算（4天版）</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th style="text-align: right;">建议预留</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>基础租车 4 天</td>
+<td style="text-align: right;">1,700-2,400元</td>
+</tr>
+<tr>
+<td>降低自负额保险/全险</td>
+<td style="text-align: right;">500-900元</td>
+</tr>
+<tr>
+<td>雪链、第二驾驶人、道路救援等</td>
+<td style="text-align: right;">300-700元</td>
+</tr>
+<tr>
+<td>油费，约750-900公里</td>
+<td style="text-align: right;">650-950元</td>
+</tr>
+<tr>
+<td>异地还车费（如有）</td>
+<td style="text-align: right;">0-200元</td>
+</tr>
+<tr>
+<td><strong>租车相关合计</strong></td>
+<td style="text-align: right;"><strong>约 3,150-4,950元</strong></td>
+</tr>
+</tbody>
+</table>
+<p>仍比保留到奥克兰返程前的长租方案更省钱，也减少皇后镇停车压力。</p>
+<h3 id="长租方案备选（如果坚持保留车）">长租方案备选（如果坚持保留车）</h3>
+<p>如果想在 Queenstown 全程保留车（临时 Glenorchy 半日游 + 不想搭公交），按 7-8 天长租估算：</p>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th style="text-align: right;">预算</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>基础租车 7-8 天</td>
+<td style="text-align: right;">3,400-4,900元</td>
+</tr>
+<tr>
+<td>保险、雪链、加驾、油费</td>
+<td style="text-align: right;">2,200-3,500元</td>
+</tr>
+<tr>
+<td>皇后镇 4 天停车</td>
+<td style="text-align: right;">320-650元</td>
+</tr>
+<tr>
+<td><strong>合计</strong></td>
+<td style="text-align: right;"><strong>5,920-9,050元</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="驾驶原则">驾驶原则</h3>
+<ul>
+<li>D2 不开长途。</li>
+<li>D3 第一段只开到 Tekapo，先适应右舵左行。</li>
+<li>每天尽量白天开车，避免夜路。</li>
+<li>Crown Range 当天看路况，冰雪或雪链要求明显时走 Cromwell。</li>
+<li>米尔福德峡湾不自驾。</li>
+<li>去雪场建议坐班车。</li>
+<li>D6 抵达 Queenstown 当天还车，D7-D10 用公交/班车/团车。</li>
+</ul>
+<h2 id="皇后镇公共交通方案（orbus）">皇后镇公共交通方案（Orbus）</h2>
+<p>D6 还车后 D7-D10 在皇后镇区域全部用公共交通。Orbus 是当地公交系统，覆盖率好、价格便宜、班次密集。</p>
+<h3 id="bee-card-卡（必须买）">Bee Card 卡（必须买）</h3>
+<ul>
+<li><strong>价格</strong>：NZD 5 工本费 + 最低 NZD 5 充值 = 出发时投入 NZD 10/人</li>
+<li><strong>购买地点</strong>：</li>
+<li><strong>ZQN 机场航站楼 PaperPlus 店</strong>（D5 还车后顺路买，最方便）</li>
+<li>镇中心 Queenstown i-SITE 旅游中心</li>
+<li>Frankton 的 Otago Regional Council 办公室</li>
+<li>大型超市</li>
+<li><strong>使用</strong>：上车刷卡（tag on）+ 下车刷卡（tag off），自动扣费</li>
+<li><strong>优势</strong>：45 分钟内换乘免费，灵活组合不同路线</li>
+<li>旅程结束 Bee Card 可以留作纪念，不用退</li>
+</ul>
+<h3 id="核心路线">核心路线</h3>
+<table>
+<thead>
+<tr>
+<th>路线</th>
+<th>起点-终点</th>
+<th>用途</th>
+<th>频次</th>
+<th>单程时间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Route 1</strong></td>
+<td>镇中心 ↔ Frankton ↔ Queenstown Airport</td>
+<td>D6 还车后回镇中心、D10 去机场</td>
+<td>每 15 分钟</td>
+<td>约 15 分钟</td>
+</tr>
+<tr>
+<td><strong>Route 2</strong> ⭐</td>
+<td>镇中心 ↔ Arthurs Point ↔ Lake Hayes ↔ Arrowtown</td>
+<td>D8 去 Arrowtown / Onsen</td>
+<td>每 30 分钟</td>
+<td>约 50 分钟</td>
+</tr>
+<tr>
+<td>Route 3</td>
+<td>镇中心 → Sunshine Bay</td>
+<td>顺路看湖景（可选）</td>
+<td>每小时</td>
+<td>约 15 分钟</td>
+</tr>
+<tr>
+<td>Route 5</td>
+<td>Frankton ↔ Remarkables Park 商场</td>
+<td>顺道购物（可选）</td>
+<td>每小时</td>
+<td>约 10 分钟</td>
+</tr>
+</tbody>
+</table>
+<h3 id="关键-bee-card-用例">关键 Bee Card 用例</h3>
+<ul>
+<li><strong>D6 16:30 ZQN 机场还车 -&gt; 17:00 上 Route 1 -&gt; 17:15 抵镇中心 Stanley St 站</strong>：NZD 2.50/人</li>
+<li><strong>D8 09:30 镇中心 Stanley St -&gt; Route 2 -&gt; 10:20 Arrowtown</strong>：NZD 2.50/人</li>
+<li><strong>D8 16:00 Arrowtown -&gt; Route 2 -&gt; 16:25 Arthurs Point 下车 -&gt; 步行 5-8 分钟到 Onsen</strong>：NZD 2.50/人（同一次 tag on 内）</li>
+<li><strong>D8 19:30 Onsen -&gt; 步行回 Arthurs Point 站 -&gt; Route 2 -&gt; 19:55 镇中心</strong>：NZD 2.50/人</li>
+<li><strong>D10 09:30 镇中心 Cow Lane -&gt; Route 1 -&gt; 09:45 ZQN 机场</strong>：NZD 2.50/人</li>
+</ul>
+<p><strong>双人 5 次×2 = 10 次刷卡 ≈ NZD 25</strong>（约 100 元）。加上 Bee Card 工本费两人 NZD 20，合计 <strong>NZD 45 = 约 180 元</strong>。和在皇后镇继续保留租车相比非常划算。</p>
+<h3 id="哪些不能用-orbus">哪些不能用 Orbus</h3>
+<ul>
+<li><strong>Onsen 临时叫车</strong>：晚上 22:00 后 Route 2 班次少，建议提前安排 Uber 回程。</li>
+<li><strong>Glenorchy</strong>：无公共交通，必须租车或参加跟团（半日团 NZD 100-150/人）。</li>
+<li><strong>滑雪场（The Remarkables / Coronet Peak）</strong>：有专门的雪场班车（NZD 30-40/人），不走 Orbus。</li>
+<li><strong>深夜或大件行李</strong>：用 Uber，皇后镇覆盖好。</li>
+</ul>
+<h3 id="实用-app-和资源">实用 app 和资源</h3>
+<ul>
+<li><strong>官方 app</strong>：<a href="https://www.orc.govt.nz/orbus/queenstown-bus-ferry-timetables/">Orbus 时刻表</a>（Bee Card 余额可查）</li>
+<li><strong>Apple Maps / Google Maps</strong>：可显示 Orbus 实时班次和换乘建议</li>
+<li><strong>Uber</strong>：皇后镇运营正常，Apple Pay 可用，机场到镇中心约 NZD 25-35</li>
+</ul>
+<h2 id="预算规划">预算规划</h2>
+<h3 id="推荐预算表（两人合计）">推荐预算表（两人合计）</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th style="text-align: right;">预算范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>已购国际机票，SZX-MEL-CHC / AKL-MEL-SZX</td>
+<td style="text-align: right;"><strong>9,742元</strong></td>
+</tr>
+<tr>
+<td>新西兰国内机票，ZQN-AKL（8/17 待购）</td>
+<td style="text-align: right;">1,000-2,200元</td>
+</tr>
+<tr>
+<td>新西兰访问签证，两人合计含 IVL</td>
+<td style="text-align: right;">已获批，约2,200元已支付</td>
+</tr>
+<tr>
+<td>澳大利亚过境签 771</td>
+<td style="text-align: right;">政府申请费免费；如需生物识别，按服务费另计</td>
+</tr>
+<tr>
+<td>旅行保险</td>
+<td style="text-align: right;">700-1,200元</td>
+</tr>
+<tr>
+<td>eSIM / 电话卡</td>
+<td style="text-align: right;">150-250元</td>
+</tr>
+<tr>
+<td>9晚住宿</td>
+<td style="text-align: right;">7,000-12,000元</td>
+</tr>
+<tr>
+<td><strong>租车 4 天、全险、雪链、油费</strong></td>
+<td style="text-align: right;"><strong>3,150-4,950元</strong></td>
+</tr>
+<tr>
+<td><strong>皇后镇公共交通（Bee Card + Orbus + 偶尔 Uber）</strong></td>
+<td style="text-align: right;"><strong>180-400元</strong></td>
+</tr>
+<tr>
+<td>米尔福德峡湾一日团</td>
+<td style="text-align: right;">1,900-2,400元</td>
+</tr>
+<tr>
+<td>餐饮</td>
+<td style="text-align: right;">4,000-6,500元</td>
+</tr>
+<tr>
+<td><strong>D9 滑雪一日（双人 Superpass+Rec装备+班车+午餐）</strong></td>
+<td style="text-align: right;"><strong>2,600-2,720元</strong></td>
+</tr>
+<tr>
+<td>D9 进阶课程（可选，90 分钟双人）</td>
+<td style="text-align: right;">+790元</td>
+</tr>
+<tr>
+<td>Onsen Original Soak 温泉（双人 NZD 175，1池60分钟）</td>
+<td style="text-align: right;">约700元</td>
+</tr>
+<tr>
+<td>其他活动和杂费（机场往返、Skyline、行李、打印等）</td>
+<td style="text-align: right;">800-2,000元</td>
+</tr>
+<tr>
+<td><strong>合计</strong></td>
+<td style="text-align: right;"><strong>约34,000-48,000元</strong></td>
+</tr>
+</tbody>
+</table>
+<p>机票价格已经很好，把预算压力从国际机票转移到了住宿、租车、滑雪和活动预订上。</p>
+<h3 id="更现实的三档判断（已出票-+-4-天租车-+-滑雪日）">更现实的三档判断（已出票 + 4 天租车 + 滑雪日）</h3>
+<ul>
+<li>经济版：约 <strong>34,000-37,000 元</strong>。住宿控制在 motel / apartment，滑雪用基础装备，Onsen 可取消。</li>
+<li>推荐版：约 <strong>38,000-43,000 元</strong>。保留 Queenstown 4 晚、Milford、滑雪和 Onsen，住宿不追湖景。</li>
+<li>升级版：<strong>45,000 元以上</strong>。Mount Cook Village 住宿、Queenstown 镇中心好位置、Performance 滑雪装备、Skyline 或更舒适小团。</li>
+</ul>
+<h3 id="不建议砍的项目">不建议砍的项目</h3>
+<ul>
+<li>米尔福德峡湾一日团。</li>
+<li>旅行保险。</li>
+<li>租车全险或降低自负额保险。</li>
+<li>雪链或冬季道路相关配置。</li>
+<li>奥克兰回程缓冲一晚。</li>
+</ul>
+<h2 id="航班建议">航班建议</h2>
+<h3 id="已购国际机票核验">已购国际机票核验</h3>
+<table>
+<thead>
+<tr>
+<th>方向</th>
+<th>航段</th>
+<th>时间</th>
+<th>航司</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>去程</td>
+<td>深圳 SZX -&gt; 墨尔本 MEL</td>
+<td>2026-08-08 23:55 -&gt; 2026-08-09 12:00</td>
+<td>深圳航空 ZH811</td>
+</tr>
+<tr>
+<td>去程</td>
+<td>墨尔本 MEL -&gt; 基督城 CHC</td>
+<td>2026-08-09 18:10 -&gt; 2026-08-09 23:35</td>
+<td>Air New Zealand NZ216</td>
+</tr>
+<tr>
+<td>回程</td>
+<td>奥克兰 AKL -&gt; 墨尔本 MEL</td>
+<td>2026-08-18 08:55 -&gt; 2026-08-18 10:55</td>
+<td>Air New Zealand NZ121</td>
+</tr>
+<tr>
+<td>回程</td>
+<td>墨尔本 MEL -&gt; 深圳 SZX</td>
+<td>2026-08-18 21:20 -&gt; 2026-08-19 05:05</td>
+<td>深圳航空 ZH812</td>
+</tr>
+</tbody>
+</table>
+<p>已购价格：两人合计 <strong>9,742元人民币</strong>。</p>
+<h3 id="已购新西兰国内航班（jetstar-jq296）">已购新西兰国内航班（Jetstar JQ296）</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>航班</td>
+<td><strong>Jetstar Airways JQ296</strong></td>
+</tr>
+<tr>
+<td>日期</td>
+<td>2026-08-17（周一）</td>
+</tr>
+<tr>
+<td>出发</td>
+<td>13:00 皇后鎮機場 D 航站楼</td>
+</tr>
+<tr>
+<td>抵达</td>
+<td>14:50 奥克兰国际机场 D 航站楼</td>
+</tr>
+<tr>
+<td>飞行时间</td>
+<td>约 1h 50min</td>
+</tr>
+<tr>
+<td>建议提前到机场</td>
+<td><strong>2 小时</strong>（11:00 抵 ZQN，最晚 12:00 之前完成值机）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>两人订单分开</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>乘客</th>
+<th>订单号</th>
+<th>PNR</th>
+<th>行李</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LU PENGYU</td>
+<td>1359046012531198</td>
+<td>YS6QHA</td>
+<td>含 20kg 托运 + 1 件手提</td>
+</tr>
+<tr>
+<td>ZHU QIUYI</td>
+<td>1359046012408382</td>
+<td>ZTJ4HK</td>
+<td>无免费托运；加购 1 件 15kg 托运（<strong>状态：处理中⚠️</strong>）</td>
+</tr>
+</tbody>
+</table>
+<h4 id="⚠️-需立刻处理的两个细节">⚠️ 需立刻处理的两个细节</h4>
+<ol>
+<li><strong>ZQY 加购的 15kg 托运行李"处理中"</strong>：联系 Trip.com 客服确认行李加购是否已最终确认入航司系统。出发前若仍未确认，可能在值机时被现场加价。</li>
+<li><strong>手提行李总重 7kg 限制</strong>：Jetstar 是廉航，<strong>手提+随身物品总重不超过 7kg</strong>，值机和登机口都可能称重。把重物（充电宝、相机镜头、滑雪手套等）平衡到托运里，避免登机口加价。</li>
+</ol>
+<h4 id="风险与备选">风险与备选</h4>
+<ul>
+<li>Jetstar 是廉航，<strong>统计上准点率比 Air NZ 低 10-15%</strong>。但 D10 13:00 起飞 → 14:50 抵 AKL，距离 D11 08:55 国际段还有 18 小时缓冲，<strong>延误 4-5 小时也无碍</strong>。</li>
+<li>如果 JQ296 完全取消：当天还有 NZ 614 / NZ 616 / JQ292 等其他班次，奥克兰机场酒店当晚很多空房。</li>
+<li>8/17 当天若皇后镇大雪封场，备用：Bee Card Route 1 到机场再换 Uber 试图改签下一班；或者用旅行保险航班延误条款理赔。</li>
+</ul>
+<h3 id="已出票航班的关键风险">已出票航班的关键风险</h3>
+<ul>
+<li>两程都经墨尔本，必须处理澳大利亚过境签。</li>
+<li>行程单提示 "Baggage may not be checked through"，需要尽快向出票平台和航司确认行李是否可从深圳直挂基督城、从奥克兰直挂深圳。</li>
+<li>回程墨尔本中转 10小时25分，如果不能留在国际中转区，或需要取行李/重新托运，更需要澳洲签证覆盖。</li>
+</ul>
+<h3 id="澳洲过境签-771-办理要点">澳洲过境签 771 办理要点</h3>
+<p>中国大陆普通护照经墨尔本转机去新西兰，一般不能使用澳洲免签过境。即使不出机场，只要不属于澳洲 TWOV 免签过境名单，仍应提前办理澳大利亚 Transit visa subclass 771。当前机票已经出票，且去程、回程都经墨尔本，因此这是 <strong>2026-06-08 起的最高优先级事项</strong>。</p>
+<p>基本信息：</p>
+<ul>
+<li>签证类型：Transit visa subclass 771。</li>
+<li>用途：经澳大利亚前往第三国，例如深圳 -&gt; 墨尔本 -&gt; 基督城。</li>
+<li>停留上限：每次过境澳大利亚不超过72小时。</li>
+<li>申请费：澳洲政府签证申请费为免费。</li>
+<li>申请方式：通过澳大利亚 ImmiAccount 在线申请。</li>
+<li>中国申请人：澳大利亚驻华使馆说明，771过境签申请需通过 ImmiAccount 在线递交。</li>
+</ul>
+<p>建议办理顺序：</p>
+<ol>
+<li>新西兰 Visitor Visa 已获批，可直接用于澳洲771材料。</li>
+<li>确认航班是联程票、行李是否直挂、墨尔本中转时间是否正常。</li>
+<li>用已购完整往返机票准备澳洲771材料。</li>
+<li>在 ImmiAccount 创建或登录账号，选择 Transit visa subclass 771。</li>
+<li>两个人都要各自拿到澳洲签证批准。可以用同一个 ImmiAccount 管理申请，但每位旅客都需要自己的申请和签证结果。</li>
+<li>上传材料后提交。771本身免费，但如果被要求录指纹/拍照，VFS生物识别中心可能收服务费。</li>
+<li>如果收到 biometrics requirement letter，要按信件要求预约 VFS / Australian Biometrics Collection Centre，带护照原件和生物识别要求信去采集。</li>
+<li>收到签证批准信后，核对姓名、护照号、有效期、入境次数和允许停留时间。</li>
+</ol>
+<p>建议准备材料：</p>
+<ul>
+<li>护照信息页。</li>
+<li>身份证正反面。</li>
+<li>白底或浅色背景证件照。</li>
+<li>完整往返机票订单，显示经墨尔本转机。</li>
+<li>从澳大利亚前往第三国的确认机票，例如 MEL -&gt; CHC。</li>
+<li>新西兰签证批准信，证明可以进入目的地国家。</li>
+<li>简短英文说明信，说明只是经澳洲过境去新西兰旅游，不在澳洲停留或工作。</li>
+<li>在职证明/准假信、银行流水等中国约束材料，作为补充。</li>
+</ul>
+<p>特别注意：</p>
+<ul>
+<li>如果去程和回程都经墨尔本，不要默认一张771一定覆盖两次过境。最终以签证批准信上的入境次数、有效期和条件为准；如果只覆盖一次，需要再申请回程过境签，或改用其他适用澳洲签证。</li>
+<li>如果航班不是联程票、需要在墨尔本取行李再托运，仍然需要澳洲签证，并且要留足中转时间。</li>
+<li>机票已出票，接下来不要再拖澳洲过境签。</li>
+<li>如果澳洲过境签无法及时获批，需要尽早评估改签不经澳洲的航线，避免临近出发被动。</li>
+</ul>
+<p>如果出入新西兰都经墨尔本：</p>
+<ul>
+<li>每个人都要确保澳洲签证覆盖两次过境：去程 SZX -&gt; MEL -&gt; CHC，以及回程 AKL -&gt; MEL -&gt; SZX。</li>
+<li>申请 771 时上传完整往返机票和新西兰签证，在说明信里明确写出两次经墨尔本过境日期和中转时间。</li>
+<li>提交后重点看批准信的 travel facility / entries / validity。如果批准信显示多次入境且有效期覆盖往返日期，通常一份批准即可覆盖两次过境。</li>
+<li>如果批准信只给单次入境，不能用它覆盖回程，需要再为回程申请一次771，或改用其他允许多次入境并可过境的澳洲签证。</li>
+<li>771本身免费，但两个人可能都被要求做生物识别；如果需要去 VFS，服务费按人收。</li>
+<li>实操上，建议新西兰签证获批后、机票仍可退改时提交澳洲771；等两个人的澳洲签证批准信都确认覆盖往返后，再锁定不可退项目。</li>
+</ul>
+<h2 id="住宿建议">住宿建议</h2>
+<ul>
+<li>基督城：市中心或机场附近，方便休息和第二天取车。</li>
+<li>Tekapo：镇内优先；价格太高可住 Twizel。</li>
+<li>Wanaka：镇中心或湖边步行可达区域。</li>
+<li>Queenstown：预算允许住镇中心；想省钱看 Frankton，但要考虑停车和进镇交通。</li>
+<li>奥克兰：机场附近即可，D10 是缓冲夜，不需要追求市中心住宿。</li>
+</ul>
+<h2 id="证件和材料">证件和材料</h2>
+<h3 id="新西兰签证状态（已完成）">新西兰签证状态（已完成）</h3>
+<p>两人的 New Zealand Visitor Visa - General 均已获批：</p>
+<ul>
+<li>批准日期：2026-06-05</li>
+<li>生效日期：2026-06-05</li>
+<li>最后可入境 / 再入境日期：2031-06-05</li>
+<li>入境次数：multiple entry</li>
+<li>每次入境可停留：最多 3 个月</li>
+<li>条件：不得为新西兰雇主或客户工作；可为海外雇主/客户远程工作；12个月内学习不得超过3个月</li>
+</ul>
+<p>出发时必须打印并随身携带两份 eVisa 批准信。批准信里也明确提示：航空公司和值机时可能会要求出示 eVisa；抵达新西兰边境时仍需申请 entry permission，并可能被要求证明资金和离境安排。</p>
+<h3 id="澳大利亚过境签状态（未完成，最高优先级）">澳大利亚过境签状态（未完成，最高优先级）</h3>
+<p>当前文件夹内没有看到澳洲过境签批准信。由于已购航班往返都经墨尔本，且行程单提示行李可能不直挂，下一步必须尽快完成：</p>
+<ul>
+<li>每人申请或确认澳大利亚 Transit visa subclass 771，或其他能覆盖两次墨尔本过境的澳洲签证。</li>
+<li>批准信必须覆盖：</li>
+<li>2026-08-09 深圳 -&gt; 墨尔本 -&gt; 基督城</li>
+<li>2026-08-18 奥克兰 -&gt; 墨尔本 -&gt; 深圳</li>
+<li>拿到批准信后核对姓名、护照号、有效期、入境次数、允许停留时长。</li>
+</ul>
+<h3 id="nz-traveller-declaration">NZ Traveller Declaration</h3>
+<p>每个人都需要在入境新西兰前完成 New Zealand Traveller Declaration。按官方说明，航空入境可在开始前往新西兰旅程前 24 小时内提交。</p>
+<p>本行程建议在 <strong>2026-08-08 白天</strong> 完成两人的 NZTD，或至少在深圳机场值机前完成。</p>
+<p>官网：https://www.travellerdeclaration.govt.nz/</p>
+<h2 id="出行必备">出行必备</h2>
+<ul>
+<li>护照原件，确保护照号和机票、签证一致。</li>
+<li>新西兰 eVisa 批准信，两人各打印一份并存云端。</li>
+<li>澳大利亚过境签批准信，两人各打印一份并存云端。</li>
+<li>New Zealand Traveller Declaration 提交确认。</li>
+<li>中国驾照英文翻译或公证件。</li>
+<li>主驾驶名下 Visa/Master 信用卡，用于租车押金。</li>
+<li>旅行保险，覆盖医疗、航班延误、车辆自负额补偿；如滑雪，确认含冬季运动。</li>
+<li>已购国际机票行程单，尤其是墨尔本中转航段。</li>
+<li>8月17日 Queenstown -&gt; Auckland 国内机票确认单。</li>
+<li>Google Maps 离线地图。</li>
+<li>少量现金，约 NZD 100-200。</li>
+<li>冬季衣物：羽绒服、帽子、手套、防水外层、防滑鞋。</li>
+</ul>
+<h2 id="重点景点预习与外链">重点景点预习与外链</h2>
+<p>每个景点配 2-4 个链接，覆盖<strong>官方信息（最权威，含开放时间和入园细节）+ 维基百科（背景知识）+ 视频预览（YouTube 4K 视觉感受）</strong>。建议出发前 1-2 周抽时间浏览，临场会更有体感。链接均经过 2026 年 6 月校验。</p>
+<h3 id="🌿-d3-基督城-christchurch">🌿 D3 基督城 Christchurch</h3>
+<p>新西兰南岛门户城市，2011 年大地震后重建，市区文艺感强，电车、植物园、艺术中心是核心。</p>
+<table>
+<thead>
+<tr>
+<th>景点</th>
+<th>链接</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Christchurch Botanic Gardens 植物园</strong></td>
+<td><a href="https://ccc.govt.nz/parks-and-gardens/christchurch-botanic-gardens/">官方</a> · <a href="https://en.wikipedia.org/wiki/Christchurch_Botanic_Gardens">Wikipedia</a></td>
+</tr>
+<tr>
+<td><strong>Riverside Market 河岸市集</strong></td>
+<td><a href="https://riverside.nz/">官方</a> · 周末最热闹，多个美食摊位</td>
+</tr>
+<tr>
+<td><strong>Christchurch Tram 古董电车</strong></td>
+<td><a href="https://www.christchurchattractions.nz/christchurch-tram/">官方</a>（市区景点环线观光）</td>
+</tr>
+<tr>
+<td><strong>The Arts Centre 艺术中心</strong></td>
+<td><a href="https://www.artscentre.org.nz/">官方</a> · 哥特复兴风格建筑群</td>
+</tr>
+<tr>
+<td><strong>基督城 4K 城市漫游</strong></td>
+<td><a href="https://www.youtube.com/results?search_query=Christchurch+New+Zealand+4K+walk">YouTube 视频</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="⭐-d3-晚-lake-tekapo-特卡波湖">⭐ D3 晚 Lake Tekapo 特卡波湖</h3>
+<p>新西兰最具代表性的湖光雪山照片就来自这里，<strong>世界级暗夜星空保护区</strong>（Dark Sky Reserve）。</p>
+<table>
+<thead>
+<tr>
+<th>景点</th>
+<th>链接</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Church of the Good Shepherd 牧羊人教堂</strong></td>
+<td><a href="https://www.discovertekapo.co.nz/about-tekapo/church-of-the-good-shepherd/">官方介绍</a> · <a href="https://en.wikipedia.org/wiki/Church_of_the_Good_Shepherd,_Lake_Tekapo">Wikipedia</a></td>
+</tr>
+<tr>
+<td><strong>Aoraki Mackenzie Dark Sky Reserve 暗夜星空保护区</strong></td>
+<td><a href="https://www.mackenzienz.com/dark-sky-reserve/">官方</a> · <a href="https://en.wikipedia.org/wiki/Aoraki_Mackenzie_International_Dark_Sky_Reserve">Wikipedia</a></td>
+</tr>
+<tr>
+<td><strong>Mt John Observatory 观星台</strong></td>
+<td><a href="https://www.darkskyproject.co.nz/">Dark Sky Project</a>（专业观星团报名）</td>
+</tr>
+<tr>
+<td><strong>Tekapo Springs 温泉</strong></td>
+<td><a href="https://www.tekaposprings.co.nz/">官方</a> · 冬季泡汤+观星组合</td>
+</tr>
+<tr>
+<td><strong>Tekapo 星空 4K 延时</strong></td>
+<td><a href="https://www.youtube.com/results?search_query=Lake+Tekapo+stars+4K">YouTube</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="💎-d4-lake-pukaki-普卡基湖">💎 D4 Lake Pukaki 普卡基湖</h3>
+<p>牛奶蓝湖水 + 雪山倒影，是 PSL（Photoshop List）级风景，路过就值得停 30 分钟。</p>
+<table>
+<thead>
+<tr>
+<th>景点</th>
+<th>链接</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Peters Lookout 观景点</strong></td>
+<td><a href="https://www.newzealand.com/int/feature/peters-lookout/">攻略</a> · 全程最佳拍照点</td>
+</tr>
+<tr>
+<td><strong>Lake Pukaki Wikipedia</strong></td>
+<td><a href="https://en.wikipedia.org/wiki/Lake_Pukaki">背景知识</a></td>
+</tr>
+<tr>
+<td><strong>三文鱼农场（路边）</strong></td>
+<td><a href="https://www.mtcookalpinesalmon.com/">Mt Cook Alpine Salmon</a> · 现切刺身 + 拍湖景</td>
+</tr>
+</tbody>
+</table>
+<h3 id="🏔️-d4-aoraki/mount-cook-库克山">🏔️ D4 Aoraki/Mount Cook 库克山</h3>
+<p>新西兰最高峰（3,724m），登山圣地，徒步线路开放冬季依然壮观。</p>
+<table>
+<thead>
+<tr>
+<th>景点</th>
+<th>链接</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>DOC 国家公园官方</strong></td>
+<td><a href="https://www.doc.govt.nz/parks-and-recreation/places-to-go/canterbury/places/aoraki-mount-cook-national-park/">Aoraki/Mount Cook National Park</a></td>
+</tr>
+<tr>
+<td><strong>Hooker Valley Track 胡克谷步道</strong></td>
+<td><a href="https://www.doc.govt.nz/parks-and-recreation/places-to-go/canterbury/places/aoraki-mount-cook-national-park/things-to-do/tracks/hooker-valley-track/">DOC</a>（来回 10km，3 小时，难度低）</td>
+</tr>
+<tr>
+<td><strong>Kea Point Track 短线</strong></td>
+<td><a href="https://www.doc.govt.nz/parks-and-recreation/places-to-go/canterbury/places/aoraki-mount-cook-national-park/things-to-do/tracks/kea-point-track/">DOC</a>（来回 2km，1 小时）</td>
+</tr>
+<tr>
+<td><strong>The Hermitage Hotel</strong></td>
+<td><a href="https://www.hermitage.co.nz/">官方</a>（村内唯一像样酒店）</td>
+</tr>
+<tr>
+<td><strong>Aoraki 4K 冬季航拍</strong></td>
+<td><a href="https://www.youtube.com/results?search_query=Aoraki+Mount+Cook+winter+4K">YouTube</a></td>
+</tr>
+<tr>
+<td><strong>Wikipedia</strong></td>
+<td><a href="https://en.wikipedia.org/wiki/Aoraki_/_Mount_Cook">Aoraki/Mount Cook 词条</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="🛒-d4-晚-twizel-特维泽尔">🛒 D4 晚 Twizel 特维泽尔</h3>
+<p>库克山外围补给小镇，超市+晚餐，没什么"必去"，住宿性价比好。</p>
+<table>
+<thead>
+<tr>
+<th>链接</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://www.mackenzienz.com/discover/twizel-and-surrounds/">Mackenzie 官方</a></td>
+<td>镇上简介、徒步线路、餐饮</td>
+</tr>
+<tr>
+<td><a href="https://en.wikipedia.org/wiki/Twizel">Twizel Wikipedia</a></td>
+<td>背景：水电工程小镇</td>
+</tr>
+</tbody>
+</table>
+<h3 id="🌳-d5-wanaka-瓦纳卡">🌳 D5 Wanaka 瓦纳卡</h3>
+<p>比皇后镇松弛 50%，是新西兰人自己最爱的湖边小镇。</p>
+<table>
+<thead>
+<tr>
+<th>景点</th>
+<th>链接</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Wanaka 官方旅游</strong></td>
+<td><a href="https://www.wanaka.co.nz/">wanaka.co.nz</a></td>
+</tr>
+<tr>
+<td><strong>That Wanaka Tree 那棵网红树</strong></td>
+<td><a href="https://en.wikipedia.org/wiki/Wanaka_Tree">Wikipedia</a> · 日出日落都好看</td>
+</tr>
+<tr>
+<td><strong>Roy's Peak Track</strong>（冬季强度大不推荐，仅参考）</td>
+<td><a href="https://www.doc.govt.nz/parks-and-recreation/places-to-go/otago/places/mount-aspiring-national-park/things-to-do/tracks/roys-peak-track/">DOC</a></td>
+</tr>
+<tr>
+<td><strong>Mt Iron Track 短线</strong></td>
+<td><a href="https://www.doc.govt.nz/parks-and-recreation/places-to-go/otago/places/mount-aspiring-national-park/things-to-do/tracks/mount-iron-track/">DOC</a>（90 分钟可俯瞰小镇）</td>
+</tr>
+<tr>
+<td><strong>Puzzling World 趣味迷宫世界</strong>（雨雪天 backup）</td>
+<td><a href="https://www.puzzlingworld.co.nz/">官方</a></td>
+</tr>
+<tr>
+<td><strong>Lake Wanaka 4K 航拍</strong></td>
+<td><a href="https://www.youtube.com/results?search_query=Lake+Wanaka+4K+aerial">YouTube</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="🏔️-d6-crown-range-road-皇冠山脉公路">🏔️ D6 Crown Range Road 皇冠山脉公路</h3>
+<p>新西兰最高 sealed road（1076m），晴天观景台能看到 Lake Wakatipu，冬季有时要雪链。</p>
+<table>
+<thead>
+<tr>
+<th>链接</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://en.wikipedia.org/wiki/Crown_Range_Road">Wikipedia</a></td>
+<td>背景和历史</td>
+</tr>
+<tr>
+<td><a href="https://www.journeys.nzta.govt.nz/traffic">NZTA 实时路况</a></td>
+<td>出发当天必查</td>
+</tr>
+<tr>
+<td><a href="https://www.youtube.com/results?search_query=Crown+Range+drive+4K">Crown Range 4K 驾驶视频</a></td>
+<td>直观感受路况</td>
+</tr>
+</tbody>
+</table>
+<h3 id="🌾-d6-arrowtown-箭镇">🌾 D6 Arrowtown 箭镇</h3>
+<p>19 世纪淘金热历史小镇，<strong>华人定居点遗址是中国游客的必看点</strong>。</p>
+<table>
+<thead>
+<tr>
+<th>景点</th>
+<th>链接</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Arrowtown 官方旅游</strong></td>
+<td><a href="https://www.arrowtown.com/">arrowtown.com</a></td>
+</tr>
+<tr>
+<td><strong>Arrowtown Chinese Settlement 华人淘金定居点</strong></td>
+<td><a href="https://www.doc.govt.nz/parks-and-recreation/places-to-go/otago/places/arrowtown-area/things-to-do/arrowtown-chinese-settlement/">DOC</a> · 免费开放</td>
+</tr>
+<tr>
+<td><strong>Lakes District Museum 博物馆</strong></td>
+<td><a href="https://www.museumqueenstown.com/">官方</a> · 详细介绍淘金史</td>
+</tr>
+<tr>
+<td><strong>Wikipedia</strong></td>
+<td><a href="https://en.wikipedia.org/wiki/Arrowtown">Arrowtown 词条</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="🏘️-d6-d10-queenstown-皇后镇">🏘️ D6-D10 Queenstown 皇后镇</h3>
+<p>新西兰冒险之都，也是本次行程的中心。</p>
+<table>
+<thead>
+<tr>
+<th>景点</th>
+<th>链接</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Queenstown 官方旅游</strong></td>
+<td><a href="https://www.queenstownnz.co.nz/">queenstownnz.co.nz</a></td>
+</tr>
+<tr>
+<td><strong>Skyline Gondola 缆车</strong></td>
+<td><a href="https://www.skyline.co.nz/en/queenstown/">官方</a> · 山顶有夜景餐厅</td>
+</tr>
+<tr>
+<td><strong>Queenstown Gardens 公园</strong></td>
+<td><a href="https://www.queenstownnz.co.nz/things-to-do/free-things-to-do/queenstown-gardens/">官方</a> · 半岛湖边步道</td>
+</tr>
+<tr>
+<td><strong>TSS Earnslaw 蒸汽船</strong></td>
+<td><a href="https://www.realnz.com/en/experiences/tss-earnslaw/">官方</a> · 1912 年百年老船</td>
+</tr>
+<tr>
+<td><strong>Fergburger 网红汉堡</strong></td>
+<td><a href="https://www.fergburger.com/">官方</a> · 排队 30-60 分钟正常</td>
+</tr>
+<tr>
+<td><strong>Wikipedia</strong></td>
+<td><a href="https://en.wikipedia.org/wiki/Queenstown,_New_Zealand">Queenstown 词条</a></td>
+</tr>
+<tr>
+<td><strong>Queenstown 冬季 4K 航拍</strong></td>
+<td><a href="https://www.youtube.com/results?search_query=Queenstown+winter+4K+aerial">YouTube</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="🌊-d7-milford-sound-米尔福德峡湾（本次重头戏）">🌊 D7 Milford Sound 米尔福德峡湾（本次重头戏）</h3>
+<p>世界遗产 Te Wahipounamu 的一部分，被 Rudyard Kipling 称为"世界第八大奇迹"。</p>
+<table>
+<thead>
+<tr>
+<th>主题</th>
+<th>链接</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Fiordland National Park 官方</strong></td>
+<td><a href="https://www.doc.govt.nz/parks-and-recreation/places-to-go/fiordland/places/fiordland-national-park/">DOC</a></td>
+</tr>
+<tr>
+<td><strong>Milford Sound Wikipedia</strong></td>
+<td><a href="https://en.wikipedia.org/wiki/Milford_Sound">词条</a> · 中文版可切换</td>
+</tr>
+<tr>
+<td><strong>RealNZ 一日游官方</strong></td>
+<td><a href="https://www.realnz.com/en/experiences/day-cruises/milford-sound-day-trip-from-queenstown/">Milford Sound Day Trip from Queenstown</a></td>
+</tr>
+<tr>
+<td><strong>Southern Discoveries</strong></td>
+<td><a href="https://www.southerndiscoveries.co.nz/milford-sound/day-trips/coach-nature-cruise/">对比方案</a></td>
+</tr>
+<tr>
+<td><strong>Milford Sound 4K 视频</strong></td>
+<td><a href="https://www.youtube.com/results?search_query=Milford+Sound+New+Zealand+4K">YouTube</a> ⭐强烈推荐看一段</td>
+</tr>
+<tr>
+<td><strong>Mitre Peak 标志性山峰</strong></td>
+<td><a href="https://en.wikipedia.org/wiki/Mitre_Peak">Wikipedia</a></td>
+</tr>
+<tr>
+<td><strong>Milford Road（94 号公路）冬季驾驶</strong></td>
+<td><a href="https://www.journeys.nzta.govt.nz/journeys/state-highway-94-milford-road">NZTA Milford Road</a>（虽然跟团，了解路线很有帮助）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="♨️-d9-滑雪后-onsen-hot-pools-original-soak-温泉">♨️ D9 滑雪后 Onsen Hot Pools Original Soak 温泉</h3>
+<p>皇后镇情侣体验天花板，私人雪松浴池。<strong>确认预订方案</strong>（2026-06-08 实查可订情况后定）：</p>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>产品</td>
+<td><strong>Original Onsen - Soak Only</strong>（60 分钟私人浴池）</td>
+</tr>
+<tr>
+<td>日期</td>
+<td><strong>2026-08-16 周日（D9 滑雪后）</strong></td>
+</tr>
+<tr>
+<td>时段</td>
+<td><strong>21:00</strong> 或 <strong>21:45</strong>（21:45 有 6 池可选最稳）</td>
+</tr>
+<tr>
+<td>人数</td>
+<td>1 pool / 2 bathers</td>
+</tr>
+<tr>
+<td>价格</td>
+<td><strong>NZD 175/双人</strong>（约 700 元人民币）</td>
+</tr>
+<tr>
+<td>取消</td>
+<td>24 小时前免费取消</td>
+</tr>
+<tr>
+<td>接送</td>
+<td>Onsen 免费 shuttle（订位时勾选）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>为什么不是 Tri-Bathe</strong>：Tri-Bathe NZD 195 但 8 月晚上几乎全售罄；Original Onsen 池子多，21:00 后大量可订，省 NZD 20，热汤同样能恢复肌肉。</p>
+<p><strong>为什么 21:00 后</strong>：8 月旺季周末<strong>黄昏 17:30-19:00 时段全部售罄</strong>（最热门），但夜场 19:30 / 21:00 / 21:45 / 22:00 都有位。夜场是 Onsen 招牌 "Lantern Light" 体验：雪山轮廓 + 日式灯笼 + 8 月星空。</p>
+<p><strong>当晚时间线</strong>：</p>
+<ul>
+<li>17:00 滑雪回到镇上</li>
+<li>17:30-18:30 回酒店冲澡换衣</li>
+<li>18:30-20:00 镇中心晚餐（Public Kitchen / The Cow Pizza）</li>
+<li>20:30 Onsen 免费 shuttle 去 Arthur's Point</li>
+<li>21:00-22:00 浴池放松</li>
+<li>22:30 Uber 回酒店</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>链接</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://www.onsen.co.nz/experiences/original-onsen-soak-only/">Original Onsen 预订</a></td>
+<td>直接预订页面</td>
+</tr>
+<tr>
+<td><a href="https://www.onsen.co.nz/">Onsen 官方首页</a></td>
+<td>所有体验类型</td>
+</tr>
+<tr>
+<td><a href="https://www.instagram.com/explore/tags/onsenhotpools/">Instagram 实拍</a></td>
+<td>看真实环境</td>
+</tr>
+</tbody>
+</table>
+<h3 id="⛷️-d9-the-remarkables-/-coronet-peak-滑雪场">⛷️ D9 The Remarkables / Coronet Peak 滑雪场</h3>
+<table>
+<thead>
+<tr>
+<th>雪场</th>
+<th>官方</th>
+<th>雪况报告</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>The Remarkables</strong>（首选）</td>
+<td><a href="https://www.theremarkables.co.nz/">theremarkables.co.nz</a></td>
+<td><a href="https://www.theremarkables.co.nz/the-mountain/the-mountain-report/">Mountain Report</a></td>
+</tr>
+<tr>
+<td><strong>Coronet Peak</strong>（备选）</td>
+<td><a href="https://www.coronetpeak.co.nz/">coronetpeak.co.nz</a></td>
+<td><a href="https://www.coronetpeak.co.nz/the-mountain/snow-report/">Snow Report</a></td>
+</tr>
+<tr>
+<td>NZSki 购票门户</td>
+<td><a href="https://shop.nzski.com/">shop.nzski.com</a> · Superpass 两雪场通用</td>
+<td>—</td>
+</tr>
+<tr>
+<td>4K 滑道预览</td>
+<td><a href="https://www.youtube.com/results?search_query=The+Remarkables+ski+4K">YouTube The Remarkables</a></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h3 id="🌲-可选：d8-glenorchy-格林诺奇">🌲 可选：D8 Glenorchy 格林诺奇</h3>
+<p>《指环王》取景地，皇后镇北 45 分钟。本次没固定时间留，作为预习了解。</p>
+<table>
+<thead>
+<tr>
+<th>链接</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://www.glenorchynz.com/">Glenorchy 官方</a></td>
+<td>历史小镇介绍</td>
+</tr>
+<tr>
+<td><a href="https://en.wikipedia.org/wiki/Glenorchy,_New_Zealand">Wikipedia</a></td>
+<td>背景信息</td>
+</tr>
+<tr>
+<td><a href="https://www.newzealand.com/int/feature/the-lord-of-the-rings-locations-in-new-zealand/">Lord of the Rings 取景地清单</a></td>
+<td>影迷必看</td>
+</tr>
+</tbody>
+</table>
+<h3 id="🌆-d10-auckland-奥克兰（仅缓冲日，了解即可）">🌆 D10 Auckland 奥克兰（仅缓冲日，了解即可）</h3>
+<p>国际航班缓冲日，如果到机场后还有 3-4 小时可进城逛一下。</p>
+<table>
+<thead>
+<tr>
+<th>景点</th>
+<th>链接</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Auckland 官方旅游</strong></td>
+<td><a href="https://www.aucklandnz.com/">aucklandnz.com</a></td>
+</tr>
+<tr>
+<td><strong>Sky Tower</strong></td>
+<td><a href="https://www.skycityauckland.co.nz/sky-tower/">官方</a> · 328m 高瞭望塔</td>
+</tr>
+<tr>
+<td><strong>Viaduct Harbour 码头区</strong></td>
+<td><a href="https://www.aucklandnz.com/visit/discover/places/viaduct-harbour">介绍</a></td>
+</tr>
+<tr>
+<td><strong>Wikipedia</strong></td>
+<td><a href="https://en.wikipedia.org/wiki/Auckland">Auckland 词条</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="📺-综合预习视频（出发前看一两个）">📺 综合预习视频（出发前看一两个）</h3>
+<ul>
+<li><strong>新西兰南岛 8 分钟综合介绍</strong>（4K）：<a href="https://www.youtube.com/results?search_query=South+Island+New+Zealand+4K+travel+guide">YouTube 搜索</a></li>
+<li><strong>小红书"新西兰南岛"话题</strong>（中文笔记最多）：<a href="https://www.xiaohongshu.com/search_result?keyword=%E6%96%B0%E8%A5%BF%E5%85%B0%E5%8D%97%E5%B2%9B&amp;source=web_search_result_notes">小红书搜索</a></li>
+<li><strong>马蜂窝新西兰攻略</strong>（中文综合）：<a href="https://www.mafengwo.cn/travel-scenic-spot/mafengwo/16111.html">mafengwo.cn/travel-scenic-spot/mafengwo/16111.html</a></li>
+</ul>
+<h2 id="地图一键导航（apple-maps）">地图一键导航（Apple Maps）</h2>
+<p>下面所有链接在 iPhone / iPad / Mac 上点击会<strong>直接打开 Apple Maps 并显示驾驶路线</strong>，可以看实时路况、精确驾驶时间和分段提示。在 PDF 里同样可以点。距离和时间是无堵车的官方估算，雪季部分路段会慢 15-30%。</p>
+<h3 id="主要驾驶路段">主要驾驶路段</h3>
+<table>
+<thead>
+<tr>
+<th>日期</th>
+<th>路段</th>
+<th style="text-align: right;">距离</th>
+<th style="text-align: right;">预计时间</th>
+<th>一键导航</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>D3 8/10</td>
+<td>基督城机场 → Lake Tekapo 镇</td>
+<td style="text-align: right;">约 227 km</td>
+<td style="text-align: right;">约 3h 0min</td>
+<td><a href="https://maps.apple.com/?saddr=Christchurch+International+Airport&amp;daddr=Lake+Tekapo&amp;dirflg=d">打开 Apple Maps</a></td>
+</tr>
+<tr>
+<td>D4 8/11 (1)</td>
+<td>Lake Tekapo → Peters Lookout（Lake Pukaki 观景）</td>
+<td style="text-align: right;">约 50 km</td>
+<td style="text-align: right;">约 40 min</td>
+<td><a href="https://maps.apple.com/?saddr=Lake+Tekapo&amp;daddr=Peters+Lookout+Lake+Pukaki&amp;dirflg=d">打开 Apple Maps</a></td>
+</tr>
+<tr>
+<td>D4 8/11 (2)</td>
+<td>Lake Pukaki → Mt Cook Village（Aoraki）</td>
+<td style="text-align: right;">约 60 km</td>
+<td style="text-align: right;">约 50 min</td>
+<td><a href="https://maps.apple.com/?saddr=Lake+Pukaki&amp;daddr=Aoraki+Mount+Cook+Village&amp;dirflg=d">打开 Apple Maps</a></td>
+</tr>
+<tr>
+<td>D5 8/12</td>
+<td>Mt Cook Village / Twizel → Wanaka</td>
+<td style="text-align: right;">约 200-210 km</td>
+<td style="text-align: right;">约 2h 40min</td>
+<td><a href="https://maps.apple.com/?saddr=Aoraki+Mount+Cook+Village&amp;daddr=Wanaka&amp;dirflg=d">打开 Apple Maps</a></td>
+</tr>
+<tr>
+<td>D6 8/13 首选</td>
+<td>Wanaka → Queenstown（Crown Range 风景路线）</td>
+<td style="text-align: right;">约 67 km</td>
+<td style="text-align: right;">约 1h 10min</td>
+<td><a href="https://maps.apple.com/?saddr=Wanaka&amp;daddr=Queenstown&amp;dirflg=d">打开 Apple Maps</a></td>
+</tr>
+<tr>
+<td>D6 8/13 备用</td>
+<td>Wanaka → Cromwell → Queenstown（雨雪安全路线）</td>
+<td style="text-align: right;">约 117 km</td>
+<td style="text-align: right;">约 1h 30min</td>
+<td><a href="https://maps.apple.com/?saddr=Wanaka&amp;daddr=Cromwell+New+Zealand&amp;dirflg=d">打开 Apple Maps</a> → 再<a href="https://maps.apple.com/?saddr=Cromwell+New+Zealand&amp;daddr=Queenstown&amp;dirflg=d">导航 Cromwell→Queenstown</a></td>
+</tr>
+<tr>
+<td>D6 8/13 还车</td>
+<td>Arrowtown → Queenstown Airport（D6 当天还车）</td>
+<td style="text-align: right;">约 16 km</td>
+<td style="text-align: right;">约 20 min</td>
+<td><a href="https://maps.apple.com/?saddr=Arrowtown&amp;daddr=Queenstown+Airport&amp;dirflg=d">打开 Apple Maps</a></td>
+</tr>
+<tr>
+<td>D8 8/15 可选</td>
+<td>Queenstown → Arrowtown / Onsen（公交或 Uber 优先）</td>
+<td style="text-align: right;">约 22 km</td>
+<td style="text-align: right;">约 25 min</td>
+<td><a href="https://maps.apple.com/?saddr=Queenstown&amp;daddr=Onsen+Hot+Pools&amp;dirflg=d">打开 Apple Maps</a></td>
+</tr>
+<tr>
+<td>D9 8/16 参考</td>
+<td>Queenstown → The Remarkables（建议坐班车，不自驾）</td>
+<td style="text-align: right;">约 22 km</td>
+<td style="text-align: right;">约 35 min（雪地）</td>
+<td><a href="https://maps.apple.com/?saddr=Queenstown&amp;daddr=The+Remarkables+Ski+Area&amp;dirflg=d">参考路线</a></td>
+</tr>
+<tr>
+<td>D10 8/17 去机场</td>
+<td>皇后镇市区 → ZQN（公交首选，Uber 备选）</td>
+<td style="text-align: right;">约 9 km</td>
+<td style="text-align: right;">约 15 min</td>
+<td><a href="https://maps.apple.com/?saddr=Queenstown&amp;daddr=Queenstown+Airport">Apple Maps 步行/公交</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>驾驶时长总计</strong>：约 9h 20min（不含停留拍照、休息、补给）</p>
+<h3 id="关键地点定位">关键地点定位</h3>
+<p>需要打车、找路或临时定位时点击直接显示位置：</p>
+<table>
+<thead>
+<tr>
+<th>用途</th>
+<th>地点</th>
+<th>一键打开</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>D2 取车站</td>
+<td>Christchurch International Airport</td>
+<td><a href="https://maps.apple.com/?q=Christchurch+International+Airport">Apple Maps</a></td>
+</tr>
+<tr>
+<td>D2 基督城晚餐</td>
+<td>Riverside Market</td>
+<td><a href="https://maps.apple.com/?q=Riverside+Market+Christchurch">Apple Maps</a></td>
+</tr>
+<tr>
+<td>D2 基督城散步</td>
+<td>Christchurch Botanic Gardens</td>
+<td><a href="https://maps.apple.com/?q=Christchurch+Botanic+Gardens">Apple Maps</a></td>
+</tr>
+<tr>
+<td>D3 标志性拍照</td>
+<td>Church of the Good Shepherd</td>
+<td><a href="https://maps.apple.com/?q=Church+of+the+Good+Shepherd+Tekapo">Apple Maps</a></td>
+</tr>
+<tr>
+<td>D3 温泉</td>
+<td>Tekapo Springs</td>
+<td><a href="https://maps.apple.com/?q=Tekapo+Springs">Apple Maps</a></td>
+</tr>
+<tr>
+<td>D4 观景点</td>
+<td>Peters Lookout（Lake Pukaki）</td>
+<td><a href="https://maps.apple.com/?q=Peters+Lookout+Lake+Pukaki">Apple Maps</a></td>
+</tr>
+<tr>
+<td>D4 步道入口</td>
+<td>Hooker Valley Track / Kea Point Track</td>
+<td><a href="https://maps.apple.com/?q=Hooker+Valley+Track">Apple Maps</a></td>
+</tr>
+<tr>
+<td>D5 标志性拍照</td>
+<td>That Wanaka Tree</td>
+<td><a href="https://maps.apple.com/?q=That+Wanaka+Tree">Apple Maps</a></td>
+</tr>
+<tr>
+<td>D6 集合点</td>
+<td>Queenstown Town Centre（米尔福德团出发地）</td>
+<td><a href="https://maps.apple.com/?q=Queenstown+i-SITE">Apple Maps</a></td>
+</tr>
+<tr>
+<td>D7 历史小镇</td>
+<td>Arrowtown Chinese Settlement</td>
+<td><a href="https://maps.apple.com/?q=Arrowtown+Chinese+Settlement">Apple Maps</a></td>
+</tr>
+<tr>
+<td>D7 温泉</td>
+<td>Onsen Hot Pools</td>
+<td><a href="https://maps.apple.com/?q=Onsen+Hot+Pools+Queenstown">Apple Maps</a></td>
+</tr>
+<tr>
+<td>D9 滑雪班车上车点</td>
+<td>9 Duke Street, Queenstown</td>
+<td><a href="https://maps.apple.com/?q=9+Duke+Street+Queenstown">Apple Maps</a></td>
+</tr>
+<tr>
+<td>D9 滑雪场首选</td>
+<td>The Remarkables Ski Area</td>
+<td><a href="https://maps.apple.com/?q=The+Remarkables+Ski+Area">Apple Maps</a></td>
+</tr>
+<tr>
+<td>D9 滑雪场备选</td>
+<td>Coronet Peak Ski Area</td>
+<td><a href="https://maps.apple.com/?q=Coronet+Peak+Ski+Area">Apple Maps</a></td>
+</tr>
+<tr>
+<td>D6 还车站</td>
+<td>Queenstown Airport</td>
+<td><a href="https://maps.apple.com/?q=Queenstown+Airport">Apple Maps</a></td>
+</tr>
+<tr>
+<td>D10 抵达机场</td>
+<td>Auckland International Airport</td>
+<td><a href="https://maps.apple.com/?q=Auckland+International+Airport">Apple Maps</a></td>
+</tr>
+<tr>
+<td>D10 市区半日</td>
+<td>Sky Tower Auckland（如航班早到且有余力）</td>
+<td><a href="https://maps.apple.com/?q=Sky+Tower+Auckland">Apple Maps</a></td>
+</tr>
+<tr>
+<td>D6 风景目的地</td>
+<td>Milford Sound（团内行程，仅参考）</td>
+<td><a href="https://maps.apple.com/?q=Milford+Sound">Apple Maps</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="使用技巧">使用技巧</h3>
+<ol>
+<li><strong>离线下载</strong>：iPhone Apple Maps 已支持区域离线下载（设置 → 地图 → 离线地图），出发前在 Wi-Fi 环境下载南岛 Tekapo-皇后镇 区域，进入信号差的山区也能用。</li>
+<li><strong>CarPlay</strong>：租车如果带 CarPlay（GO Rentals 部分车型有），可上车直接连 iPhone 用 Apple Maps 导航。</li>
+<li><strong>实时路况</strong>：Apple Maps 在新西兰主要公路有实时路况，雨雪封路会标黄/红，比单看 NZTA 网页直观。</li>
+<li><strong>替代方案</strong>：如 Apple Maps 在某些南岛偏远路段路线计算异常，备用打开 <strong>Google Maps</strong>（链接里把 <code>maps.apple.com</code> 换成 <code>www.google.com/maps</code>，参数 <code>&amp;dirflg=d</code> 改成 <code>&amp;travelmode=driving</code> 即可）。</li>
+<li><strong>手机分享</strong>：在 iPhone 上长按链接 → 拷贝 → AirDrop 给同行 iPhone，双人都有导航。</li>
+</ol>
+<h2 id="接下来待办时间规划（从-2026-06-08-起）">接下来待办时间规划（从 2026-06-08 起）</h2>
+<p>下面按当前状态重排：新西兰签证已获批，国际机票已出票。接下来最重要的是澳洲过境签、国内段机票、住宿、租车和关键活动。</p>
+<h3 id="阶段一：立即办（6/8-6/12）">阶段一：立即办（6/8-6/12）</h3>
+<table>
+<thead>
+<tr>
+<th>优先级</th>
+<th>项目</th>
+<th>截止建议</th>
+<th>关键注意</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>⭐⭐⭐</td>
+<td><strong>澳大利亚 Transit visa subclass 771</strong></td>
+<td>6/12 前提交</td>
+<td>两个人都要办。上传完整往返机票、新西兰 eVisa、护照、照片和过境说明。重点确认批准信是否覆盖 8/9 和 8/18 两次墨尔本过境。</td>
+</tr>
+<tr>
+<td>⭐⭐⭐</td>
+<td><strong>确认墨尔本中转行李是否直挂</strong></td>
+<td>6/10 前</td>
+<td>联系 Trip.com、深圳航空、Air New Zealand。记录客服答复截图。行程单写着 baggage may not be checked through，不能默认直挂。</td>
+</tr>
+<tr>
+<td>✅</td>
+<td>~~购买 ZQN -&gt; AKL 国内航班~~</td>
+<td>已完成 6/8</td>
+<td>Jetstar JQ296 2026-08-17 13:00→14:50，两人已出票（ZQY 加购托运处理中）。</td>
+</tr>
+<tr>
+<td>⭐⭐⭐</td>
+<td><strong>锁定住宿框架</strong></td>
+<td>6/12 前</td>
+<td>8/9 CHC机场、8/10 Tekapo、8/11 Twizel/Mount Cook、8/12 Wanaka、8/13-16 Queenstown、8/17 Auckland机场。全部优先免费取消。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="阶段二：重点预订（6/13-6/23）">阶段二：重点预订（6/13-6/23）</h3>
+<table>
+<thead>
+<tr>
+<th>优先级</th>
+<th>项目</th>
+<th>截止建议</th>
+<th>关键注意</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>⭐⭐⭐</td>
+<td><strong>租车 4 天</strong></td>
+<td>6/20 前</td>
+<td>8/10 CHC机场取车，8/13 ZQN机场还车。必须含自动挡、全险/降自负额、雪链、第二驾驶人、道路救援。</td>
+</tr>
+<tr>
+<td>⭐⭐⭐</td>
+<td><strong>米尔福德峡湾一日团</strong></td>
+<td>6/20 前</td>
+<td>订 8/14 Queenstown 出发 Coach + Cruise。选可取消政策，天气取消要能退改。</td>
+</tr>
+<tr>
+<td>⭐⭐⭐</td>
+<td><strong>旅行保险</strong></td>
+<td>6/23 前</td>
+<td>必须覆盖医疗、救援、航班延误、行李延误、自驾责任/租车自负额补偿、冬季运动/滑雪。</td>
+</tr>
+<tr>
+<td>⭐⭐</td>
+<td><strong>驾照英文翻译或公证</strong></td>
+<td>6/23 前</td>
+<td>主驾驶必须准备，副驾驶如果会开也要准备。正本随身带。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="阶段三：活动与皇后镇细节（6/24-7/14）">阶段三：活动与皇后镇细节（6/24-7/14）</h3>
+<table>
+<thead>
+<tr>
+<th>优先级</th>
+<th>项目</th>
+<th>截止建议</th>
+<th>关键注意</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>⭐⭐⭐</td>
+<td><strong>Onsen Original Soak</strong>（订 8/16 周日 21:00 或 21:45）</td>
+<td>7/7 前</td>
+<td>NZD 175/双人 1 池 60 分钟。直接订 <a href="https://www.onsen.co.nz/experiences/original-onsen-soak-only/">onsen.co.nz/experiences/original-onsen-soak-only</a>。8 月旺季黄昏售罄，夜场 Lantern Light 才有位</td>
+</tr>
+<tr>
+<td>⭐⭐⭐</td>
+<td><strong>NZSki Superpass 1 日</strong>（覆盖 Coronet Peak + The Remarkables）</td>
+<td>7/14 前</td>
+<td>NZD 180/人。买 <a href="https://shop.nzsuperpass.com/">shop.nzsuperpass.com</a>；不需选具体日期，灵活切换两个雪场</td>
+</tr>
+<tr>
+<td>⭐⭐⭐</td>
+<td><strong>Coronet Peak 班车</strong></td>
+<td>7/14 前</td>
+<td>NZD 45 RT/人。买 <a href="https://www.skiqueenstown.co.nz/ski-bus/">skiqueenstown.co.nz/ski-bus</a>，选 8/16 周日 7:30 Duke St 9 号，旺季周末经常满</td>
+</tr>
+<tr>
+<td>⭐⭐</td>
+<td><strong>进阶滑雪课程</strong>（可选强推）</td>
+<td>7/14 前</td>
+<td>NZD 99/人 90 分钟。买 <a href="https://www.nzski.com/coronet-peak/lessons/">nzski.com/coronet-peak/lessons</a>，选 8/16 10:00 时段</td>
+</tr>
+<tr>
+<td>⭐⭐</td>
+<td><strong>滑雪装备租赁</strong></td>
+<td>7/14 前</td>
+<td>推荐在 Queenstown Snow Centre 同时预订 Recreational 套装 NZD 60-75/人，或到现场 D8 下午办（25 Shotover Street）</td>
+</tr>
+<tr>
+<td>⭐⭐</td>
+<td><strong>皇后镇餐厅</strong></td>
+<td>7/14 前</td>
+<td>D8 / D9 晚餐可提前订一两家，其余保持灵活。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="阶段四：收尾准备（7/15-7/31）">阶段四：收尾准备（7/15-7/31）</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>关键注意</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>eSIM / 电话卡</td>
+<td>两人各准备一张，南岛山区信号不稳定，提前下载离线地图。</td>
+</tr>
+<tr>
+<td>Bee Card 计划</td>
+<td>D6 在 Queenstown Airport 还车后，在机场 PaperPlus 买 Bee Card。</td>
+</tr>
+<tr>
+<td>现金和银行卡</td>
+<td>准备 NZD 200-400 现金；确认 Visa/Master 信用卡可用，主驾驶信用卡额度够租车押金。</td>
+</tr>
+<tr>
+<td>打印文件夹</td>
+<td>护照复印件、NZ eVisa、澳洲过境签、机票、住宿、租车、保险、米尔福德、滑雪、紧急电话。</td>
+</tr>
+<tr>
+<td>行李清单</td>
+<td>滑雪服、防水手套、雪镜、防晒 SPF50+、保暖层、防滑鞋、晕车药、常用药、转换插头、充电宝。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="阶段五：出发前最后一周（8/1-8/7）">阶段五：出发前最后一周（8/1-8/7）</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>关键注意</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8/1</td>
+<td>复查所有订单日期：8/8出发、8/9到CHC、8/17到AKL、8/18离开AKL。</td>
+</tr>
+<tr>
+<td>8/3</td>
+<td>查南岛天气趋势，确认 Crown Range、Milford Road、The Remarkables / Coronet Peak 状态。</td>
+</tr>
+<tr>
+<td>8/4</td>
+<td>确认租车门店营业时间、after-hours return 条款和雪链领取方式。</td>
+</tr>
+<tr>
+<td>8/5</td>
+<td>确认米尔福德团集合点和时间。</td>
+</tr>
+<tr>
+<td>8/6</td>
+<td>打印并分装纸质文件，两人手机都存云端离线副本。</td>
+</tr>
+<tr>
+<td>8/7</td>
+<td>开始可提交 NZ Traveller Declaration，建议当天晚上或 8/8 白天完成。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="出发日及行程中">出发日及行程中</h3>
+<table>
+<thead>
+<tr>
+<th>日期</th>
+<th>关键确认</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>D1 8/8</td>
+<td>20:55 前到深圳宝安 T3；值机时确认行李是否直挂基督城、是否需要墨尔本清关重托运。</td>
+</tr>
+<tr>
+<td>D2 8/9</td>
+<td>墨尔本中转，随身准备澳洲过境签、新西兰 eVisa、下一程登机牌和行李信息。23:35 抵 CHC 后只去酒店休息。</td>
+</tr>
+<tr>
+<td>D3 8/10</td>
+<td>取车时拍车况视频，确认雪链、保险、自负额和还车规则。</td>
+</tr>
+<tr>
+<td>D6 8/13</td>
+<td>Queenstown Airport 还车前加满油，保留加油小票；还车后买 Bee Card。</td>
+</tr>
+<tr>
+<td>D7 8/14</td>
+<td>米尔福德当天很长，当晚不安排其他活动。</td>
+</tr>
+<tr>
+<td>D8 8/15</td>
+<td>检查 D9 雪场天气，取滑雪装备。</td>
+</tr>
+<tr>
+<td>D9 8/16</td>
+<td>滑雪日，坐雪场班车，不自驾上山。</td>
+</tr>
+<tr>
+<td>D10 8/17</td>
+<td>ZQN -&gt; AKL，住奥克兰机场附近，避免第二天误机。</td>
+</tr>
+<tr>
+<td>D11 8/18</td>
+<td>AKL 08:55 国际段，至少提前 3 小时到机场。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="后续待确认">后续待确认</h2>
+<ul>
+<li>澳洲过境签是否已获批，且是否覆盖两次墨尔本过境。</li>
+<li>行李是否可直挂；如果不能直挂，墨尔本中转流程如何走。</li>
+<li>~~ZQN -&gt; AKL 国内航班具体航班号和时间~~（已确认 JQ296，8/17 13:00-14:50）。</li>
+<li>ZQY 加购的 15kg 托运行李是否最终入航司系统（联系 Trip.com 客服）。</li>
+<li>9晚住宿是否全部锁定并确认免费取消期限。</li>
+<li>租车公司、取还车时间、还车地点（Airport / Frankton off-site / Downtown）、雪链和全险条款。</li>
+<li>D9 滑雪选 The Remarkables 还是 Coronet Peak（出发前一周看雪况报告）。</li>
+</ul>
+<h2 id="后续更新记录">后续更新记录</h2>
+<ul>
+<li>2026-06-09：<strong>Onsen 推荐改为 Original Onsen Soak</strong>（不再是 Tri-Bathe）。2026-06-08 实测 8 月旺季周末黄昏时段全部售罄，但 21:00 后夜场大量可订。新方案：8/16 周日 21:00 或 21:45，NZD 175/双人，60 分钟夜场 "Lantern Light" 体验。预算从 NZD 240（960元）下调到 NZD 175（700元），省 260 元。同步更新 D8 描述（21:00-22:00 时段）、D9 滑雪后 Onsen 章节（含完整时间线和接送方案）、地图导航 Onsen 链接保留、预订时间表 Onsen 行细化。</li>
+<li>2026-06-08（深夜）：<strong>全面重写 D8-D9 滑雪相关内容</strong>。根据用户实际水平"初中级（刚完全掌握平行式）"调整：(1) 雪场首选从 The Remarkables 改为 <strong>Coronet Peak</strong>（70% 地形适合初中级，更宽更修压更易刷道）；(2) 装备建议保留 Recreational（不再推 Performance，初中级反而难控）；(3) D8 增加详细 <strong>Queenstown Snow Centre（25 Shotover Street）下午取 MyPass + 试装备 + 寄存</strong>完整流程（9 步表格）；(4) D9 增加按时段划分的 Coronet Peak 进阶路线（Big Easy → M1 → Skippers Express）；(5) 推荐 NZD 99/人 90 分钟进阶课程作为可选项；(6) 全部附 NZSki 官方链接（Superpass、班车、课程、Snow Report、Trail Map）；(7) 预算章节同步更新滑雪日成本（NZD 650-680 双人基础 / +198 含课程）；(8) 阶段三预订清单细化为 Superpass、班车、课程、装备四项分别预订。</li>
+<li>2026-06-08（晚）：新增<strong>重点景点预习与外链</strong>章节，覆盖南北岛 13 个区域（基督城、Tekapo、Pukaki、Mt Cook、Twizel、Wanaka、Crown Range、Arrowtown、Queenstown、Milford、Onsen、雪场、Glenorchy、Auckland），每个景点配官方网站 + 维基 + YouTube 4K 视频外链；末尾加综合预习视频（南岛 4K 综述、小红书、马蜂窝）。</li>
+<li>2026-06-08（晚）：补充 ZQN→AKL 国内段已出票信息（Jetstar JQ296，8/17 13:00→14:50）。两人订单分开，行李额度不同（LPY 20kg、ZQY 加购 15kg 处理中）。D10 描述、航班建议章节、阶段一待办、后续待确认同步更新。新增 Jetstar 廉航值机注意点（7kg 手提+随身上限、加购托运需 Trip.com 客服跟进）。</li>
+<li>2026-06-08：补充 Queenstown 还车地点选择。新增机场航站楼/机场停车场、Frankton off-site 门店、市中心 Downtown 门店三类对比；建议优先机场区域或 Frankton off-site，市中心还车只在价格合理且营业时间匹配时使用。</li>
+<li>2026-06-08：根据已获批新西兰签证和已购机票重排为<strong>12天已出票版</strong>。日期改为 2026-08-08 至 2026-08-19；去程 SZX-MEL-CHC，回程 AKL-MEL-SZX；新增 8/11 Twizel / Mount Cook 一晚；租车改为 8/10 CHC 取车、8/13 ZQN 还车约 4 天；D10 必须 8/17 从 Queenstown 飞 Auckland；澳大利亚过境签 771、墨尔本行李直挂确认、ZQN-AKL 国内航班和住宿锁定列为当前最高优先级。</li>
+<li>2026-06-02：<strong>租车从 6 天改为 3 天</strong>（CHC 8/12 → ZQN 8/14 还车）。D5 当晚把车还在 ZQN 机场，D6-D9 全程用 Orbus 公交、雪场班车、Milford 团车。新增"皇后镇公共交通方案"章节（Bee Card 购买地点/使用方法、Route 1 / Route 2 用例、关键场景刷卡费用）。Arrowtown 改成 D5 顺路停（不再 D7 自驾），D7 改用 Route 2 公交去 Arrowtown 和 Onsen。预算节省 1,600-2,400 元，推荐版从 40,000-44,000 降到 38,000-42,000 元。Apple Maps 章节更新还车路段（Arrowtown→ZQN）。租车章节保留 6 天备选方案对比。</li>
+<li>2026-06-02：新增<strong>地图一键导航</strong>章节，覆盖 10 条驾驶路段（含距离/时间）和 18 个关键地点的 Apple Maps 链接，iPhone/iPad/Mac 一点直接打开导航。在 PDF 里链接也保留为可点击按钮样式（蓝色圆角"打开 Apple Maps"）。</li>
+<li>2026-06-02：新增<strong>预订时间表</strong>章节，按距出发周数倒推分 6 阶段（立即办 / 7-8周 / 4-7周 / 2-4周 / 1-2周 / 出发前一周），含每项的网址、费用、注意点。把"预订优先级"压缩为一句话摘要版。"后续待确认"同步更新。</li>
+<li>2026-05-31：<strong>D8 改写为正式滑雪日</strong>（两人有滑雪经验）。首选 The Remarkables，备选 Coronet Peak；含双人实查 2026 雪季成本（缆车票 NZD 169-195/人、装备租 NZD 60-100/人、班车 NZD 30-40/人、午餐 NZD 35-45/人，双人总计 NZD 588-760/约 2,350-3,040 元）；详列时间表、自带 vs 现场租装备清单、提前预订要点和天气差备用方案。预算表新增 D8 滑雪一日行，三档判断同步上调约 3,000 元（推荐版 40,000-44,000 元）。Glenorchy 改为 3 个替代方案。</li>
+<li>2026-05-31：简化全文结构，清理9天版残留；统一为10天行程。修正 D7/D8/D9 安排、租车日期、还车逻辑、预算合计、保险提示、签证材料文件名和奥克兰缓冲说明。</li>
+<li>2026-05-31：升级到10天版本，日期窗口锁定 8/10-8/19，新增奥克兰机场缓冲日。</li>
+<li>2026-05-31：根据新西兰移民局费用页面截图，更新访问签证预算为两人合计 NZD 541，约2,200元人民币预留。</li>
+</ul>
+</main>
+
+<button class="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="回到顶部">↑</button>
+
+<script>
+// Progress bar
+const progressBar = document.getElementById('progress');
+function updateProgress() {
+  const scrollTop = window.pageYOffset;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+  progressBar.style.width = pct + '%';
+  document.querySelector('.back-to-top').classList.toggle('visible', scrollTop > 400);
+}
+window.addEventListener('scroll', updateProgress, {passive: true});
+
+// Sidebar active section tracking
+const allHeadings = Array.from(document.querySelectorAll('h2[id], h3[id]'));
+const tocLinks = Array.from(document.querySelectorAll('.toc-l2 > a, .toc-l3 > a'));
+
+function updateActive() {
+  const scrollY = window.pageYOffset + 100;
+  let activeSlug = null;
+  for (const h of allHeadings) {
+    if (h.offsetTop <= scrollY) {
+      activeSlug = h.id;
+    } else {
+      break;
+    }
+  }
+  if (activeSlug) {
+    document.querySelectorAll('.toc-l2, .toc-l3').forEach(el => el.classList.remove('active'));
+    const link = document.querySelector(`.toc-list a[href="#${activeSlug}"]`);
+    if (link) {
+      const li = link.parentElement;
+      li.classList.add('active');
+      // Open parent l2 if active is l3
+      if (li.classList.contains('toc-l3')) {
+        let parent = li.closest('.toc-l2');
+        if (parent) parent.classList.add('open');
+      } else {
+        li.classList.add('open');
+      }
+      // === Auto-scroll sidebar to keep active item visible ===
+      const sidebar = document.querySelector('.sidebar');
+      const linkRect = link.getBoundingClientRect();
+      const sidebarRect = sidebar.getBoundingClientRect();
+      // Compute the link's offset relative to the sidebar's scroll container
+      const linkTop = linkRect.top - sidebarRect.top + sidebar.scrollTop;
+      const linkBottom = linkTop + linkRect.height;
+      const sidebarHeight = sidebar.clientHeight;
+      const visibleTop = sidebar.scrollTop;
+      const visibleBottom = visibleTop + sidebarHeight;
+      // If link is above or below the visible area, scroll it into center
+      if (linkTop < visibleTop + 50 || linkBottom > visibleBottom - 50) {
+        const target = linkTop - sidebarHeight / 2 + linkRect.height / 2;
+        sidebar.scrollTo({ top: Math.max(0, target), behavior: 'smooth' });
+      }
+    }
+  }
+}
+window.addEventListener('scroll', updateActive, {passive: true});
+
+// Click L2 to toggle children
+document.querySelectorAll('.toc-l2 > a').forEach(a => {
+  a.addEventListener('click', (e) => {
+    const li = a.parentElement;
+    li.classList.add('open');
+  });
+});
+
+// Search
+const search = document.getElementById('toc-search');
+search.addEventListener('input', (e) => {
+  const q = e.target.value.trim().toLowerCase();
+  document.querySelectorAll('.toc-l2, .toc-l3').forEach(li => {
+    const link = li.querySelector('a');
+    const title = (link.dataset.title || link.textContent).toLowerCase();
+    li.classList.toggle('hidden', q !== '' && !title.includes(q));
+  });
+  // Expand all L2 with visible children
+  if (q !== '') {
+    document.querySelectorAll('.toc-l2').forEach(li => {
+      const hasVisibleChild = li.querySelector('.toc-l3:not(.hidden)');
+      if (hasVisibleChild) li.classList.add('open');
+    });
+  }
+});
+
+// Close sidebar on link click (mobile)
+document.querySelectorAll('.toc-list a').forEach(a => {
+  a.addEventListener('click', () => {
+    if (window.innerWidth <= 900) {
+      document.querySelector('.sidebar').classList.remove('open');
+    }
+  });
+});
+
+updateProgress();
+updateActive();
+</script>
+</body>
+</html>
