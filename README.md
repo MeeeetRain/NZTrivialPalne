@@ -1,39 +1,80 @@
-# 新西兰 12 天情侣旅行计划（已出票版）
+# 新西兰 12 天情侣旅行计划
 
-> 2026 年 8 月 8 日 - 19 日 · 深圳出发 · 经墨尔本中转 · 南岛轻自驾 + 米尔福德跟团 + 滑雪 + 奥克兰缓冲
+> 2026-08-08 ~ 2026-08-19 · 深圳 ↔ 墨尔本 ↔ 新西兰 · 南岛轻自驾 + 米尔福德 + 滑雪
 
 ## 仓库结构
 
-| 路径 | 内容 |
+```
+NZTrivialPalne/
+├── 新西兰12天情侣旅行计划.md      ← 源文件 MD
+├── public/                          ← Cloudflare Pages 部署目录
+│   ├── index.html                   ← 重定向到 plan.html
+│   ├── plan.html                    ← 🌐 公开版（PNR/订单号已隐藏）
+│   ├── plan.md
+│   └── private/                     ← 🔐 受 Cloudflare Access 保护
+│       ├── index.html               ← 私密文件库 landing
+│       ├── plan-full.html           ← 完整版（含敏感信息）
+│       ├── plan-full.pdf
+│       ├── flights/                 ← 国际+国内机票电子行程单
+│       ├── hotels/                  ← 酒店预订单
+│       └── visas/                   ← 签证批准信
+├── 飞机行程单/                       ← 原始中文命名（仓库存档，不部署）
+├── 签证/
+├── 酒店/
+└── 新西兰10天情侣旅行计划.pdf       ← 早期版本存档
+```
+
+## 🚀 Cloudflare Pages 部署设置
+
+1. 创建新的 Pages 项目，连接到此 GitHub 仓库
+2. **Build settings**:
+   - Framework preset: `None`
+   - Build command: `(留空)`
+   - **Build output directory**: `public`
+3. 部署后访问 `https://nztrivialpalne.pages.dev/` → 自动跳转到 `plan.html`
+
+## 🔐 Cloudflare Access 配置（保护 /private/）
+
+1. Cloudflare dashboard → **Zero Trust** → Access → **Applications**
+2. **Add an application** → Self-hosted
+3. 设置：
+   - Application name: `NZ Trip - Private`
+   - Session duration: `24 hours`
+   - Application domain: `nztrivialpalne.pages.dev`
+   - Path: `/private/*` ⭐ **关键**：只保护 private 路径，公开内容不需要登录
+4. **Add policy**:
+   - Action: `Allow`
+   - Include → Emails → 列出你和搭档的邮箱
+5. Save
+
+之后访问 `/private/...` 任何路径都会先弹出 Cloudflare 邮箱 OTP 登录，公开 `plan.html` 不受影响。
+
+## 📄 重新生成 HTML/PDF
+
+如果修改了源 MD：
+
+```bash
+# 在 outputs 目录或本地（需要 markdown + weasyprint）
+python3 build_html.py --mode public  # 生成 public/plan.html
+python3 build_html.py --mode full    # 生成 public/private/plan-full.html
+python3 build_pdf.py                 # 生成 public/private/plan-full.pdf
+```
+
+## 关键已订项
+
+| 项 | 状态 |
 |---|---|
-| `新西兰旅行计划.html` | **浏览首选**：单文件 HTML，带左侧导航 + 章节搜索 + 滚动跟随 |
-| `新西兰旅行计划.pdf` | 打印 / 离线 / AirDrop 分享 |
-| `新西兰12天情侣旅行计划.md` | Markdown 源文件，可继续编辑 |
-| `新西兰10天情侣旅行计划.pdf` | 早期 10 天版本存档 |
-| `飞机行程单/` | 国际段 + 国内段电子行程单（含 PNR、票号） |
-| `签证/` | 新西兰 Visitor Visa 批准信 + 申请材料 |
-| `酒店/` | 酒店预订单 |
+| 国际机票（深航 + NZ）| ✅ 已购 |
+| NZ 国内段 ZQN→AKL（Jetstar JQ296）| ✅ 已购（双人，行李待确认）|
+| NZ Visitor Visa | ✅ 双人已批 |
+| Ibis Budget AKL Airport（8/17）| ✅ 已订 |
 
-## 关键信息速查
+## 待办
 
-- **出发**：2026-08-08 23:55 SZX T3（深航 ZH811）
-- **抵达基督城**：2026-08-09 23:35 CHC（经墨尔本 6h10m 中转）
-- **返程**：2026-08-18 08:55 AKL → 2026-08-19 05:05 SZX
-- **租车**：基督城机场 8/10 取 → 皇后镇机场 8/13 还（约 4 天）
-- **总预算**：约 4 万元人民币（推荐版 38,000-43,000）
-
-## 关键待办
-
-- [ ] 澳大利亚过境签 Subclass 771（两人，须覆盖去/回两次过境）
-- [ ] 9 晚住宿全部锁定
-- [ ] 米尔福德峡湾一日团（推荐 Southern Discoveries Coach + Cruise NZD 466/双人，含 10% off）
-- [ ] 滑雪 Superpass + 班车 + 装备（推荐 Coronet Peak，初中级地形友好）
-- [ ] Onsen Original Soak（已确认 8/16 21:00 / 21:45 有位，NZD 175/双人）
+- [ ] 澳大利亚过境签 Subclass 771（双向覆盖）
+- [ ] 9 晚住宿剩余 8 晚锁定
+- [ ] 米尔福德峡湾一日团（推荐 Southern Discoveries + 10% off）
+- [ ] 滑雪 Superpass + 班车 + 装备（Coronet Peak）
+- [ ] Onsen Original Soak 8/16 21:00 时段
 - [ ] 旅行保险（含冬季运动 + 航班延误）
 - [ ] 驾照英文翻译公证
-
-## 文档查看
-
-1. **Mac**：双击 `新西兰旅行计划.html` 用 Safari 打开
-2. **iPhone / iPad**：从文件 App 打开，可 "添加到主屏幕"
-3. **打印**：HTML 自带打印优化样式；或直接打印 PDF

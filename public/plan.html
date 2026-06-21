@@ -550,6 +550,55 @@ blockquote {
   .pax-row { flex-direction: column; gap: 2px; }
   .pax-label { min-width: 0; }
 }
+
+/* === Auth banner (public mode) === */
+.auth-banner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: linear-gradient(135deg, #fff7ec 0%, #ffe8c2 100%);
+  border: 1px solid #f9c46d;
+  padding: 16px 20px;
+  border-radius: 10px;
+  margin: 0 0 32px 0;
+  box-shadow: 0 1px 3px rgba(180,120,30,0.1);
+}
+.auth-banner-icon {
+  font-size: 28px;
+  flex-shrink: 0;
+}
+.auth-banner-text { flex: 1; }
+.auth-banner-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #7c3f00;
+  margin-bottom: 2px;
+}
+.auth-banner-sub {
+  font-size: 13px;
+  color: #8b5a1a;
+}
+.auth-banner-btn {
+  background: #0f3a5f;
+  color: white !important;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  border: none;
+  white-space: nowrap;
+  transition: transform 0.1s, background 0.15s;
+}
+.auth-banner-btn:hover {
+  background: #1e6091;
+  transform: translateY(-1px);
+  color: white !important;
+  border: none;
+}
+@media (max-width: 600px) {
+  .auth-banner { flex-direction: column; text-align: center; padding: 14px; }
+}
 </style>
 </head>
 <body>
@@ -599,13 +648,10 @@ blockquote {
 <li class="toc-l3"><a href="#不建议砍的项目" data-title="不建议砍的项目">不建议砍的项目</a></li>
 </ul></li>
 <li class="toc-l2"><a href="#航班建议" data-title="航班建议"><span class="toc-emoji">✈️</span><span class="toc-text">航班建议</span></a><ul class="toc-l3-list">
-<li class="toc-l3"><a href="#已购国际机票核验" data-title="已购国际机票核验">已购国际机票核验</a></li>
-<li class="toc-l3"><a href="#已购新西兰国内航班（jetstar-jq296）" data-title="已购新西兰国内航班（Jetstar JQ296）">已购新西兰国内航班（Jetstar JQ296）</a></li>
 <li class="toc-l3"><a href="#已出票航班的关键风险" data-title="已出票航班的关键风险">已出票航班的关键风险</a></li>
 <li class="toc-l3"><a href="#澳洲过境签-771-办理要点" data-title="澳洲过境签 771 办理要点">澳洲过境签 771 办理要点</a></li>
 </ul></li>
 <li class="toc-l2"><a href="#住宿建议" data-title="住宿建议"><span class="toc-emoji">🏨</span><span class="toc-text">住宿建议</span></a><ul class="toc-l3-list">
-<li class="toc-l3"><a href="#已确认住宿" data-title="已确认住宿">已确认住宿</a></li>
 <li class="toc-l3"><a href="#待订住宿" data-title="待订住宿">待订住宿</a></li>
 </ul></li>
 <li class="toc-l2"><a href="#证件和材料" data-title="证件和材料"><span class="toc-emoji">🛂</span><span class="toc-text">证件和材料</span></a><ul class="toc-l3-list">
@@ -650,60 +696,18 @@ blockquote {
 <li class="toc-l2"><a href="#后续更新记录" data-title="后续更新记录"><span class="toc-emoji">📝</span><span class="toc-text">后续更新记录</span></a><ul class="toc-l3-list">
 </ul></li>
 </ul>
-<div class="sidebar-foot">📄 共 70 个章节 · 生成于 2026-06-09</div>
+<div class="sidebar-foot">📄 共 67 个章节 · 生成于 2026-06-09</div>
 </div></nav>
 
 <main class="main">
 <h1 id="新西兰12天情侣旅行计划（已出票版）">新西兰12天情侣旅行计划（已出票版）</h1>
-<section class="flight-card">
-  <div class="flight-card-header">
-    <span class="flight-emoji">✈️</span>
-    <span class="flight-title">已购机票一览</span>
-    <span class="flight-sub">2026-08-08 出发 · 2026-08-19 返深</span>
+<section class="auth-banner">
+  <div class="auth-banner-icon">🔒</div>
+  <div class="auth-banner-text">
+    <div class="auth-banner-title">机票、酒店、签证等具体信息已隐藏</div>
+    <div class="auth-banner-sub">含 PNR、订单号、酒店确认号、护照信息等敏感内容，需登录查看</div>
   </div>
-
-  <div class="flight-group">
-    <div class="flight-group-title">国际段 · Trip.com 订单 <code>1128148549484909</code></div>
-    <table class="flight-table">
-      <thead><tr><th>方向</th><th>日期时间</th><th>航段</th><th>航班</th></tr></thead>
-      <tbody>
-        <tr><td>去</td><td><b>8/8 23:55</b> → 8/9 12:00</td><td>SZX T3 → MEL T2</td><td>深航 ZH811</td></tr>
-        <tr><td>去</td><td>8/9 18:10 → <b>8/9 23:35</b></td><td>MEL T2 → CHC</td><td>新西兰航空 NZ216</td></tr>
-        <tr><td>回</td><td><b>8/18 08:55</b> → 10:55</td><td>AKL → MEL T2</td><td>新西兰航空 NZ121</td></tr>
-        <tr><td>回</td><td>8/18 21:20 → <b>8/19 05:05</b></td><td>MEL T2 → SZX T3</td><td>深航 ZH812</td></tr>
-      </tbody>
-    </table>
-    <div class="flight-note">⚠️ 行李可能不直挂，墨尔本中转需澳洲过境签 771</div>
-  </div>
-
-  <div class="flight-group">
-    <div class="flight-group-title">新西兰国内段 · Jetstar JQ296</div>
-    <table class="flight-table">
-      <thead><tr><th>方向</th><th>日期时间</th><th>航段</th><th>航班</th></tr></thead>
-      <tbody>
-        <tr><td>单程</td><td><b>8/17 13:00</b> → 14:50</td><td>ZQN → AKL</td><td>捷星 JQ296</td></tr>
-      </tbody>
-    </table>
-    <div class="flight-pax">
-      <div class="pax-row"><span class="pax-label">LU PENGYU</span><span class="pax-detail">订单 <code>1359046012531198</code> · PNR <code>YS6QHA</code> · 含 <b>20kg</b> 托运 + 7kg 手提</span></div>
-      <div class="pax-row"><span class="pax-label">ZHU QIUYI</span><span class="pax-detail">订单 <code>1359046012408382</code> · PNR <code>ZTJ4HK</code> · 加购 <b>15kg</b> 托运（处理中）+ 7kg 手提</span></div>
-    </div>
-    <div class="flight-note">建议提前 2 小时到 ZQN 机场，廉航值机严格称重</div>
-  </div>
-
-  <div class="flight-group">
-    <div class="flight-group-title">奥克兰住宿 · Ibis Budget AKL Airport ✅ 已订</div>
-    <table class="flight-table">
-      <thead><tr><th>入住</th><th>退房</th><th>房型</th><th>地址</th></tr></thead>
-      <tbody>
-        <tr><td><b>8/17</b> 14:00+</td><td><b>8/18</b> 10:00 前</td><td>Standard King · 2 成人 · 含早 ✗</td><td>2 Leonard Isitt Dr · 距 AKL T1 800m</td></tr>
-      </tbody>
-    </table>
-    <div class="flight-pax">
-      <div class="pax-row"><span class="pax-label">入住人</span><span class="pax-detail">PENGYU LU · 价格 <b>CNY 717.03</b> 已付 · 确认号 <code>2608170584</code> · PIN <code>3406</code> · Trip.com 订单 <code>1359045373421453</code></span></div>
-    </div>
-    <div class="flight-note">前台报姓名 + 确认号取房卡。电话 +64 9 255 5152</div>
-  </div>
+  <a class="auth-banner-btn" href="private/">登录查看 →</a>
 </section>
 
 <p>更新时间：2026-06-08</p>
@@ -1583,115 +1587,6 @@ blockquote {
 <li>奥克兰回程缓冲一晚。</li>
 </ul>
 <h2 id="航班建议">航班建议</h2>
-<h3 id="已购国际机票核验">已购国际机票核验</h3>
-<table>
-<thead>
-<tr>
-<th>方向</th>
-<th>航段</th>
-<th>时间</th>
-<th>航司</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>去程</td>
-<td>深圳 SZX -&gt; 墨尔本 MEL</td>
-<td>2026-08-08 23:55 -&gt; 2026-08-09 12:00</td>
-<td>深圳航空 ZH811</td>
-</tr>
-<tr>
-<td>去程</td>
-<td>墨尔本 MEL -&gt; 基督城 CHC</td>
-<td>2026-08-09 18:10 -&gt; 2026-08-09 23:35</td>
-<td>Air New Zealand NZ216</td>
-</tr>
-<tr>
-<td>回程</td>
-<td>奥克兰 AKL -&gt; 墨尔本 MEL</td>
-<td>2026-08-18 08:55 -&gt; 2026-08-18 10:55</td>
-<td>Air New Zealand NZ121</td>
-</tr>
-<tr>
-<td>回程</td>
-<td>墨尔本 MEL -&gt; 深圳 SZX</td>
-<td>2026-08-18 21:20 -&gt; 2026-08-19 05:05</td>
-<td>深圳航空 ZH812</td>
-</tr>
-</tbody>
-</table>
-<p>已购价格：两人合计 <strong>9,742元人民币</strong>。</p>
-<h3 id="已购新西兰国内航班（jetstar-jq296）">已购新西兰国内航班（Jetstar JQ296）</h3>
-<table>
-<thead>
-<tr>
-<th>项目</th>
-<th>内容</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>航班</td>
-<td><strong>Jetstar Airways JQ296</strong></td>
-</tr>
-<tr>
-<td>日期</td>
-<td>2026-08-17（周一）</td>
-</tr>
-<tr>
-<td>出发</td>
-<td>13:00 皇后鎮機場 D 航站楼</td>
-</tr>
-<tr>
-<td>抵达</td>
-<td>14:50 奥克兰国际机场 D 航站楼</td>
-</tr>
-<tr>
-<td>飞行时间</td>
-<td>约 1h 50min</td>
-</tr>
-<tr>
-<td>建议提前到机场</td>
-<td><strong>2 小时</strong>（11:00 抵 ZQN，最晚 12:00 之前完成值机）</td>
-</tr>
-</tbody>
-</table>
-<p><strong>两人订单分开</strong>：</p>
-<table>
-<thead>
-<tr>
-<th>乘客</th>
-<th>订单号</th>
-<th>PNR</th>
-<th>行李</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>LU PENGYU</td>
-<td>1359046012531198</td>
-<td>YS6QHA</td>
-<td>含 20kg 托运 + 1 件手提</td>
-</tr>
-<tr>
-<td>ZHU QIUYI</td>
-<td>1359046012408382</td>
-<td>ZTJ4HK</td>
-<td>无免费托运；加购 1 件 15kg 托运（<strong>状态：处理中⚠️</strong>）</td>
-</tr>
-</tbody>
-</table>
-<h4 id="⚠️-需立刻处理的两个细节">⚠️ 需立刻处理的两个细节</h4>
-<ol>
-<li><strong>ZQY 加购的 15kg 托运行李"处理中"</strong>：联系 Trip.com 客服确认行李加购是否已最终确认入航司系统。出发前若仍未确认，可能在值机时被现场加价。</li>
-<li><strong>手提行李总重 7kg 限制</strong>：Jetstar 是廉航，<strong>手提+随身物品总重不超过 7kg</strong>，值机和登机口都可能称重。把重物（充电宝、相机镜头、滑雪手套等）平衡到托运里，避免登机口加价。</li>
-</ol>
-<h4 id="风险与备选">风险与备选</h4>
-<ul>
-<li>Jetstar 是廉航，<strong>统计上准点率比 Air NZ 低 10-15%</strong>。但 D10 13:00 起飞 → 14:50 抵 AKL，距离 D11 08:55 国际段还有 18 小时缓冲，<strong>延误 4-5 小时也无碍</strong>。</li>
-<li>如果 JQ296 完全取消：当天还有 NZ 614 / NZ 616 / JQ292 等其他班次，奥克兰机场酒店当晚很多空房。</li>
-<li>8/17 当天若皇后镇大雪封场，备用：Bee Card Route 1 到机场再换 Uber 试图改签下一班；或者用旅行保险航班延误条款理赔。</li>
-</ul>
 <h3 id="已出票航班的关键风险">已出票航班的关键风险</h3>
 <ul>
 <li>两程都经墨尔本，必须处理澳大利亚过境签。</li>
@@ -1748,89 +1643,6 @@ blockquote {
 <li>实操上，建议新西兰签证获批后、机票仍可退改时提交澳洲771；等两个人的澳洲签证批准信都确认覆盖往返后，再锁定不可退项目。</li>
 </ul>
 <h2 id="住宿建议">住宿建议</h2>
-<h3 id="已确认住宿">已确认住宿</h3>
-<table>
-<thead>
-<tr>
-<th>日期</th>
-<th>城市</th>
-<th>酒店</th>
-<th>状态</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>8/17（D10）</td>
-<td>奥克兰机场</td>
-<td><strong>Ibis Budget Auckland Airport</strong></td>
-<td>✅ 已订</td>
-</tr>
-</tbody>
-</table>
-<h4 id="ibis-budget-auckland-airport（已订）">Ibis Budget Auckland Airport（已订）</h4>
-<table>
-<thead>
-<tr>
-<th>项</th>
-<th>内容</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>地址</td>
-<td>2 Leonard Isitt Drive, Auckland Airport, Auckland 2022</td>
-</tr>
-<tr>
-<td>电话</td>
-<td>+64 9 255 5152</td>
-</tr>
-<tr>
-<td>入住</td>
-<td>2026-08-17（周一）14:00 后</td>
-</tr>
-<tr>
-<td>退房</td>
-<td>2026-08-18（周二）10:00 前</td>
-</tr>
-<tr>
-<td>房型</td>
-<td>Standard King Room（1 张大床，2 成人）</td>
-</tr>
-<tr>
-<td>入住人</td>
-<td>PENGYU LU</td>
-</tr>
-<tr>
-<td>价格</td>
-<td>CNY 717.03（含 VAT 93.69）已支付</td>
-</tr>
-<tr>
-<td>Trip.com 订单</td>
-<td>1359045373421453</td>
-</tr>
-<tr>
-<td>酒店确认号</td>
-<td><strong>2608170584</strong></td>
-</tr>
-<tr>
-<td>PIN</td>
-<td>3406（前台核对用，勿透露）</td>
-</tr>
-<tr>
-<td>设施</td>
-<td>私人浴室、淋浴、热水24h、吹风机、毛巾、洗漱用品</td>
-</tr>
-<tr>
-<td>距 AKL 航站楼</td>
-<td>800 米，可步行 + 免费班车</td>
-</tr>
-<tr>
-<td>取消政策</td>
-<td>不入住扣全款</td>
-</tr>
-</tbody>
-</table>
-<p><strong>到店流程</strong>：8/17 14:50 抵 AKL T1 → 走出航站楼向西 5 分钟可到 ibis（或等机场免费 shuttle）→ 前台报姓名 + 确认号 → 拿房卡。</p>
 <h3 id="待订住宿">待订住宿</h3>
 <table>
 <thead>
@@ -2833,7 +2645,7 @@ blockquote {
 </ul>
 <h2 id="后续更新记录">后续更新记录</h2>
 <ul>
-<li>2026-06-21：<strong>D10 奥克兰住宿已订</strong> ibis Budget Auckland Airport，2026-08-17 入住 1 晚，Standard King，CNY 717.03 已付，确认号 2608170584。住宿建议章节新增"已确认住宿"小节 + 完整 ibis 信息表 + 到店流程；行程总览 D10 行更新为"Ibis Budget AKL Airport ✅已订"；HTML 顶部机票卡片新增酒店信息行。</li>
+<li>2026-06-21：<strong>D10 奥克兰住宿已订</strong> ibis Budget Auckland Airport，2026-08-17 入住 1 晚，Standard King，CNY 717.03 已付，确认号 （登录可见）。住宿建议章节新增"已确认住宿"小节 + 完整 ibis 信息表 + 到店流程；行程总览 D10 行更新为"Ibis Budget AKL Airport ✅已订"；HTML 顶部机票卡片新增酒店信息行。</li>
 <li>2026-06-09：<strong>Onsen 推荐改为 Original Onsen Soak</strong>（不再是 Tri-Bathe）。2026-06-08 实测 8 月旺季周末黄昏时段全部售罄，但 21:00 后夜场大量可订。新方案：8/16 周日 21:00 或 21:45，NZD 175/双人，60 分钟夜场 "Lantern Light" 体验。预算从 NZD 240（960元）下调到 NZD 175（700元），省 260 元。同步更新 D8 描述（21:00-22:00 时段）、D9 滑雪后 Onsen 章节（含完整时间线和接送方案）、地图导航 Onsen 链接保留、预订时间表 Onsen 行细化。</li>
 <li>2026-06-08（深夜）：<strong>全面重写 D8-D9 滑雪相关内容</strong>。根据用户实际水平"初中级（刚完全掌握平行式）"调整：(1) 雪场首选从 The Remarkables 改为 <strong>Coronet Peak</strong>（70% 地形适合初中级，更宽更修压更易刷道）；(2) 装备建议保留 Recreational（不再推 Performance，初中级反而难控）；(3) D8 增加详细 <strong>Queenstown Snow Centre（25 Shotover Street）下午取 MyPass + 试装备 + 寄存</strong>完整流程（9 步表格）；(4) D9 增加按时段划分的 Coronet Peak 进阶路线（Big Easy → M1 → Skippers Express）；(5) 推荐 NZD 99/人 90 分钟进阶课程作为可选项；(6) 全部附 NZSki 官方链接（Superpass、班车、课程、Snow Report、Trail Map）；(7) 预算章节同步更新滑雪日成本（NZD 650-680 双人基础 / +198 含课程）；(8) 阶段三预订清单细化为 Superpass、班车、课程、装备四项分别预订。</li>
 <li>2026-06-08（晚）：新增<strong>重点景点预习与外链</strong>章节，覆盖南北岛 13 个区域（基督城、Tekapo、Pukaki、Mt Cook、Twizel、Wanaka、Crown Range、Arrowtown、Queenstown、Milford、Onsen、雪场、Glenorchy、Auckland），每个景点配官方网站 + 维基 + YouTube 4K 视频外链；末尾加综合预习视频（南岛 4K 综述、小红书、马蜂窝）。</li>

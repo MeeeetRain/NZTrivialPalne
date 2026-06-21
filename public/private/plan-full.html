@@ -550,6 +550,55 @@ blockquote {
   .pax-row { flex-direction: column; gap: 2px; }
   .pax-label { min-width: 0; }
 }
+
+/* === Auth banner (public mode) === */
+.auth-banner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: linear-gradient(135deg, #fff7ec 0%, #ffe8c2 100%);
+  border: 1px solid #f9c46d;
+  padding: 16px 20px;
+  border-radius: 10px;
+  margin: 0 0 32px 0;
+  box-shadow: 0 1px 3px rgba(180,120,30,0.1);
+}
+.auth-banner-icon {
+  font-size: 28px;
+  flex-shrink: 0;
+}
+.auth-banner-text { flex: 1; }
+.auth-banner-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #7c3f00;
+  margin-bottom: 2px;
+}
+.auth-banner-sub {
+  font-size: 13px;
+  color: #8b5a1a;
+}
+.auth-banner-btn {
+  background: #0f3a5f;
+  color: white !important;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  border: none;
+  white-space: nowrap;
+  transition: transform 0.1s, background 0.15s;
+}
+.auth-banner-btn:hover {
+  background: #1e6091;
+  transform: translateY(-1px);
+  color: white !important;
+  border: none;
+}
+@media (max-width: 600px) {
+  .auth-banner { flex-direction: column; text-align: center; padding: 14px; }
+}
 </style>
 </head>
 <body>

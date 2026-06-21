@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🔐 私密文件 - 新西兰旅行</title>
+<style>
+:root {
+  --bg: #f6f7f9;
+  --card: #ffffff;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --primary: #0f3a5f;
+  --primary-2: #1e6091;
+  --primary-light: #eef4f9;
+  --warm: #fbbf24;
+}
+* { box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", sans-serif;
+  margin: 0;
+  padding: 40px 24px;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+.container { max-width: 920px; margin: 0 auto; }
+
+header {
+  background: linear-gradient(135deg, #0f3a5f 0%, #1e6091 100%);
+  color: white;
+  padding: 32px 36px;
+  border-radius: 14px;
+  margin-bottom: 24px;
+  box-shadow: 0 8px 24px rgba(15,58,95,0.15);
+}
+header h1 { margin: 0 0 6px 0; font-size: 24px; font-weight: 700; }
+header p { margin: 0; opacity: 0.85; font-size: 14px; }
+header .auth-tag {
+  display: inline-block;
+  background: rgba(255,255,255,0.18);
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  margin-top: 10px;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--primary-2);
+  text-decoration: none;
+  font-size: 14px;
+  margin-bottom: 20px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: background 0.15s;
+}
+.back-link:hover { background: var(--primary-light); }
+
+section { margin-bottom: 28px; }
+section h2 {
+  font-size: 17px;
+  color: var(--primary);
+  margin: 0 0 12px 0;
+  padding: 10px 14px;
+  background: var(--primary-light);
+  border-left: 4px solid var(--primary-2);
+  border-radius: 4px;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+}
+.card {
+  background: var(--card);
+  padding: 16px 18px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  text-decoration: none;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  transition: transform 0.12s, box-shadow 0.12s, border-color 0.12s;
+}
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(15,58,95,0.1);
+  border-color: var(--primary-2);
+}
+.card-icon { font-size: 28px; flex-shrink: 0; }
+.card-body { flex: 1; min-width: 0; }
+.card-title { font-weight: 600; font-size: 15px; color: var(--primary); margin-bottom: 2px; }
+.card-meta { font-size: 12px; color: var(--muted); }
+.card-arrow { color: var(--muted); font-size: 18px; }
+
+.featured {
+  background: linear-gradient(135deg, #0f3a5f 0%, #1e6091 100%) !important;
+  color: white !important;
+  border: none !important;
+}
+.featured .card-title { color: white; }
+.featured .card-meta { color: rgba(255,255,255,0.8); }
+.featured .card-arrow { color: rgba(255,255,255,0.85); }
+
+footer {
+  margin-top: 40px;
+  padding: 20px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--muted);
+  border-top: 1px solid #e5e7eb;
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <a class="back-link" href="../plan.html">← 返回公开计划</a>
+
+  <header>
+    <h1>🔐 私密文件库</h1>
+    <p>含 PNR、订单号、护照、酒店确认号等敏感信息</p>
+    <span class="auth-tag">✅ 已通过 Cloudflare Access 验证</span>
+  </header>
+
+  <section>
+    <h2>📘 完整计划</h2>
+    <div class="card-grid">
+      <a class="card featured" href="plan-full.html">
+        <span class="card-icon">📖</span>
+        <div class="card-body">
+          <div class="card-title">完整旅行计划（含机票信息卡）</div>
+          <div class="card-meta">HTML · 含所有 PNR、订单号、酒店确认</div>
+        </div>
+        <span class="card-arrow">→</span>
+      </a>
+      <a class="card" href="plan-full.pdf">
+        <span class="card-icon">📄</span>
+        <div class="card-body">
+          <div class="card-title">完整计划 PDF</div>
+          <div class="card-meta">可打印 / AirDrop / 离线</div>
+        </div>
+        <span class="card-arrow">→</span>
+      </a>
+    </div>
+  </section>
+
+  <section>
+    <h2>✈️ 机票电子行程单</h2>
+    <div class="card-grid">
+      <a class="card" href="flights/international-trip.pdf">
+        <span class="card-icon">🌏</span>
+        <div class="card-body">
+          <div class="card-title">国际段往返（中英版）</div>
+          <div class="card-meta">深航 ZH811/812 + 新西兰 NZ216/121 · 经墨尔本</div>
+        </div>
+        <span class="card-arrow">→</span>
+      </a>
+      <a class="card" href="flights/international-trip-en.pdf">
+        <span class="card-icon">🌏</span>
+        <div class="card-body">
+          <div class="card-title">国际段（英文版）</div>
+          <div class="card-meta">入境用</div>
+        </div>
+        <span class="card-arrow">→</span>
+      </a>
+      <a class="card" href="flights/domestic-lpy-qzn-akl.pdf">
+        <span class="card-icon">🛫</span>
+        <div class="card-body">
+          <div class="card-title">国内段 · 乘客 LPY</div>
+          <div class="card-meta">Jetstar JQ296 · 皇后镇→奥克兰 · 含 20kg 托运</div>
+        </div>
+        <span class="card-arrow">→</span>
+      </a>
+      <a class="card" href="flights/domestic-zqy-qzn-akl.pdf">
+        <span class="card-icon">🛫</span>
+        <div class="card-body">
+          <div class="card-title">国内段 · 乘客 ZQY</div>
+          <div class="card-meta">Jetstar JQ296 · 加购 15kg 托运</div>
+        </div>
+        <span class="card-arrow">→</span>
+      </a>
+    </div>
+  </section>
+
+  <section>
+    <h2>🏨 酒店预订单</h2>
+    <div class="card-grid">
+      <a class="card" href="hotels/ibis-akl-airport.pdf">
+        <span class="card-icon">🛏️</span>
+        <div class="card-body">
+          <div class="card-title">Ibis Budget Auckland Airport</div>
+          <div class="card-meta">8/17 入住 · 8/18 退房 · CNY 717.03 已付</div>
+        </div>
+        <span class="card-arrow">→</span>
+      </a>
+    </div>
+  </section>
+
+  <section>
+    <h2>🛂 新西兰签证</h2>
+    <div class="card-grid">
+      <a class="card" href="visas/lpy-visa.pdf">
+        <span class="card-icon">📋</span>
+        <div class="card-body">
+          <div class="card-title">LPY · Visitor Visa</div>
+          <div class="card-meta">已获批 · 2031-06-05 前有效 · 多次入境</div>
+        </div>
+        <span class="card-arrow">→</span>
+      </a>
+      <a class="card" href="visas/zqy-visa.pdf">
+        <span class="card-icon">📋</span>
+        <div class="card-body">
+          <div class="card-title">ZQY · Visitor Visa</div>
+          <div class="card-meta">已获批 · 2031-06-05 前有效 · 多次入境</div>
+        </div>
+        <span class="card-arrow">→</span>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    🔒 此页面受 Cloudflare Access 保护 · 仅授权邮箱可访问 · 24h Session
+  </footer>
+</div>
+</body>
+</html>
