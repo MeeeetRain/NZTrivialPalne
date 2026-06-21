@@ -547,6 +547,7 @@ const PDF_HOTEL_CHC = 'private/hotels/novotel-chc-airport.pdf';
 const PDF_HOTEL_QZN_EARNSLAW = 'private/hotels/earnslaw-lodge-qzn.pdf';
 const PDF_HOTEL_QZN_AIRBNB = 'private/hotels/airbnb-qzn-pending.pdf';
 const PDF_HOTEL_TEKAPO = 'private/hotels/peppers-bluewater-tekapo.pdf';
+const PDF_OMARAMA = 'private/activities/omarama-hot-tubs.pdf';
 const PDF_HOTEL = PDF_HOTEL_AKL; // backward compat
 
 const days = [
@@ -612,7 +613,7 @@ const days = [
     events: [
       { time: '09:30', hour: 9.5, icon: '🌅', type: 'transit', text: '出发离开 Twizel' },
       { time: '11:30', hour: 11.5, icon: '🚗', type: 'drive', text: '抵 Omarama（30 km / 25 分钟）' },
-      { time: '12:00', hour: 12, icon: '♨️', type: 'spa', text: 'Omarama Hot Tubs ✅已订', note: 'Small Hot Tub 双人 1.5h · 12:00-13:30 · NZD 126 已付 · 自带泳衣 + 毛巾' },
+      { time: '12:00', hour: 12, icon: '♨️', type: 'spa', text: 'Omarama Hot Tubs ✅已订', note: 'Small Hot Tub 双人 1.5h · 订单 #356981425 · NZD 126 已付 · 29 Omarama Ave', docs: [{label: '📄 凭证', url: PDF_OMARAMA}] },
       { time: '14:00', hour: 14, icon: '🍽️', type: 'food', text: 'Tarras Country Store 午餐', note: '路过经典小店，馅饼 + 热汤' },
       { time: '14:30', hour: 14.5, icon: '🚗', type: 'drive', text: '开 Lindis Pass', note: '高山道，最高 971m' },
       { time: '15:30', hour: 15.5, icon: '📸', type: 'tour', text: 'Lindis Pass 观景点', note: '短停拍照' },
