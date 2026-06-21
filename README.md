@@ -43,8 +43,12 @@ NZTrivialPalne/
    - Application domain: `nztrivialpalne.pages.dev`
    - Path: `/private/*` ⭐ **关键**：只保护 private 路径，公开内容不需要登录
 4. **Add policy**:
+   - Policy name: `Allowed users`
    - Action: `Allow`
-   - Include → Emails → 列出你和搭档的邮箱
+   - Include → **Emails** → 添加这 2 个：
+     - `zqyjhxx@163.com`
+     - `2931269529@qq.com`
+   - （如有需要可继续加）
 5. Save
 
 之后访问 `/private/...` 任何路径都会先弹出 Cloudflare 邮箱 OTP 登录，公开 `plan.html` 不受影响。
