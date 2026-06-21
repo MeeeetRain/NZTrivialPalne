@@ -550,7 +550,7 @@ const PDF_HOTEL = PDF_HOTEL_AKL; // backward compat
 
 const days = [
   {
-    id: 1, date: '8/8', weekday: '周五',
+    id: 1, date: '8/8', weekday: '周六',
     subtitle: '出发：深圳 → 墨尔本',
     tags: ['出发日'], tag: '✈️',
     events: [
@@ -560,7 +560,7 @@ const days = [
     notes: '出发前 8/7 晚或 8/8 白天完成 NZ Traveller Declaration',
   },
   {
-    id: 2, date: '8/9', weekday: '周六',
+    id: 2, date: '8/9', weekday: '周日',
     subtitle: '墨尔本中转 + 抵基督城',
     tags: ['长途'], tag: '🛬',
     events: [
@@ -573,7 +573,7 @@ const days = [
     notes: '抵 CHC 已经很晚，第一晚只做入境、提行李、睡觉',
   },
   {
-    id: 3, date: '8/10', weekday: '周日',
+    id: 3, date: '8/10', weekday: '周一',
     subtitle: '基督城 → Lake Tekapo',
     tags: ['取车日', '驾驶'], tag: '🚗',
     events: [
@@ -589,7 +589,7 @@ const days = [
     notes: '第一天右舵左行，避免夜路。住宿：Lake Tekapo 镇内',
   },
   {
-    id: 4, date: '8/11', weekday: '周一',
+    id: 4, date: '8/11', weekday: '周二',
     subtitle: 'Tekapo → Mt Cook → Twizel',
     tags: ['雪山'], tag: '🏔️',
     events: [
@@ -604,14 +604,17 @@ const days = [
     notes: 'DOC 步道开放状态需当天去 Visitor Centre 确认',
   },
   {
-    id: 5, date: '8/12', weekday: '周二',
+    id: 5, date: '8/12', weekday: '周三',
     subtitle: 'Twizel → Wanaka',
     tags: ['湖区'], tag: '🌊',
     events: [
       { time: '09:30', hour: 9.5, icon: '🌅', type: 'transit', text: '出发离开 Twizel' },
-      { time: '11:00', hour: 11, icon: '📸', type: 'tour', text: 'Lindis Pass 观景点', note: '高山道，可短停拍照' },
-      { time: '12:30', hour: 12.5, icon: '🍽️', type: 'food', text: 'Omarama / Tarras 午餐', note: '路上小镇 Coffee Stop' },
-      { time: '13:30', hour: 13.5, icon: '🏨', type: 'hotel', text: '抵达 Wanaka，入住' },
+      { time: '11:30', hour: 11.5, icon: '🚗', type: 'drive', text: '抵 Omarama（30 km / 25 分钟）' },
+      { time: '12:00', hour: 12, icon: '♨️', type: 'spa', text: 'Omarama Hot Tubs ✅已订', note: 'Small Hot Tub 双人 1.5h · 12:00-13:30 · NZD 126 已付 · 自带泳衣 + 毛巾' },
+      { time: '14:00', hour: 14, icon: '🍽️', type: 'food', text: 'Tarras Country Store 午餐', note: '路过经典小店，馅饼 + 热汤' },
+      { time: '14:30', hour: 14.5, icon: '🚗', type: 'drive', text: '开 Lindis Pass', note: '高山道，最高 971m' },
+      { time: '15:30', hour: 15.5, icon: '📸', type: 'tour', text: 'Lindis Pass 观景点', note: '短停拍照' },
+      { time: '16:00', hour: 16, icon: '🏨', type: 'hotel', text: '抵达 Wanaka，入住' },
       { time: '14:30', hour: 14.5, icon: '🌳', type: 'tour', text: 'That Wanaka Tree', note: '黄昏拍照最佳' },
       { time: '16:00', hour: 16, icon: '🚶', type: 'tour', text: 'Lake Wanaka 湖边散步' },
       { time: '18:30', hour: 18.5, icon: '🍽️', type: 'food', text: '镇中心晚餐' },
