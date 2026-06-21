@@ -103,6 +103,28 @@ body {
   font-size: 13px;
   color: var(--text-muted);
 }
+.topbar-nav {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.topbar-nav-link {
+  font-size: 12.5px;
+  color: var(--primary);
+  text-decoration: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: white;
+  white-space: nowrap;
+  transition: background 0.15s, border-color 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.topbar-nav-link:hover {
+  background: var(--primary-light);
+  border-color: var(--primary-2);
+  color: var(--primary);
+}
 .menu-toggle {
   display: none;
   background: none;
@@ -481,18 +503,30 @@ blockquote {
   h4 { font-size: 14px; }
 
   /* Topbar more compact */
-  .topbar { padding: 0 14px; }
-  .topbar-title { font-size: 14px; }
+  .topbar { padding: 0 10px; gap: 6px; }
+  .topbar-title { font-size: 13px; }
   .topbar-sub { display: none; }
+  .topbar-nav-link { padding: 5px 8px; font-size: 11.5px; }
 
   /* Lists tighter */
   ul, ol { padding-left: 20px; }
   li { margin-bottom: 3px; }
 
-  /* Tables: condensed; the .table-scroll wrapper allows side-scroll */
-  table { font-size: 13px; min-width: 100%; }
-  th, td { padding: 8px 10px; }
-  th { font-size: 12px; }
+  /* Tables: natural width with horizontal scroll via .table-scroll wrapper */
+  table { font-size: 13px; width: auto; min-width: 100%; }
+  th, td { padding: 8px 10px; vertical-align: middle; }
+  th { font-size: 12px; white-space: nowrap; }
+
+  /* First column (often short labels like dates, day numbers, item names) */
+  /* should not wrap to avoid awkward vertical-character look                */
+  th:first-child, td:first-child {
+    white-space: nowrap;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  /* Numeric/short columns also shouldn't wrap (price, count, time) */
+  td[align="right"], th[align="right"] { white-space: nowrap; }
 
   /* Back-to-top button - smaller, away from home indicator */
   .back-to-top {
@@ -569,12 +603,20 @@ blockquote {
   margin-bottom: 12px;
 }
 .flight-group:last-child { margin-bottom: 0; }
+.flight-group-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
 .flight-group-title {
   font-size: 13px;
   font-weight: 600;
   color: rgba(255,255,255,0.95);
-  margin-bottom: 8px;
   letter-spacing: 0.3px;
+  flex: 1;
+  min-width: 0;
 }
 .flight-group-title code {
   background: rgba(255,255,255,0.18);
@@ -584,6 +626,34 @@ blockquote {
   font-size: 12px;
   font-family: ui-monospace, SFMono-Regular, monospace;
 }
+.flight-group-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.flight-doc-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(255,255,255,0.15);
+  color: white !important;
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 6px;
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,0.2);
+  white-space: nowrap;
+  transition: background 0.15s, transform 0.1s;
+  -webkit-tap-highlight-color: transparent;
+}
+.flight-doc-btn:hover {
+  background: rgba(255,255,255,0.28);
+  transform: translateY(-1px);
+  color: white !important;
+  border: 1px solid rgba(255,255,255,0.35);
+}
+.flight-doc-btn:active { transform: translateY(0); }
 .flight-table {
   width: 100%;
   border-collapse: collapse;
@@ -650,6 +720,9 @@ blockquote {
   .flight-table th, .flight-table td { padding: 5px 6px; }
   .pax-row { flex-direction: column; gap: 2px; }
   .pax-label { min-width: 0; }
+  .flight-group-header { flex-direction: column; align-items: stretch; gap: 8px; }
+  .flight-group-actions { flex-wrap: wrap; }
+  .flight-doc-btn { padding: 6px 12px; font-size: 12px; }
 }
 
 /* === Auth banner (public mode) === */
@@ -707,7 +780,10 @@ blockquote {
 <header class="topbar">
   <button class="menu-toggle" id="menu-toggle" aria-label="目录">☰</button>
   <div class="topbar-title">🇳🇿 新西兰 12 天情侣旅行计划</div>
-  <div class="topbar-sub">2026 / 08 / 08 - 19</div>
+  <nav class="topbar-nav">
+    <a class="topbar-nav-link" href="../timeline.html">📅 时间轴</a>
+    <a class="topbar-nav-link" href="./">🔐 文件库</a>
+  </nav>
 </header>
 <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
 
@@ -811,7 +887,13 @@ blockquote {
   </div>
 
   <div class="flight-group">
-    <div class="flight-group-title">国际段 · Trip.com 订单 <code>1128148549484909</code></div>
+    <div class="flight-group-header">
+      <div class="flight-group-title">国际段 · Trip.com 订单 <code>1128148549484909</code></div>
+      <div class="flight-group-actions">
+        <a class="flight-doc-btn" href="flights/international-trip.pdf" target="_blank">📄 中英版</a>
+        <a class="flight-doc-btn" href="flights/international-trip-en.pdf" target="_blank">📄 英文版</a>
+      </div>
+    </div>
     <table class="flight-table">
       <thead><tr><th>方向</th><th>日期时间</th><th>航段</th><th>航班</th></tr></thead>
       <tbody>
@@ -825,7 +907,13 @@ blockquote {
   </div>
 
   <div class="flight-group">
-    <div class="flight-group-title">新西兰国内段 · Jetstar JQ296</div>
+    <div class="flight-group-header">
+      <div class="flight-group-title">新西兰国内段 · Jetstar JQ296</div>
+      <div class="flight-group-actions">
+        <a class="flight-doc-btn" href="flights/domestic-lpy-qzn-akl.pdf" target="_blank">📄 LPY 行程单</a>
+        <a class="flight-doc-btn" href="flights/domestic-zqy-qzn-akl.pdf" target="_blank">📄 ZQY 行程单</a>
+      </div>
+    </div>
     <table class="flight-table">
       <thead><tr><th>方向</th><th>日期时间</th><th>航段</th><th>航班</th></tr></thead>
       <tbody>
@@ -840,7 +928,12 @@ blockquote {
   </div>
 
   <div class="flight-group">
-    <div class="flight-group-title">奥克兰住宿 · Ibis Budget AKL Airport ✅ 已订</div>
+    <div class="flight-group-header">
+      <div class="flight-group-title">奥克兰住宿 · Ibis Budget AKL Airport ✅ 已订</div>
+      <div class="flight-group-actions">
+        <a class="flight-doc-btn" href="hotels/ibis-akl-airport.pdf" target="_blank">📄 入住凭证</a>
+      </div>
+    </div>
     <table class="flight-table">
       <thead><tr><th>入住</th><th>退房</th><th>房型</th><th>地址</th></tr></thead>
       <tbody>
