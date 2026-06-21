@@ -447,19 +447,87 @@ body {
   z-index: 8;
 }
 
+/* ===== Mobile day pills (hidden on desktop) ===== */
+.day-pills {
+  display: none;
+}
+
 /* ===== Mobile ===== */
 @media (max-width: 900px) {
-  :root { --col-w: var(--col-w-mobile); }
+  body { overflow: auto; height: auto; }
   .layout {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr;
+    display: block;
+    height: auto;
   }
   .detail-panel {
     border-right: none;
-    border-bottom: 1px solid var(--border);
-    max-height: 45vh;
-    padding: 18px;
+    border-bottom: none;
+    padding: 0;
+    max-height: none;
+    overflow: visible;
   }
+  /* Hide hour-grid timeline entirely on mobile */
+  .timeline-wrap { display: none; }
+
+  /* Day pills — horizontal scroll bar pinned under topbar */
+  .day-pills {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 12px 14px;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 56px;
+    z-index: 50;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+  }
+  .day-pills::-webkit-scrollbar { display: none; }
+  .day-pill {
+    flex: 0 0 auto;
+    min-width: 70px;
+    padding: 8px 10px 10px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    text-align: center;
+    font-size: 11px;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.15s;
+    scroll-snap-align: center;
+    user-select: none;
+  }
+  .day-pill .pill-num {
+    display: inline-block;
+    background: var(--primary);
+    color: white;
+    font-weight: 700;
+    padding: 1px 7px;
+    border-radius: 5px;
+    font-size: 10.5px;
+    letter-spacing: 0.3px;
+    margin-bottom: 4px;
+  }
+  .day-pill .pill-date { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 1px; }
+  .day-pill .pill-weekday { font-size: 10.5px; color: var(--muted); margin-bottom: 4px; }
+  .day-pill .pill-weather { font-size: 10.5px; color: var(--primary-2); white-space: nowrap; }
+  .day-pill.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+    box-shadow: 0 4px 12px rgba(15,58,95,0.25);
+  }
+  .day-pill.active .pill-num { background: rgba(255,255,255,0.22); }
+  .day-pill.active .pill-date { color: white; }
+  .day-pill.active .pill-weekday { color: rgba(255,255,255,0.85); }
+  .day-pill.active .pill-weather { color: rgba(255,255,255,0.95); }
+
+  .detail-panel { padding: 18px 18px 32px; }
+  .detail-empty { display: none !important; }
   .topbar-title { font-size: 14px; }
 }
 @media (max-width: 480px) {
@@ -467,6 +535,7 @@ body {
   .detail-event-time { width: 52px; font-size: 11px; }
   .detail-event-text { font-size: 13px; }
   .topbar { height: 52px; padding: 0 14px; }
+  .day-pills { top: 52px; }
 }
 </style>
 </head>
@@ -479,6 +548,8 @@ body {
     <a class="topbar-link" href="private/">🔐 文件库</a>
   </nav>
 </header>
+
+<div class="day-pills" id="day-pills"><!-- Built by JS, mobile only --></div>
 
 <div class="layout">
   <aside class="detail-panel" id="detail-panel">
@@ -508,7 +579,7 @@ const dayWeatherLocation = {
   1: { name: '深圳', lat: 22.55, lon: 113.92, tz: 'Asia/Shanghai', month: '8月', avg: { hi: 32, lo: 26, code: 1 } },
   2: { name: '基督城', lat: -43.49, lon: 172.55, tz: 'Pacific/Auckland', month: '8月', avg: { hi: 12, lo: 3, code: 3 } },
   3: { name: 'Tekapo', lat: -44.00, lon: 170.48, tz: 'Pacific/Auckland', month: '8月', avg: { hi: 8, lo: -3, code: 73 } },
-  4: { name: 'Twizel', lat: -44.26, lon: 170.10, tz: 'Pacific/Auckland', month: '8月', avg: { hi: 8, lo: -3, code: 73 } },
+  4: { name: 'Ben Ohau', lat: -44.20, lon: 170.07, tz: 'Pacific/Auckland', month: '8月', avg: { hi: 8, lo: -3, code: 73 } },
   5: { name: 'Wanaka', lat: -44.70, lon: 169.14, tz: 'Pacific/Auckland', month: '8月', avg: { hi: 8, lo: -2, code: 3 } },
   6: { name: '皇后镇', lat: -45.03, lon: 168.66, tz: 'Pacific/Auckland', month: '8月', avg: { hi: 9, lo: -1, code: 3 } },
   7: { name: '米尔福德', lat: -44.67, lon: 167.93, tz: 'Pacific/Auckland', month: '8月', avg: { hi: 9, lo: 1, code: 63 } },
@@ -593,7 +664,7 @@ const days = [
   },
   {
     id: 4, date: '8/11', weekday: '周二',
-    subtitle: 'Tekapo → Mt Cook → Twizel',
+    subtitle: 'Tekapo → Mt Cook → Ben Ohau',
     tags: ['雪山'], tag: '🏔️',
     events: [
       { time: '09:00', hour: 9, icon: '🌅', type: 'transit', text: '出发离开 Tekapo' },
@@ -601,25 +672,26 @@ const days = [
       { time: '10:30', hour: 10.5, icon: '🚗', type: 'drive', text: '开往 Mt Cook Village', note: '约 60 km，1 小时' },
       { time: '11:30', hour: 11.5, icon: '🥚', type: 'food', text: 'Mt Cook Visitor Centre 午餐', note: 'Hermitage 咖啡店或自带补给' },
       { time: '12:30', hour: 12.5, icon: '🥾', type: 'tour', text: 'Hooker Valley 步道', note: '10 km 来回 3h，先看 DOC 当天开放状态' },
-      { time: '16:00', hour: 16, icon: '🚗', type: 'drive', text: '开往 Twizel', note: '65 km，50 分钟' },
-      { time: '17:00', hour: 17, icon: '🏨', type: 'hotel', text: '入住 Twizel / Mt Cook', note: '住 Twizel 省，住 Mt Cook Village 清晨看雪山震撼' },
+      { time: '15:30', hour: 15.5, icon: '🚗', type: 'drive', text: '开往 Ben Ohau', note: '约 50 km，40 分钟；房东 15:00 发密码' },
+      { time: '16:30', hour: 16.5, icon: '🏡', type: 'hotel', text: '入住 Omahau Down Lodge ✅已订', note: '5744 Tekapo-Twizel Rd, Pukaki, Ben Ohau · 房东 Zicky&Enzo +64 22 1637797 · 锁箱取钥匙', docs: [{label: '📄 入住信息', url: 'private/hotels/omahau-down-lodge.pdf'}] },
     ],
-    notes: 'DOC 步道开放状态需当天去 Visitor Centre 确认',
+    notes: 'DOC 步道开放状态需当天去 Visitor Centre 确认 · 密码 15:00 房东发送，建议 15:30 后到',
   },
   {
     id: 5, date: '8/12', weekday: '周三',
-    subtitle: 'Twizel → Wanaka',
-    tags: ['湖区'], tag: '🌊',
+    subtitle: 'Ben Ohau → Omarama → Lindis Pass → Wanaka',
+    tags: ['湖区', '温泉'], tag: '♨️',
     events: [
-      { time: '09:30', hour: 9.5, icon: '🌅', type: 'transit', text: '出发离开 Twizel' },
-      { time: '11:30', hour: 11.5, icon: '🚗', type: 'drive', text: '抵 Omarama（30 km / 25 分钟）' },
-      { time: '12:00', hour: 12, icon: '♨️', type: 'spa', text: 'Omarama Hot Tubs ✅已订', note: 'Small Hot Tub 双人 1.5h · 订单 #356981425 · NZD 126 已付 · 29 Omarama Ave', docs: [{label: '📄 凭证', url: PDF_OMARAMA}] },
-      { time: '14:00', hour: 14, icon: '🍽️', type: 'food', text: 'Tarras Country Store 午餐', note: '路过经典小店，馅饼 + 热汤' },
-      { time: '14:30', hour: 14.5, icon: '🚗', type: 'drive', text: '开 Lindis Pass', note: '高山道，最高 971m' },
-      { time: '15:30', hour: 15.5, icon: '📸', type: 'tour', text: 'Lindis Pass 观景点', note: '短停拍照' },
+      { time: '09:00', hour: 9, icon: '☕', type: 'food', text: 'Omahau Down 共享厨房早餐' },
+      { time: '11:00', hour: 11, icon: '🌅', type: 'transit', text: '退房，出发去 Omarama', note: '约 30 km / 25 分钟' },
+      { time: '11:45', hour: 11.75, icon: '🅿️', type: 'transit', text: '抵 Omarama 停车', note: '29 Omarama Ave 停车场，提前 15 分钟集合' },
+      { time: '12:00', hour: 12, icon: '♨️', type: 'spa', text: 'Omarama Hot Tubs ✅已订', note: 'Small Hot Tub 双人 1.5h · 订单 #356981425 · NZD 126 已付', docs: [{label: '📄 凭证', url: PDF_OMARAMA}] },
+      { time: '13:30', hour: 13.5, icon: '🚗', type: 'drive', text: '出发去 Wanaka', note: '195 km / 约 2h30' },
+      { time: '14:15', hour: 14.25, icon: '📸', type: 'tour', text: 'Lindis Pass 观景点', note: '高山道最高 971m，短停拍照' },
+      { time: '14:45', hour: 14.75, icon: '🍽️', type: 'food', text: 'Tarras Country Store 简餐', note: 'Lindis Pass 南端经典小店，馅饼 + 热汤' },
       { time: '16:00', hour: 16, icon: '🏨', type: 'hotel', text: '抵达 Wanaka，入住' },
-      { time: '14:30', hour: 14.5, icon: '🌳', type: 'tour', text: 'That Wanaka Tree', note: '黄昏拍照最佳' },
-      { time: '16:00', hour: 16, icon: '🚶', type: 'tour', text: 'Lake Wanaka 湖边散步' },
+      { time: '16:30', hour: 16.5, icon: '🚶', type: 'tour', text: 'Lake Wanaka 湖边散步' },
+      { time: '17:15', hour: 17.25, icon: '🌳', type: 'tour', text: 'That Wanaka Tree', note: '日落金光最佳（8 月日落约 17:30）' },
       { time: '18:30', hour: 18.5, icon: '🍽️', type: 'food', text: '镇中心晚餐' },
     ],
     notes: '雨雪天备用：Puzzling World 室内项目',
@@ -836,11 +908,41 @@ days.forEach(day => {
   timeline.appendChild(col);
 });
 
+// ====== Mobile day pills ======
+const pillsContainer = document.getElementById('day-pills');
+days.forEach(day => {
+  const wloc = dayWeatherLocation[day.id];
+  const avgEmoji = wloc ? weatherEmoji(wloc.avg.code) : '';
+  const pill = document.createElement('div');
+  pill.className = 'day-pill';
+  pill.dataset.dayId = day.id;
+  pill.innerHTML = `
+    <div class="pill-num">D${day.id}</div>
+    <div class="pill-date">${day.date}</div>
+    <div class="pill-weekday">${day.weekday}</div>
+    <div class="pill-weather" data-pill-weather="${day.id}">
+      <span class="pill-weather-emoji">${avgEmoji}</span>
+      <span class="pill-weather-temp">${wloc ? wloc.avg.hi + '°/' + wloc.avg.lo + '°' : ''}</span>
+    </div>
+  `;
+  pill.addEventListener('click', () => selectDay(day.id));
+  pillsContainer.appendChild(pill);
+});
+
 // ====== Detail Panel ======
 function selectDay(id) {
   document.querySelectorAll('.day-col').forEach(c => c.classList.remove('active'));
+  document.querySelectorAll('.day-pill').forEach(p => p.classList.remove('active'));
   const col = document.querySelector(`.day-col[data-day-id="${id}"]`);
   if (col) col.classList.add('active');
+  const pill = document.querySelector(`.day-pill[data-day-id="${id}"]`);
+  if (pill) {
+    pill.classList.add('active');
+    // Center the active pill on mobile
+    if (window.innerWidth <= 900) {
+      pill.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
+  }
 
   const day = days.find(d => d.id === id);
   if (!day) return;
@@ -921,12 +1023,21 @@ async function fetchWeatherForDay(dayId) {
 
 function paintWeather(dayId, data, isForecast) {
   const el = document.querySelector(`.day-weather[data-day-id="${dayId}"]`);
-  if (!el) return;
-  el.classList.remove('loading');
-  el.innerHTML = `
-    <span class="day-weather-emoji">${weatherEmoji(data.code)}</span>
-    <span class="day-weather-temp">${data.hi}°/${data.lo}°</span>
-  `;
+  if (el) {
+    el.classList.remove('loading');
+    el.innerHTML = `
+      <span class="day-weather-emoji">${weatherEmoji(data.code)}</span>
+      <span class="day-weather-temp">${data.hi}°/${data.lo}°</span>
+    `;
+  }
+  // Update pill weather too
+  const pillEl = document.querySelector(`[data-pill-weather="${dayId}"]`);
+  if (pillEl) {
+    pillEl.innerHTML = `
+      <span class="pill-weather-emoji">${weatherEmoji(data.code)}</span>
+      <span class="pill-weather-temp">${data.hi}°/${data.lo}°</span>
+    `;
+  }
   // Add small "预报" or "8月平均" badge to the column body
   const dayId_int = parseInt(dayId);
   const col = document.querySelector(`.day-col[data-day-id="${dayId_int}"]`);
