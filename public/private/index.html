@@ -14,12 +14,14 @@
   --primary-2: #1e6091;
   --primary-light: #eef4f9;
   --warm: #fbbf24;
+  --success: #15803d;
+  --error: #b91c1c;
 }
 * { box-sizing: border-box; }
 body {
   font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", sans-serif;
   margin: 0;
-  padding: 40px 24px;
+  padding: 40px 24px 120px;
   background: var(--bg);
   color: var(--text);
   line-height: 1.6;
@@ -60,6 +62,17 @@ header .auth-tag {
 }
 .back-link:hover { background: var(--primary-light); }
 
+.intro-tip {
+  background: #fffbeb;
+  border-left: 4px solid var(--warm);
+  border-radius: 0 6px 6px 0;
+  padding: 12px 16px;
+  font-size: 13px;
+  color: #5b3a00;
+  margin-bottom: 20px;
+}
+.intro-tip strong { color: var(--primary); }
+
 section { margin-bottom: 28px; }
 section h2 {
   font-size: 17px;
@@ -69,6 +82,26 @@ section h2 {
   background: var(--primary-light);
   border-left: 4px solid var(--primary-2);
   border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-all {
+  margin-left: auto;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--primary-2);
+  background: white;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  padding: 3px 10px;
+  cursor: pointer;
+  transition: all 0.12s;
+}
+.section-all:hover {
+  background: var(--primary-2);
+  color: white;
+  border-color: var(--primary-2);
 }
 
 .card-grid {
@@ -76,9 +109,22 @@ section h2 {
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 12px;
 }
+.card-wrap { position: relative; }
+.card-check {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 3;
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+  accent-color: var(--primary-2);
+}
+.card-wrap.checked .card { border-color: var(--primary-2); box-shadow: 0 0 0 2px rgba(30,96,145,0.18); }
 .card {
   background: var(--card);
   padding: 16px 18px;
+  padding-right: 40px;
   border-radius: 10px;
   border: 1px solid #e5e7eb;
   box-shadow: 0 1px 3px rgba(0,0,0,0.04);
@@ -109,6 +155,106 @@ section h2 {
 .featured .card-meta { color: rgba(255,255,255,0.8); }
 .featured .card-arrow { color: rgba(255,255,255,0.85); }
 
+/* Action bar */
+.action-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: saturate(180%) blur(14px);
+  -webkit-backdrop-filter: saturate(180%) blur(14px);
+  border-top: 1px solid var(--border, #e5e7eb);
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
+  padding: 12px 20px;
+  padding-bottom: max(12px, env(safe-area-inset-bottom));
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 100;
+}
+.action-bar-inner {
+  max-width: 920px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.btn-toggle-all {
+  font-size: 13px;
+  color: var(--primary-2);
+  background: var(--primary-light);
+  border: 1px solid transparent;
+  border-radius: 6px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-weight: 600;
+  font-family: inherit;
+}
+.btn-toggle-all:hover { border-color: var(--primary-2); }
+.count-tag {
+  font-size: 13px;
+  color: var(--muted);
+  margin-right: auto;
+}
+.count-tag b { color: var(--primary); font-size: 15px; }
+.btn-download {
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+  background: var(--primary);
+  border: none;
+  border-radius: 8px;
+  padding: 10px 18px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.15s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+.btn-download:hover { background: var(--primary-2); }
+.btn-download:disabled {
+  background: #cbd5e1;
+  cursor: not-allowed;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15,58,95,0.5);
+  z-index: 200;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+.overlay.active { display: flex; }
+.overlay-card {
+  background: white;
+  border-radius: 14px;
+  padding: 28px 32px;
+  text-align: center;
+  max-width: 320px;
+  width: 90%;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+.overlay-card .spinner {
+  display: inline-block;
+  width: 36px;
+  height: 36px;
+  border: 3px solid #e5e7eb;
+  border-top-color: var(--primary-2);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin-bottom: 12px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.overlay-card .status { font-weight: 600; color: var(--primary); margin-bottom: 4px; }
+.overlay-card .detail { font-size: 12px; color: var(--muted); }
+
 footer {
   margin-top: 40px;
   padding: 20px;
@@ -116,6 +262,17 @@ footer {
   font-size: 12px;
   color: var(--muted);
   border-top: 1px solid #e5e7eb;
+}
+
+@media (max-width: 600px) {
+  body { padding: 24px 16px 130px; }
+  header { padding: 24px 22px; }
+  header h1 { font-size: 20px; }
+  .card-grid { grid-template-columns: 1fr; }
+  .action-bar { padding: 10px 14px; }
+  .btn-download { padding: 9px 14px; font-size: 13px; }
+  .btn-toggle-all { padding: 7px 10px; font-size: 12px; }
+  .count-tag { font-size: 12px; }
 }
 </style>
 </head>
@@ -129,207 +286,273 @@ footer {
     <span class="auth-tag">✅ 已通过 Cloudflare Access 验证</span>
   </header>
 
-  <section>
-    <h2>📘 完整计划</h2>
+  <div class="intro-tip">
+    💡 <strong>勾选文件后</strong>，点底部"下载所选"按钮可以打包成 zip 一键下载到本地。也可点卡片直接预览/单独下载。
+  </div>
+
+  <section data-group="plan">
+    <h2>📘 完整计划 <button class="section-all" data-group="plan">全选本组</button></h2>
     <div class="card-grid">
-      <a class="card featured" href="plan-full.html">
-        <span class="card-icon">📖</span>
-        <div class="card-body">
-          <div class="card-title">完整旅行计划（含机票信息卡）</div>
-          <div class="card-meta">HTML · 含所有 PNR、订单号、酒店确认</div>
-        </div>
-        <span class="card-arrow">→</span>
-      </a>
-      <a class="card" href="plan-full.pdf">
-        <span class="card-icon">📄</span>
-        <div class="card-body">
-          <div class="card-title">完整计划 PDF</div>
-          <div class="card-meta">可打印 / AirDrop / 离线</div>
-        </div>
-        <span class="card-arrow">→</span>
-      </a>
+      <div class="card-wrap" data-group="plan">
+        <a class="card featured" href="plan-full.html">
+          <span class="card-icon">📖</span>
+          <div class="card-body">
+            <div class="card-title">完整旅行计划（含机票信息卡）</div>
+            <div class="card-meta">HTML · 含所有 PNR、订单号、酒店确认</div>
+          </div>
+          <span class="card-arrow">→</span>
+        </a>
+      </div>
+      <div class="card-wrap" data-group="plan">
+        <input type="checkbox" class="card-check" data-url="plan-full.pdf" data-name="新西兰完整计划.pdf" aria-label="选择 完整计划 PDF">
+        <a class="card" href="plan-full.pdf">
+          <span class="card-icon">📄</span>
+          <div class="card-body">
+            <div class="card-title">完整计划 PDF</div>
+            <div class="card-meta">可打印 / AirDrop / 离线</div>
+          </div>
+          <span class="card-arrow">→</span>
+        </a>
+      </div>
     </div>
   </section>
 
-  <section>
-    <h2>✈️ 机票电子行程单</h2>
+  <section data-group="flights">
+    <h2>✈️ 机票电子行程单 <button class="section-all" data-group="flights">全选本组</button></h2>
     <div class="card-grid">
-      <a class="card" href="flights/international-trip.pdf">
-        <span class="card-icon">🌏</span>
-        <div class="card-body">
-          <div class="card-title">国际段往返（中英版）</div>
-          <div class="card-meta">深航 ZH811/812 + 新西兰 NZ216/121 · 经墨尔本</div>
-        </div>
-        <span class="card-arrow">→</span>
-      </a>
-      <a class="card" href="flights/international-trip-en.pdf">
-        <span class="card-icon">🌏</span>
-        <div class="card-body">
-          <div class="card-title">国际段（英文版）</div>
-          <div class="card-meta">入境用</div>
-        </div>
-        <span class="card-arrow">→</span>
-      </a>
-      <a class="card" href="flights/domestic-lpy-qzn-akl.pdf">
-        <span class="card-icon">🛫</span>
-        <div class="card-body">
-          <div class="card-title">国内段 · 乘客 LPY</div>
-          <div class="card-meta">Jetstar JQ296 · 皇后镇→奥克兰 · 含 20kg 托运</div>
-        </div>
-        <span class="card-arrow">→</span>
-      </a>
-      <a class="card" href="flights/domestic-zqy-qzn-akl.pdf">
-        <span class="card-icon">🛫</span>
-        <div class="card-body">
-          <div class="card-title">国内段 · 乘客 ZQY</div>
-          <div class="card-meta">Jetstar JQ296 · 加购 15kg 托运</div>
-        </div>
-        <span class="card-arrow">→</span>
-      </a>
+      <div class="card-wrap" data-group="flights">
+        <input type="checkbox" class="card-check" data-url="flights/international-trip.pdf" data-name="国际段-中英版.pdf" aria-label="选择 国际段中英版">
+        <a class="card" href="flights/international-trip.pdf">
+          <span class="card-icon">🌏</span>
+          <div class="card-body">
+            <div class="card-title">国际段往返（中英版）</div>
+            <div class="card-meta">深航 ZH811/812 + 新西兰 NZ216/121 · 经墨尔本</div>
+          </div>
+          <span class="card-arrow">→</span>
+        </a>
+      </div>
+      <div class="card-wrap" data-group="flights">
+        <input type="checkbox" class="card-check" data-url="flights/international-trip-en.pdf" data-name="国际段-英文版.pdf" aria-label="选择 国际段英文版">
+        <a class="card" href="flights/international-trip-en.pdf">
+          <span class="card-icon">🌏</span>
+          <div class="card-body">
+            <div class="card-title">国际段（英文版）</div>
+            <div class="card-meta">入境用</div>
+          </div>
+          <span class="card-arrow">→</span>
+        </a>
+      </div>
+      <div class="card-wrap" data-group="flights">
+        <input type="checkbox" class="card-check" data-url="flights/domestic-lpy-qzn-akl.pdf" data-name="国内段-LPY-Jetstar.pdf" aria-label="选择 国内段 LPY">
+        <a class="card" href="flights/domestic-lpy-qzn-akl.pdf">
+          <span class="card-icon">🛫</span>
+          <div class="card-body">
+            <div class="card-title">国内段 · 乘客 LPY</div>
+            <div class="card-meta">Jetstar JQ296 · 皇后镇→奥克兰 · 含 20kg 托运</div>
+          </div>
+          <span class="card-arrow">→</span>
+        </a>
+      </div>
+      <div class="card-wrap" data-group="flights">
+        <input type="checkbox" class="card-check" data-url="flights/domestic-zqy-qzn-akl.pdf" data-name="国内段-ZQY-Jetstar.pdf" aria-label="选择 国内段 ZQY">
+        <a class="card" href="flights/domestic-zqy-qzn-akl.pdf">
+          <span class="card-icon">🛫</span>
+          <div class="card-body">
+            <div class="card-title">国内段 · 乘客 ZQY</div>
+            <div class="card-meta">Jetstar JQ296 · 加购 15kg 托运</div>
+          </div>
+          <span class="card-arrow">→</span>
+        </a>
+      </div>
     </div>
   </section>
 
-  <section>
-    <h2>🏨 酒店预订单</h2>
+  <section data-group="hotels">
+    <h2>🏨 酒店预订单 <button class="section-all" data-group="hotels">全选本组</button></h2>
     <div class="card-grid">
-      <a class="card" href="hotels/novotel-chc-airport.pdf">
-        <span class="card-icon">🛏️</span>
-        <div class="card-body">
-          <div class="card-title">D2 · Novotel Christchurch Airport</div>
-          <div class="card-meta">8/9 → 8/10 · CNY 959 · 含早餐 · 屋顶走廊直达航站楼</div>
-        </div>
-        <span class="card-arrow">→</span>
-      </a>
-      <a class="card" href="hotels/peppers-bluewater-tekapo.pdf">
-        <span class="card-icon">💎</span>
-        <div class="card-body">
-          <div class="card-title">D3 · Peppers Bluewater Resort</div>
-          <div class="card-meta">8/10 → 8/11 · CNY 1,572 · 含早餐 · 临 Lake Tekapo</div>
-        </div>
-        <span class="card-arrow">→</span>
-      </a>
-      <a class="card" href="hotels/omahau-down-lodge.pdf">
-        <span class="card-icon">🏡</span>
-        <div class="card-body">
-          <div class="card-title">D4 · Omahau Down Lodge</div>
-          <div class="card-meta">8/11 → 8/12 · 农场风格 Lodge · Pukaki/Ben Ohau · 房东 Zicky &amp; Enzo · 密码 15:00 发</div>
-        </div>
-        <span class="card-arrow">→</span>
-      </a>
-      <a class="card" href="hotels/wanaka-airbnb.pdf">
-        <span class="card-icon">🌳</span>
-        <div class="card-body">
-          <div class="card-title">D5 · Wanaka Gemma's Studio</div>
-          <div class="card-meta">8/12 → 8/13 · Airbnb 整套 studio · 23 Terranova Place · CNY 962 已付 · 确认码 HMXRKXNQWA</div>
-        </div>
-        <span class="card-arrow">→</span>
-      </a>
-      <a class="card" href="hotels/earnslaw-lodge-qzn.pdf">
-        <span class="card-icon">🏡</span>
-        <div class="card-body">
-          <div class="card-title">D6-7 · Earnslaw Lodge Queenstown</div>
-          <div class="card-meta">8/13 → 8/15 · CNY 1,946 已付 · 含 Kitchenette</div>
-        </div>
-        <span class="card-arrow">→</span>
-      </a>
-      <a class="card" href="hotels/airbnb-qzn-pending.pdf">
-        <span class="card-icon">🌅</span>
-        <div class="card-body">
-          <div class="card-title">D8-9 · Queenstown Cosy Lakeview</div>
-          <div class="card-meta">8/15 → 8/17 · Airbnb 整套 · 湖景 · Marc 房东 · CNY 2,587 已付 · 确认码 HMEHAZ8PA9</div>
-        </div>
-        <span class="card-arrow">→</span>
-      </a>
-      <a class="card" href="hotels/ibis-akl-airport.pdf">
-        <span class="card-icon">🛏️</span>
-        <div class="card-body">
-          <div class="card-title">D10 · ibis Budget Auckland Airport</div>
-          <div class="card-meta">8/17 → 8/18 · CNY 717 已付 · 距 AKL 800m</div>
-        </div>
-        <span class="card-arrow">→</span>
-      </a>
+      <div class="card-wrap" data-group="hotels">
+        <input type="checkbox" class="card-check" data-url="hotels/novotel-chc-airport.pdf" data-name="D2-Novotel-CHC-Airport.pdf" aria-label="选择 D2 Novotel">
+        <a class="card" href="hotels/novotel-chc-airport.pdf">
+          <span class="card-icon">🛏️</span>
+          <div class="card-body">
+            <div class="card-title">D2 · Novotel Christchurch Airport</div>
+            <div class="card-meta">8/9 → 8/10 · CNY 959 · 含早餐 · 屋顶走廊直达航站楼</div>
+          </div>
+          <span class="card-arrow">→</span>
+        </a>
+      </div>
+      <div class="card-wrap" data-group="hotels">
+        <input type="checkbox" class="card-check" data-url="hotels/peppers-bluewater-tekapo.pdf" data-name="D3-Peppers-Bluewater-Tekapo.pdf" aria-label="选择 D3 Peppers">
+        <a class="card" href="hotels/peppers-bluewater-tekapo.pdf">
+          <span class="card-icon">💎</span>
+          <div class="card-body">
+            <div class="card-title">D3 · Peppers Bluewater Resort</div>
+            <div class="card-meta">8/10 → 8/11 · CNY 1,572 · 含早餐 · 临 Lake Tekapo</div>
+          </div>
+          <span class="card-arrow">→</span>
+        </a>
+      </div>
+      <div class="card-wrap" data-group="hotels">
+        <input type="checkbox" class="card-check" data-url="hotels/omahau-down-lodge.pdf" data-name="D4-Omahau-Down-Lodge.pdf" aria-label="选择 D4 Omahau Down">
+        <a class="card" href="hotels/omahau-down-lodge.pdf">
+          <span class="card-icon">🏡</span>
+          <div class="card-body">
+            <div class="card-title">D4 · Omahau Down Lodge</div>
+            <div class="card-meta">8/11 → 8/12 · 农场风格 Lodge · Pukaki/Ben Ohau · 房东 Zicky &amp; Enzo · 密码 15:00 发</div>
+          </div>
+          <span class="card-arrow">→</span>
+        </a>
+      </div>
+      <div class="card-wrap" data-group="hotels">
+        <input type="checkbox" class="card-check" data-url="hotels/wanaka-airbnb.pdf" data-name="D5-Wanaka-Gemma-Studio.pdf" aria-label="选择 D5 Wanaka">
+        <a class="card" href="hotels/wanaka-airbnb.pdf">
+          <span class="card-icon">🌳</span>
+          <div class="card-body">
+            <div class="card-title">D5 · Wanaka Gemma's Studio</div>
+            <div class="card-meta">8/12 → 8/13 · Airbnb 整套 studio · 23 Terranova Place · CNY 962 已付 · 确认码 HMXRKXNQWA</div>
+          </div>
+          <span class="card-arrow">→</span>
+        </a>
+      </div>
+      <div class="card-wrap" data-group="hotels">
+        <input type="checkbox" class="card-check" data-url="hotels/earnslaw-lodge-qzn.pdf" data-name="D6-7-Earnslaw-Lodge-Queenstown.pdf" aria-label="选择 D6-7 Earnslaw">
+        <a class="card" href="hotels/earnslaw-lodge-qzn.pdf">
+          <span class="card-icon">🏡</span>
+          <div class="card-body">
+            <div class="card-title">D6-7 · Earnslaw Lodge Queenstown</div>
+            <div class="card-meta">8/13 → 8/15 · CNY 1,946 已付 · 含 Kitchenette</div>
+          </div>
+          <span class="card-arrow">→</span>
+        </a>
+      </div>
+      <div class="card-wrap" data-group="hotels">
+        <input type="checkbox" class="card-check" data-url="hotels/airbnb-qzn-pending.pdf" data-name="D8-9-Queenstown-Cosy-Lakeview.pdf" aria-label="选择 D8-9 QT Airbnb">
+        <a class="card" href="hotels/airbnb-qzn-pending.pdf">
+          <span class="card-icon">🌅</span>
+          <div class="card-body">
+            <div class="card-title">D8-9 · Queenstown Cosy Lakeview</div>
+            <div class="card-meta">8/15 → 8/17 · Airbnb 整套 · 湖景 · Marc 房东 · CNY 2,587 已付 · 确认码 HMEHAZ8PA9</div>
+          </div>
+          <span class="card-arrow">→</span>
+        </a>
+      </div>
+      <div class="card-wrap" data-group="hotels">
+        <input type="checkbox" class="card-check" data-url="hotels/ibis-akl-airport.pdf" data-name="D10-ibis-Budget-AKL-Airport.pdf" aria-label="选择 D10 ibis AKL">
+        <a class="card" href="hotels/ibis-akl-airport.pdf">
+          <span class="card-icon">🛏️</span>
+          <div class="card-body">
+            <div class="card-title">D10 · ibis Budget Auckland Airport</div>
+            <div class="card-meta">8/17 → 8/18 · CNY 717 已付 · 距 AKL 800m</div>
+          </div>
+          <span class="card-arrow">→</span>
+        </a>
+      </div>
     </div>
   </section>
 
-  <section>
-    <h2>🚗 租车（已订 ✅）</h2>
+  <section data-group="car">
+    <h2>🚗 租车（已订 ✅）<button class="section-all" data-group="car">全选本组</button></h2>
     <div class="card-grid">
-      <a class="card featured" href="car-rental/apex-rental-confirmation.pdf">
-        <span class="card-icon">🚗</span>
-        <div class="card-body">
-          <div class="card-title">Apex · 预订确认单（4168308）</div>
-          <div class="card-meta">Mitsubishi ASX 2WD · NZ$741.68 · 8/10 CHC → 8/13 ZQN · 含全险/防滑链</div>
-        </div>
-        <span class="card-arrow">→</span>
-      </a>
-      <a class="card" href="car-rental/apex-pickup-instructions.pdf">
-        <span class="card-icon">🛬</span>
-        <div class="card-body">
-          <div class="card-title">CHC 机场取车说明</div>
-          <div class="card-meta">Gate 1/2 出门 · Air NZ 标志下右侧班车 · 拨 0800 400 121 通知到达</div>
-        </div>
-        <span class="card-arrow">→</span>
-      </a>
+      <div class="card-wrap" data-group="car">
+        <input type="checkbox" class="card-check" data-url="car-rental/apex-rental-confirmation.pdf" data-name="Apex-预订确认单.pdf" aria-label="选择 Apex 预订单">
+        <a class="card featured" href="car-rental/apex-rental-confirmation.pdf">
+          <span class="card-icon">🚗</span>
+          <div class="card-body">
+            <div class="card-title">Apex · 预订确认单（4168308）</div>
+            <div class="card-meta">Mitsubishi ASX 2WD · NZ$741.68 · 8/10 CHC → 8/13 ZQN · 含全险/防滑链</div>
+          </div>
+          <span class="card-arrow">→</span>
+        </a>
+      </div>
+      <div class="card-wrap" data-group="car">
+        <input type="checkbox" class="card-check" data-url="car-rental/apex-pickup-instructions.pdf" data-name="Apex-CHC取车说明.pdf" aria-label="选择 Apex 取车说明">
+        <a class="card" href="car-rental/apex-pickup-instructions.pdf">
+          <span class="card-icon">🛬</span>
+          <div class="card-body">
+            <div class="card-title">CHC 机场取车说明</div>
+            <div class="card-meta">Gate 1/2 出门 · Air NZ 标志下右侧班车 · 拨 0800 400 121 通知到达</div>
+          </div>
+          <span class="card-arrow">→</span>
+        </a>
+      </div>
     </div>
   </section>
 
-  <section>
-    <h2>♨️ 付费活动</h2>
+  <section data-group="activities">
+    <h2>♨️ 付费活动 <button class="section-all" data-group="activities">全选本组</button></h2>
     <div class="card-grid">
-      <a class="card" href="activities/omarama-hot-tubs.pdf">
-        <span class="card-icon">♨️</span>
-        <div class="card-body">
-          <div class="card-title">D5 · Omarama Hot Tubs</div>
-          <div class="card-meta">8/12 12:00-13:30 · 私人木桶 · NZD 126.26 已付 · 订单 #356981425</div>
-        </div>
-        <span class="card-arrow">→</span>
-      </a>
-      <a class="card" href="activities/milford-sound-day-tour.pdf">
-        <span class="card-icon">🌊</span>
-        <div class="card-body">
-          <div class="card-title">D7 · 米尔福德峡湾一日团</div>
-          <div class="card-meta">8/14 07:30 · Klook 订单 EPF714972 · Pure Milford · Upper Stanley St 上车</div>
-        </div>
-        <span class="card-arrow">→</span>
-      </a>
+      <div class="card-wrap" data-group="activities">
+        <input type="checkbox" class="card-check" data-url="activities/omarama-hot-tubs.pdf" data-name="D5-Omarama-Hot-Tubs.pdf" aria-label="选择 Omarama Hot Tubs">
+        <a class="card" href="activities/omarama-hot-tubs.pdf">
+          <span class="card-icon">♨️</span>
+          <div class="card-body">
+            <div class="card-title">D5 · Omarama Hot Tubs</div>
+            <div class="card-meta">8/12 12:00-13:30 · 私人木桶 · NZD 126.26 已付 · 订单 #356981425</div>
+          </div>
+          <span class="card-arrow">→</span>
+        </a>
+      </div>
+      <div class="card-wrap" data-group="activities">
+        <input type="checkbox" class="card-check" data-url="activities/milford-sound-day-tour.pdf" data-name="D7-米尔福德一日团.pdf" aria-label="选择 米尔福德一日团">
+        <a class="card" href="activities/milford-sound-day-tour.pdf">
+          <span class="card-icon">🌊</span>
+          <div class="card-body">
+            <div class="card-title">D7 · 米尔福德峡湾一日团</div>
+            <div class="card-meta">8/14 07:30 · Klook 订单 EPF714972 · Pure Milford · Upper Stanley St 上车</div>
+          </div>
+          <span class="card-arrow">→</span>
+        </a>
+      </div>
     </div>
   </section>
 
-  <section>
-    <h2>🛂 签证（4 项全部已批准 ✅）</h2>
+  <section data-group="visas">
+    <h2>🛂 签证（4 项全部已批准 ✅）<button class="section-all" data-group="visas">全选本组</button></h2>
     <div class="card-grid">
-      <a class="card" href="visas/lpy-visa.pdf">
-        <span class="card-icon">📋</span>
-        <div class="card-body">
-          <div class="card-title">LPY · NZ Visitor Visa</div>
-          <div class="card-meta">已获批 · 2031-06-05 前有效 · 多次入境</div>
-        </div>
-        <span class="card-arrow">→</span>
-      </a>
-      <a class="card" href="visas/zqy-visa.pdf">
-        <span class="card-icon">📋</span>
-        <div class="card-body">
-          <div class="card-title">ZQY · NZ Visitor Visa</div>
-          <div class="card-meta">已获批 · 2031-06-05 前有效 · 多次入境</div>
-        </div>
-        <span class="card-arrow">→</span>
-      </a>
-      <a class="card" href="visas/lpy-au-visa.pdf">
-        <span class="card-icon">🇦🇺</span>
-        <div class="card-body">
-          <div class="card-title">LPY · AU Transit (771)</div>
-          <div class="card-meta">2026-06-25 已获批 · Multiple · 单次 3 天 · grant# 2189585378827</div>
-        </div>
-        <span class="card-arrow">→</span>
-      </a>
-      <a class="card" href="visas/zqy-au-visa.pdf">
-        <span class="card-icon">🇦🇺</span>
-        <div class="card-body">
-          <div class="card-title">ZQY · AU Transit (771)</div>
-          <div class="card-meta">2026-06-26 已获批 · Multiple · 单次 3 天 · grant# 2189585379116</div>
-        </div>
-        <span class="card-arrow">→</span>
-      </a>
+      <div class="card-wrap" data-group="visas">
+        <input type="checkbox" class="card-check" data-url="visas/lpy-visa.pdf" data-name="LPY-NZ-Visitor-Visa.pdf" aria-label="选择 LPY NZ Visa">
+        <a class="card" href="visas/lpy-visa.pdf">
+          <span class="card-icon">📋</span>
+          <div class="card-body">
+            <div class="card-title">LPY · NZ Visitor Visa</div>
+            <div class="card-meta">已获批 · 2031-06-05 前有效 · 多次入境</div>
+          </div>
+          <span class="card-arrow">→</span>
+        </a>
+      </div>
+      <div class="card-wrap" data-group="visas">
+        <input type="checkbox" class="card-check" data-url="visas/zqy-visa.pdf" data-name="ZQY-NZ-Visitor-Visa.pdf" aria-label="选择 ZQY NZ Visa">
+        <a class="card" href="visas/zqy-visa.pdf">
+          <span class="card-icon">📋</span>
+          <div class="card-body">
+            <div class="card-title">ZQY · NZ Visitor Visa</div>
+            <div class="card-meta">已获批 · 2031-06-05 前有效 · 多次入境</div>
+          </div>
+          <span class="card-arrow">→</span>
+        </a>
+      </div>
+      <div class="card-wrap" data-group="visas">
+        <input type="checkbox" class="card-check" data-url="visas/lpy-au-visa.pdf" data-name="LPY-AU-Transit-771.pdf" aria-label="选择 LPY AU Visa">
+        <a class="card" href="visas/lpy-au-visa.pdf">
+          <span class="card-icon">🇦🇺</span>
+          <div class="card-body">
+            <div class="card-title">LPY · AU Transit (771)</div>
+            <div class="card-meta">2026-06-25 已获批 · Multiple · 单次 3 天 · grant# 2189585378827</div>
+          </div>
+          <span class="card-arrow">→</span>
+        </a>
+      </div>
+      <div class="card-wrap" data-group="visas">
+        <input type="checkbox" class="card-check" data-url="visas/zqy-au-visa.pdf" data-name="ZQY-AU-Transit-771.pdf" aria-label="选择 ZQY AU Visa">
+        <a class="card" href="visas/zqy-au-visa.pdf">
+          <span class="card-icon">🇦🇺</span>
+          <div class="card-body">
+            <div class="card-title">ZQY · AU Transit (771)</div>
+            <div class="card-meta">2026-06-26 已获批 · Multiple · 单次 3 天 · grant# 2189585379116</div>
+          </div>
+          <span class="card-arrow">→</span>
+        </a>
+      </div>
     </div>
   </section>
 
@@ -337,5 +560,124 @@ footer {
     🔒 此页面受 Cloudflare Access 保护 · 仅授权邮箱可访问 · 24h Session
   </footer>
 </div>
+
+<div class="action-bar" id="action-bar">
+  <div class="action-bar-inner">
+    <button class="btn-toggle-all" id="btn-toggle-all">全选 / 取消</button>
+    <span class="count-tag">已选 <b id="count-selected">0</b> / <span id="count-total">0</span></span>
+    <button class="btn-download" id="btn-download" disabled>
+      <span>⬇️ 下载所选 ZIP</span>
+    </button>
+  </div>
+</div>
+
+<div class="overlay" id="overlay">
+  <div class="overlay-card">
+    <div class="spinner"></div>
+    <div class="status" id="overlay-status">正在打包…</div>
+    <div class="detail" id="overlay-detail">0 / 0</div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script>
+const allChecks = Array.from(document.querySelectorAll('.card-check'));
+const countSelected = document.getElementById('count-selected');
+const countTotal = document.getElementById('count-total');
+const btnDownload = document.getElementById('btn-download');
+const btnToggleAll = document.getElementById('btn-toggle-all');
+const overlay = document.getElementById('overlay');
+const overlayStatus = document.getElementById('overlay-status');
+const overlayDetail = document.getElementById('overlay-detail');
+
+countTotal.textContent = allChecks.length;
+
+function updateState() {
+  const checked = allChecks.filter(c => c.checked);
+  countSelected.textContent = checked.length;
+  btnDownload.disabled = checked.length === 0;
+  // Highlight selected card-wraps
+  allChecks.forEach(c => {
+    c.closest('.card-wrap').classList.toggle('checked', c.checked);
+  });
+}
+
+allChecks.forEach(cb => {
+  cb.addEventListener('change', updateState);
+  // Block click bubbling so checking the box doesn't navigate
+  cb.addEventListener('click', e => e.stopPropagation());
+});
+
+btnToggleAll.addEventListener('click', () => {
+  const anyUnchecked = allChecks.some(c => !c.checked);
+  allChecks.forEach(c => { c.checked = anyUnchecked; });
+  updateState();
+});
+
+document.querySelectorAll('.section-all').forEach(btn => {
+  btn.addEventListener('click', e => {
+    e.stopPropagation();
+    const group = btn.dataset.group;
+    const groupChecks = allChecks.filter(c => c.closest('.card-wrap').dataset.group === group);
+    const anyUnchecked = groupChecks.some(c => !c.checked);
+    groupChecks.forEach(c => { c.checked = anyUnchecked; });
+    updateState();
+  });
+});
+
+btnDownload.addEventListener('click', async () => {
+  const checked = allChecks.filter(c => c.checked);
+  if (checked.length === 0) return;
+  if (typeof JSZip === 'undefined') {
+    alert('ZIP 库加载失败，请检查网络后重试');
+    return;
+  }
+
+  overlay.classList.add('active');
+  overlayStatus.textContent = '正在下载文件…';
+  overlayDetail.textContent = `0 / ${checked.length}`;
+
+  const zip = new JSZip();
+  let done = 0;
+  let failed = [];
+
+  for (const cb of checked) {
+    const url = cb.dataset.url;
+    const name = cb.dataset.name || url.split('/').pop();
+    try {
+      const r = await fetch(url);
+      if (!r.ok) throw new Error(`HTTP ${r.status}`);
+      const blob = await r.blob();
+      zip.file(name, blob);
+    } catch (err) {
+      console.error('Fetch failed', url, err);
+      failed.push(name);
+    }
+    done++;
+    overlayDetail.textContent = `${done} / ${checked.length}`;
+  }
+
+  overlayStatus.textContent = '正在打包 ZIP…';
+  const zipBlob = await zip.generateAsync({ type: 'blob' }, (meta) => {
+    overlayDetail.textContent = `打包 ${Math.round(meta.percent)}%`;
+  });
+
+  const today = new Date().toISOString().slice(0, 10);
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(zipBlob);
+  link.download = `新西兰旅行文件_${today}.zip`;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+
+  overlay.classList.remove('active');
+  if (failed.length > 0) {
+    alert(`下载完成。${failed.length} 个文件失败：\n${failed.join('\n')}`);
+  }
+});
+
+updateState();
+</script>
 </body>
 </html>
