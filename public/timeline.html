@@ -544,7 +544,7 @@ body {
 <header class="topbar">
   <div class="topbar-title">🇳🇿 12 天时间轴</div>
   <nav class="topbar-nav">
-    <a class="topbar-link" href="plan.html">📋 完整计划</a>
+    <a class="topbar-link" id="plan-link" href="plan.html">📋 完整计划</a>
     <a class="topbar-link" href="private/">🔐 文件库</a>
   </nav>
 </header>
@@ -568,6 +568,24 @@ body {
 </div>
 
 <script>
+// ====== Smart "完整计划" link: detect referrer / sessionStorage to keep authed users in the private view ======
+(function fixPlanLink() {
+  const planLink = document.getElementById('plan-link');
+  if (!planLink) return;
+  let fromPrivate = false;
+  try {
+    if (document.referrer && document.referrer.includes('/private/plan-full.html')) {
+      fromPrivate = true;
+      sessionStorage.setItem('nz_from_private', '1');
+    } else if (sessionStorage.getItem('nz_from_private') === '1') {
+      fromPrivate = true;
+    }
+  } catch (e) { /* sessionStorage may be blocked */ }
+  if (fromPrivate) {
+    planLink.href = 'private/plan-full.html';
+  }
+})();
+
 // ====== Data ======
 const HOUR_START = 5;  // timeline shows 5:00 - 24:00 (and overflow into next day)
 const HOUR_END = 24;

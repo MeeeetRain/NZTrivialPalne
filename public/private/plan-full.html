@@ -4000,6 +4000,16 @@ blockquote {
 <button class="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="回到顶部">↑</button>
 
 <script>
+// Mark this session as "from private" so timeline.html can route 完整计划 back to plan-full.html
+// Also clear the flag when user is on public plan.html, so navigation stays consistent.
+try {
+  if (true) {
+    sessionStorage.setItem('nz_from_private', '1');
+  } else {
+    sessionStorage.removeItem('nz_from_private');
+  }
+} catch (e) {}
+
 // Sidebar toggle with backdrop
 const sidebar = document.querySelector('.sidebar');
 const backdrop = document.getElementById('sidebar-backdrop');
